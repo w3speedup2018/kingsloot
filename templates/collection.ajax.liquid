@@ -1,0 +1,16 @@
+{% layout none %}
+{%- paginate collection.products by 20 -%}
+    <collection-grid class="c-collection__grid">
+        {%- if collection.products.size == 0 -%}
+            <h2 class="t-heading  t-font-size--gamma" style="text-align: center;grid-column: 1 / span 4;">
+                Sorry, there are no products in this collection
+            </h2>
+        {%- else -%}
+            {%- for product in collection.products -%}
+                {% render 'product_card', product: product, %}
+            {%- endfor -%}
+        {%- endif -%}
+    </collection-grid>
+
+    {% render 'collection_pagination', paginate: paginate, anchor: '' %}
+{%- endpaginate -%}

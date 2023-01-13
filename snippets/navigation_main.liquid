@@ -1,0 +1,117 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- assign nav_menu = linklists[main_menu].links -%}
+
+{% if nav_menu.size > 0 %}
+    <nav class="c-nav  js-nav" aria-label="Main">
+
+        <button
+            class="c-nav__close  o-button  o-button--model-close  js-nav-close"
+            type="button"
+            aria-label="Close mobile navigation"
+            aria-controls="navigation"
+            data-title="false"
+        >
+            {% render 'object_icon', icon: "cross", class: "o-icon--nav-close"  %}
+            <span class="sr-only">Close mobile navigation</span>
+        </button>
+
+        <ul class="c-nav__list  js-nav-inner">
+
+            {% for link in nav_menu %}
+                {% assign child_list_handle = link.title | handle %}
+                {% assign has_child = linklists[child_list_handle].links.size %}
+                <li class="c-nav__item  js-nav-item  {% if link.active %}is-active{% endif %}" data-id="{{ link.title | handleize }}">
+                    <a
+                        class="c-nav__item-link{% if has_child > 0  %}  js-subnav-link{% endif %}" 
+                        href="{{ link.url }}"
+                        data-id="{{ link.title | handleize }}"
+                    >
+                        <span class="c-nav__item-link-wrapper">
+                            {{ link.title }}
+                        </span>
+                    </a>
+                        
+                    {%- if has_child > 0  -%}
+                        <button 
+                            class="c-nav__next  js-next-level" 
+                            data-id="{{ link.title | handleize }}" 
+                            aria-label="Go to {{ link.title | handleize }} menu"
+                        >
+                            {% render 'object_icon',
+                                icon: "chevron-right",
+                                class: 'o-icon--next'
+                            %}
+                        </button>
+                    {%- endif -%}
+
+                    {% render 'navigation_subnav', link_title: link.title, nav_banner: nav_banner %}
+               
+                </li>
+
+            {% endfor %}
+
+            <li class="c-nav__item" data-mq-hide="desk">
+                {% if settings.wishlist_enabled %}
+                    <button class="c-nav__item-link  js-wishlist-trigger">
+                        {% render 'object_icon',
+                            icon: "heart",
+                            class: "o-icon--wishlist u-mr-8"
+                        %}
+                        {{'general.wishlist.title' | t }} (<span class="js-wishlist-count">0</span>)
+                    </button>
+                {% endif %}
+            </li>
+
+            <li class="c-nav__item" data-mq-hide="desk">
+                <!-- Currency Picker -->
+            </li>
+        </ul>
+
+        <footer class="c-nav__footer" data-mq-hide="desk">
+            <a
+                href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+                class="c-nav__footer-item"
+            >
+                {% render 'object_icon',
+                    icon: "user",
+                    class: "o-icon--nav  u-mr-16"
+                %}
+                {%- if customer -%}
+                    {{ 'customer.account.title' | t }}
+                {%- else -%}
+                    {{ 'customer.login' | t }}
+                {%- endif -%}
+            </a>
+
+            <a
+                href="{%- if customer -%}{{ routes.account_logout_url }}{%- else -%}{{ routes.account_register_url }}{%- endif -%}"
+                class="c-nav__footer-item"
+            >
+                {%- if customer -%}
+                    {% render 'object_icon',
+                        icon: "signout",
+                        class: "o-icon--nav  u-mr-16"
+                    %}
+                    {{ 'customer.logout' | t }}
+                {%- else -%}
+                    {% render 'object_icon',
+                        icon: "pencil",
+                        class: "o-icon--nav  u-mr-16"
+                    %}
+                    {{ 'customer.register.title_short' | t }}
+                {%- endif -%}
+            </a>
+        </footer>
+    </nav>
+
+{% endif %}

@@ -1,0 +1,81 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% assign show_related_products = true %}
+{% assign product_limit = 4 %}
+
+
+{% if show_related_products == true %}
+
+	{% assign same_vendor = false %}
+	{% assign same_type = false %}
+
+	{% assign exclusions = 'frontpage,all' | split: ',' %}
+
+	{% if product.metafields.c_f['Related Products'] %}
+		{% assign collection = collections[product.metafields.c_f['Related Products']] %}
+	{% endif %}
+	{% assign found_a_collection = false %}
+
+    
+	{% if collection and collection.all_products_count > 1 %}
+		{% unless exclusions contains collection.handle %}
+			{% assign found_a_collection = true %}
+		{% endunless %}
+	{% endif %}
+
+	{% unless found_a_collection %}
+		{% for c in product.collections %}
+			{% unless exclusions contains c.handle or c.all_products_count < 2 %}
+				{% assign found_a_collection = true %}
+				{% assign collection = c %}
+				{% break %}
+			{% endunless %}
+		{% endfor %}
+	{% endunless %}
+    
+	{% if found_a_collection %}
+
+		<div class="o-row  c-related-products"
+			style="--row: {{ section.settings.spacing_mobile }}px; --row-desk: {{ section.settings.spacing_desktop }}px;">
+			<div class="o-container  o-container--stacked">
+				
+				<h2 class="c-related-products-title">{{section.settings.title_relatedproduct}}</h2>
+
+				<div class="c-related-products__inner">
+					{% assign counter = 0 %}
+					{% assign break_at = product_limit %}
+					{% assign current_product = product %}
+
+					{% for product in collection.products %}
+						{% unless product.handle == current_product.handle %}
+							{% unless same_vendor and current_product.vendor != product.vendor %}
+								{% unless same_type and current_product.type != product.type %}
+									{% render 'product_card',
+										product: product,
+										showAddToBasket: false,
+										theme: 'related'
+									%}
+									{% assign counter = counter | plus: 1 %}
+									{% if counter == break_at %}
+										{% break %}
+									{% endif %}
+								{% endunless %}
+							{% endunless %}
+						{% endunless %}
+					{% endfor %}
+				</div>
+			</div>
+
+		</div>
+
+	{% endif %}
+{% endif %}

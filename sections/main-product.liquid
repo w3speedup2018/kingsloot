@@ -1,0 +1,410 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Product",
+  "class": "c-product",
+  "tag": "article",
+  "templates": [
+    "product"
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Region Settings"
+    },
+    {
+      "type": "range",
+      "id": "spacing_desktop",
+      "label": "Desktop Spacing",
+      "info": "Adjust spacing below this section for desktop",
+      "min": 0,
+      "max": 100,
+      "default": 80,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "spacing_mobile",
+      "label": "Mobile Spacing",
+      "info": "Adjust spacing below this section for mobile",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "default": true,
+      "label": "Show dynamic checkout buttons",
+      "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+    },
+    { 
+      "type": "header",
+      "content": "Shipping Date"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping",
+      "label": "Show Shipping Date",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "ship_text",
+      "label": "Shipping Text",
+      "default": "Order"
+    },
+    {
+      "type": "text",
+      "id": "ship_modal_text",
+      "label": "Shipping Modal Description",
+      "default": "5 Business days after the cutoff (2 PM MST)"
+    },
+    {
+      "type": "page",
+      "id": "shipping_info",
+      "label": "Shipping Detail page"
+    },
+    {
+      "type": "header",
+      "content": "Product Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_info",
+      "label": "Show Information",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_img",
+      "label": "Icon Image"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+   
+  ],
+  "blocks": [
+    {
+      "type": "accordion_item",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "slider_image",
+      "name": "See in Action Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image" 
+        }
+      ]
+    },
+    {
+      "type": "slider_video",
+      "name": "Slider Video",
+      "settings": [
+        {
+            "type": "text",
+            "id": "video_url",
+            "label": "Video Link"
+        }
+      ]
+    },
+    {
+      "type": "custom_color",
+      "name": "Customize Text Color",
+      "settings": [
+        {
+            "type": "text",
+            "id": "color_text",
+            "label": "Option Color Text"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text color"
+        }
+      ]
+    },
+    {
+      "type": "life_time",
+      "name": "Life Time",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image" 
+        },
+        {
+          "type": "html",
+          "id": "svg_html",
+          "label": "SVG Html" 
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content"
+        },
+        {
+            "type": "text",
+            "id": "modal_subtitle",
+            "label": "Modal SubTitle",
+            "default": "LIFETIME REPLACEMENT"            
+        },
+        {
+            "type": "text",
+            "id": "modal_title",
+            "label": "Modal Title",
+            "default": "How it works"            
+        },
+        {
+          "type": "text",
+          "id": "step_title_1",
+          "label": "Step title 1",
+          "default": "Step 1"  
+        },
+        {
+          "type": "textarea",
+          "id": "step_content_1",
+          "label": "Step Content 1"
+        },
+        {
+          "type": "text",
+          "id": "step_title_2",
+          "label": "Step title 2",
+          "default": "Step 2"  
+        },
+        {
+          "type": "textarea",
+          "id": "step_content_2",
+          "label": "Step Content 2"
+        },
+        {
+          "type": "text",
+          "id": "step_title_3",
+          "label": "Step title 3",
+          "default": "Step 3"  
+        },
+        {
+          "type": "textarea",
+          "id": "step_content_3",
+          "label": "Step Content 3"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Tab",
+      "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Target Product"
+          },
+          {
+             "type": "page",
+             "id": "feature_page",
+             "label": "Feature Data page"
+          },
+          {
+             "type": "page",
+             "id": "specification_page",
+             "label": "Specification Data page"
+          }
+	  ]
+    }
+  ]
+}
+{% endschema %}
+
+{% render 'theme_assets', layout: 'product' %}
+    <style>
+        {% for block in section.blocks %}
+          {% if block.type == "custom_color" %}
+            [custom-color='{{ block.settings.color_text | handle }}'] {
+                {% if block.settings.color != blank %}
+                color: {{ block.settings.color }} !important;
+                {% endif %}
+              
+            }
+          {% endif%}
+        {% endfor %}
+    </style>
+<section class="o-row" style="--row: {{ section.settings.spacing_mobile }}px; --row-desk: {{ section.settings.spacing_desktop }}px;">
+    {% render 'product_main' %}
+</section>
+
+<!-- Life Time Modal -->
+{% for block in section.blocks %}
+    {% if block.type == 'life_time'%}
+        
+        <div class="c-modal-lifetime ">
+            <div class="c-modal-lifetime__close js-customize-close"></div>
+        
+            <div class="c-modal-lifetime__body">
+                <div class="c-modal-lifetime__close-btn js-customize-close">
+                    {% render 'object_icon', icon: 'close-icon' %}
+                </div>
+        
+                <div class="c-modal-lifetime__step1 active">
+                    <h3 class="subtitle"> {{ block.settings.modal_subtitle }}</h3>
+                    <h3 class="title">
+                        {{ block.settings.modal_title }}
+                    </h3>
+                    <div class="step">
+                        {% for i in (1..3) %}
+                            <div class="step_item">
+                                {% assign stepTitle = "step_title_" | append: i %}
+                                {% assign stepContent = "step_content_" | append: i %}
+                                <h3>{{block.settings[stepTitle]}}</h3>
+                                <p>{{block.settings[stepContent]}}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="modal_image">
+                        {%- render 'object_image' with block.settings.image,
+                            obile_image: block.settings.image,
+                            class: "o-ar o-ar--square"
+                            mobile_ratio: "154/154",
+                            width: 250,
+                            height: 250,
+                            fit: 'contain',
+                            loading: 'lazy'
+                        -%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+<!-- End lifeTime Modal -->
+
+<!-- Start Video Modal -->
+{%- if product.media.size > 0 -%}
+    {%- for media in product.media -%}
+      {% if media.media_type == "external_video" %}
+        <div class="c-modal-video ">
+          <div class="c-modal-video__close  js-customize-close"></div>
+          <div class="c-modal-video__body">
+
+            <div class="c-modal-video__close-btn js-customize-close">
+              {% render 'object_icon', icon: 'close-icon' %}
+            </div>
+
+            <div class="modal_video">
+              {% if media.host == 'youtube' %}
+                {{ media | external_video_url: color: 'white' | external_video_tag }}
+              {% elsif media.host == 'vimeo' %}
+                {{ media | external_video_url: loop: '1', muted: '1' | external_video_tag }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {%- endfor -%}
+{%- endif -%}
+<div class="product-font-size" style="display:none"
+  data-desktop-max = "{{ product.metafields.custom.desktop_max_font_size}}" 
+  data-desktop-min = "{{ product.metafields.custom.desktop_min_font_size}}" 
+  data-mobile-max = "{{ product.metafields.custom.mobile_max_font_size}}" 
+  data-mobile-min = "{{ product.metafields.custom.mobile_max_font_size}}" 
+  desktop-max-width = "{{ product.metafields.custom.desktop_max_width}}" 
+  mobile-max-width = "{{ product.metafields.custom.mobile_max_width}}" 
+>
+</div>
+<!-- End Video Modal -->
+<style>
+  .c-modal-customize__step2-image .customize-text {
+    width: 160px;
+    text-align: center;
+    {% if product.metafields.custom.customization_bottom != blank %}
+    bottom: {{product.metafields.custom.customization_bottom}};
+    {% endif %}
+    {% if product.metafields.custom.customization_right != blank %}
+    right: {{product.metafields.custom.customization_right}};
+    {% endif%}
+    {% if product.metafields.custom.customization_rotate != blank %}
+    transform: rotate({{product.metafields.custom.customization_rotate}}deg);
+    {% endif %}
+    {% if product.metafields.custom.embroidery_text_color != blank %}
+    color: {{product.metafields.custom.embroidery_text_color}};
+    {% else %}
+    color: #000;
+    {% endif %}
+  }
+  @media screen and (max-width: 960px){
+    .c-modal-customize__step2-image .customize-text {
+      width: 110px;
+      text-align: center;
+      {% if product.metafields.custom.customization_mobile_bottom != blank %}
+      bottom: {{product.metafields.custom.customization_mobile_bottom}};
+      {% endif %}
+      {% if product.metafields.custom.customization_mobile_right != blank %}
+      right: {{product.metafields.custom.customization_mobile_right}};
+      {% endif%}
+      
+    }
+    .c-modal-customize__step2-image {
+      width: 317px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+
+</style>
+
+{%- for block in section.blocks -%}
+    {%- if block.type == 'slider_video' -%}
+        <div class="c-modal-action" id="{{block.id}}">
+            <div class="c-modal-action__close  js-customize-close"></div>
+            <div class="c-modal-action__body">
+
+                <div class="c-modal-action__close-btn js-customize-close">
+                    {% render 'object_icon', icon: 'close-icon' %}
+                </div>
+
+                <div class="modal_video">
+                  {%- if block.settings.video_url != blank -%}
+                    <iframe frameborder="0"
+                        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen="allowfullscreen" 
+                        src="{{block.settings.video_url}}?color=white&amp;controls=1&amp;mute=1" 
+                        >
+                    </iframe>
+                  {%- endif -%}
+                  
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor%}

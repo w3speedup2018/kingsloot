@@ -1,0 +1,68 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- liquid
+    assign header_font  = settings.type_header_font
+    assign body_font = settings.type_body_font
+    assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+    assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+    assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+-%}
+
+{% style %}
+    {{ header_font | font_face: font_display: 'swap' }}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {{ body_font_bold | font_face: font_display: 'swap' }}
+    {{ body_font_italic | font_face: font_display: 'swap' }}
+    {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+
+    :root {
+        --font-heading-family: {{ header_font.family }}, {{ header_font.fallback_families }};
+        --font-body-family: {{ body_font.family }}, {{ body_font.fallback_families }};
+    }
+{% endstyle %}
+
+
+<!-- Preconnect (shopify) -->
+<link rel="preconnect" href="https://cdn.shopify.com">
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<link rel="preconnect" href="https://www.bugherd.com" crossorigin>
+{% if settings.wishlist_enabled %}<link rel="preconnect" href="//pwaify.com" crossorigin>{% endif %}
+{% if header_font != empty  and body_font != empty -%}<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>{% endif %}
+
+<!--Preload-->
+{% if header_font != empty  and body_font != empty %}
+<link rel="preload" href="{{ body_font | font_url }}" as="font"  type="font/woff2" crossorigin />
+<link rel="preload" href="{{ body_font_bold | font_url }}" as="font"  type="font/woff2" crossorigin />
+<link rel="preload" href="{{ body_font_italic | font_url }}" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="{{ body_font_bold_italic | font_url }}" as="font"  type="font/woff2" crossorigin />
+<link rel="preload" href="{{ header_font| font_url }}" as="font" type="font/woff2" crossorigin />
+{% endif %}
+
+{%- capture preload -%}{% render 'theme_preload' %}{%- endcapture -%}
+{%- unless preload contains 'Liquid error' -%}{{ preload }}{%- endunless -%}
+
+{%- if settings.debug_enabled -%}
+{% comment %}theme-check-disable{% endcomment %}
+<script src="https://www.bugherd.com/sidebarv2.js?apikey={{ settings.debug_api_key }}" defer></script>
+{% comment %}theme-check-enable{% endcomment %}
+{%- endif -%}
+
+{% render 'theme_assets', layout: layout %}
+<link rel="stylesheet" href="{{ 'custom.css' | asset_url }}" type="text/css" media="all" >
+<script src="{{ 'custom.js' | asset_url }}" defer></script>
+
+<script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    if (Shopify.designMode) document.documentElement.classList.add('shopify-design-mode');
+</script>
+
+{{ settings.head_scripts }}

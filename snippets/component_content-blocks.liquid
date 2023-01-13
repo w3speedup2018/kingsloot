@@ -1,0 +1,73 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% comment %}
+    Renders content component
+    Accepts:
+    - class: {String} Content additional class (optional)
+    - position: {String} Content position (optional)
+
+    Usage:
+    {% render 'object_content' %}
+{% endcomment %}
+
+<div class="c-content  c-content--{{ position_mobile }} c-content--{{ position }}@desk  {{ class }}">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when "subheading" %}
+                <span 
+                    class="c-content__subheading  t-heading  {{ block.settings.subheading_font_size | prepend: "t-size--" }}"
+                    style="color: {{ block.settings.subheading_colour }}; --row: {{ block.settings.spacing_mobile }}px; --row-desk: {{ block.settings.spacing_desktop }}px;">
+                    {{ block.settings.subheading }}
+                </span>
+
+            {% when "header" %}
+                {%- if block.settings.title != blank -%}
+                    <{{ block.settings.heading_title_tag | default: 'h2' }}
+                        class="c-content__heading  t-heading  {{ block.settings.header_font_size | prepend: "t-size--" }}"
+                        style=" color: {{ block.settings.heading_colour }}; --row: {{ block.settings.spacing_mobile }}px; --row-desk: {{ block.settings.spacing_desktop }}px;">
+                        {% comment %}theme-check-disable{% endcomment %}
+                        {{ block.settings.title
+                            | replace: '[/highlight]', '</span>'
+                            | replace: '[highlight]', '<span class="t-highlight">'
+                        }}
+                        {% comment %}theme-check-enable{% endcomment %}
+                    </{{ block.settings.title_tag | default: 'h2' }}>
+                {%- endif -%}
+
+            {% when "text" %}
+                {%- if block.settings.text != blank -%}
+                    <div class="c-wysiwyg  c-content__copy  {{ copy_class }}  {{ block.settings.text_font_size | prepend: "t-size--" }}" style="color: {{ block.settings.text_colour }}; --row: {{ block.settings.spacing_mobile }}px; --row-desk: {{ block.settings.spacing_desktop }}px;">
+                        {% comment %}theme-check-disable{% endcomment %}
+                        {{ block.settings.text
+                            | replace: '[read-more]', '<span class="c-read-more  js-read-more"><span class="c-read-more__inner  js-read-more-inner">'
+                            | replace: '[/read-more]', '</span><span class="c-read-more__dots  js-read-more-dots">...</span> <button class="c-read-more__button  js-read-more-trigger" >Read more</button></span>'
+                        }}
+                        {% comment %}theme-check-enable{% endcomment %}
+                    </div>
+                {%- endif -%}
+
+            {% when "button" %}
+                {%- if block.settings.button_link != blank -%}
+                    <div style="--row: {{ block.settings.spacing_mobile }}px; --row-desk: {{ block.settings.spacing_desktop }}px;">
+                        {%- render 'object_button',
+                            theme: block.settings.button_type,
+                            text: block.settings.button_label,
+                            href: block.settings.button_link,
+                            color: block.settings. button_color,
+                            class: block.settings.button_class
+                        -%}
+                    </div>
+                {%- endif -%}
+        {% endcase %}
+    {% endfor %}
+</div>
+

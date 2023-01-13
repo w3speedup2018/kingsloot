@@ -1,0 +1,71 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Article Content",
+  "tag": "article",
+  "class": "c-article",
+  "presets": [
+    {
+      "category": "content",
+      "name": "Article Content"
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Region Settings"
+    },
+    {
+      "type": "range",
+      "id": "spacing_desktop",
+      "label": "Desktop Spacing",
+      "info": "Adjust spacing below this section for desktop",
+      "min": 0,
+      "max": 100,
+      "default": 80,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "spacing_mobile",
+      "label": "Mobile Spacing",
+      "info": "Adjust spacing below this section for mobile",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "richtext",
+      "id": "article_content",
+      "label": "Article Content"
+    }
+  ]
+}
+{% endschema %}
+
+{% render 'theme_assets', layout: 'article' %}   
+
+<div class="o-row"
+    style="--row: {{ section.settings.spacing_mobile }}px; --row-desk: {{ section.settings.spacing_desktop }}px;">
+    <div class="o-container">
+
+        <div class="c-article-inner">
+
+            <span class="c-article-inner__content">{{ section.settings.article_content }}</span>
+
+        </div>
+    </div>
+</div>

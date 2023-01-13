@@ -1,0 +1,45 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% for block in section.blocks %}
+    {% if block.type == 'life_time'%}
+        <div class="product_lifetime">
+            {% if block.settings.svg_html != blank %}
+                <div class="product_lifetime-image">
+                    {{ block.settings.svg_html }}
+                </div>
+            {% else %}
+                {% if block.settings.image != blank %}
+                <div class="product_lifetime-image">
+                    {%- render 'object_image' with block.settings.image,
+                        mobile_image: block.settings.image,
+                        class: "o-ar o-ar--square"
+                        mobile_ratio: "78/78",
+                        width: 78,
+                        height: 78,
+                        fit: 'contain'
+                    -%}
+                </div>
+                {% endif %}
+            {% endif %}
+            {% if block.settings.content != blank %}
+               <div class="product_lifetime-content">
+                    <span>
+                        {{block.settings.content}}
+                        <br>
+                        <span class="modal_lifetime">LEARN MORE</span>
+                    </span>
+               </div>
+            {% endif %}
+        </div>
+        
+    {% endif %}
+{% endfor %}

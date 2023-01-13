@@ -1,0 +1,29 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="c-featured-articles__item">
+
+    <a href="{{ article.url }}">
+        {%- render 'object_image' with article.image.src,
+            class: 'c-featured-articles__item-image o-ar o-ar--blog-thumb' ,
+            img_class: "o-ar__item",
+            height: 400
+        -%}
+    </a>
+
+    <h3 class="c-featured-articles__item-title">
+        {{ article.title }}
+    </h3>
+    {% assign words = article.content | strip_html | split: ' ' %}
+    <p class="c-featured-articles__item-guide">
+        Guides - {{ words.size | divided_by: 180 }} Mins Read
+    </p>
+</div>

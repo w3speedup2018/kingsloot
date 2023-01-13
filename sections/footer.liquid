@@ -1,0 +1,243 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Footer",
+    "class": "c-footer",
+    "tag": "footer",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Footer column Links"
+        },
+        {
+            "label": "Show Social Media Links?",
+            "type": "checkbox",
+            "id": "show_social",
+            "default": true
+        },
+        {
+            "type": "link_list",
+            "id": "footer_link_1",
+            "label": "Footer Link 1"
+        },
+        {
+            "type": "link_list",
+            "id": "footer_link_2",
+            "label": "Footer Link 2"
+        },
+        {
+            "type": "link_list",
+            "id": "footer_link_3",
+            "label": "Footer Link 3"
+        },
+        {
+            "type": "link_list",
+            "id": "footer_link_4",
+            "label": "Footer Link 4"
+        },
+        {
+            "type": "header",
+            "content": "footer logos"
+        },
+        {
+            "label": "Footer Logo",
+            "id": "footer_logo",
+            "type": "image_picker"
+        },
+        {
+            "label": "Footer Mobile Logo ",
+            "id": "mobile_logo",
+            "type": "image_picker"
+        },
+        {
+            "type": "header",
+            "content": "Newsletter Settings"
+        },
+        {
+            "label": "Show Newsletter?",
+            "type": "checkbox",
+            "id": "show_newsletter",
+            "default": true
+        },
+        {
+            "label": "Newsletter Title",
+            "type": "text",
+            "id": "title_newsletter",
+            "default": "Subscribe"
+        },
+        {
+            "label": "Newsletter text",
+            "type": "text",
+            "id": "subtitle_newsletter",
+            "default": "Stay Updated."
+        },
+        {
+            "type": "link_list",
+            "id": "footer_link_5",
+            "label": "Bottom Menu"
+        }
+    ]
+}
+{% endschema %}
+
+<div class="c-footer__inner  o-container  o-grid">
+    {%- if section.settings.show_social -%}
+    <div class="o-grid__item footer-social" >
+        <h3 class="t-font-size--eta  u-mb-24">
+            Follow us
+        </h3>
+
+        <ul class="c-list" role="list">
+            {%- if settings.social_facebook_link != blank -%}
+            <li class="c-list__item">
+                    <a
+                        href="{{ settings.social_facebook_link }}"
+                        aria-describedby="a11y-external-message"
+                    >
+                        {% render 'object_icon',
+                            icon: "facebook",
+                            class: "o-icon--social"
+                        %}
+                       
+                    </a>
+                </li>
+            {%- endif -%}
+            {%- if settings.social_instagram_link != blank -%}
+                <li class="c-list__item">
+                    <a
+                        href="{{ settings.social_instagram_link }}"
+                        aria-describedby="a11y-external-message"
+                    >
+                        {% render 'object_icon',
+                            icon: "instagram",
+                            class: "o-icon--social"
+                        %}
+                    </a>
+                </li>
+            {%- endif -%}
+
+            {%- if settings.social_twitter_link != blank -%}
+                <li class="c-list__item">
+                    <a
+                        href="{{ settings.social_twitter_link }}"
+                        aria-describedby="a11y-external-message"
+                    >
+                        {% render 'object_icon',
+                            icon: "twitter",
+                            class: "o-icon--social"
+                        %}
+                    </a>
+                </li>
+            {%- endif -%}
+            {%- if settings.social_tiktok_link != blank -%}
+                <li class="c-list__item">
+                    <a
+                        href="{{ settings.social_tiktok_link }}"
+                        aria-describedby="a11y-external-message"
+                    >
+                        {% render 'object_icon',
+                            icon: "tiktok",
+                            class: "o-icon--social"
+                        %}
+                    </a>
+                </li>
+            {%- endif -%}
+
+            {%- if settings.social_pinterest_link != blank -%}
+                <li class="c-list__item">
+                    <a
+                        href="{{ settings.social_pinterest_link }}"
+                        aria-describedby="a11y-external-message"
+                    >
+                        {% render 'object_icon',
+                            icon: "pinterest",
+                            class: "o-icon--social"
+                        %}
+                    </a>
+                </li>
+            {%- endif -%}
+
+            {%- if settings.social_youtube_link != blank -%}
+                <li class="c-list__item">
+                    <a
+                        href="{{ settings.social_youtube_link }}"
+                        aria-describedby="a11y-external-message"
+                    >
+                        {% render 'object_icon',
+                            icon: "youtube",
+                            class: "o-icon--social"
+                        %}
+                    </a>
+                </li>
+            {%- endif -%}
+
+            {%- if settings.social_linkedin_link != blank -%}
+                <li class="c-list__item">
+                    <a
+                        href="{{ settings.social_linkedin_link }}"
+                        aria-describedby="a11y-external-message"
+                    >
+                        {% render 'object_icon',
+                            icon: "linkedin",
+                            class: "o-icon--social"
+                        %}
+                    </a>
+                </li>
+            {%- endif -%}
+        </ul>
+    </div>
+    {%- endif -%}
+    {% if section.settings.footer_logo != blank %}
+    <div class="footer_logo">
+        {%- render 'object_image' with section.settings.footer_logo,
+                mobile_image: section.settings.mobile_logo,
+                mobile_ratio:'200/50',
+                class: 'o-ar',
+                img_class: "o-ar__item",
+                width: "282",
+                height: "70"
+        -%}
+    </div>
+    {% endif %}
+    {% if section.settings.show_newsletter == true %}
+        <div class="c-footer__newsletter">
+            {% render 'form_newsletter', form_id: "footer_newsletter", type: "klaviyo" %}
+        </div>
+    {% endif %}
+</div>
+<div class="c-footer__second">
+    {% render 'footer_columns' %}
+</div>
+<div class="c-footer__bottom">
+    <div class="c-footer__bottom-inner  o-container">
+        {% if linklists[section.settings.footer_link_5].links.size > 0 %}
+            <div class="o-grid__item">
+
+                <ul class="c-list">
+                    {% for link in linklists[section.settings.footer_link_5].links %}
+                    <li class="c-list__item">
+                        <a href="{{ link.url }}">
+                            {{ link.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% if settings.enablePrime and settings.primeProduct != blank %}
+    {% if settings.primeProduct.available %}
+    <div id="kl-prime-product" data-id = "{{settings.primeProduct.variants.first.id}}" style="display:none"></div>
+    {% endif %}
+{% endif %}

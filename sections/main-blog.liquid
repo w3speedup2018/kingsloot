@@ -1,0 +1,82 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Blog",
+  "class": "c-blog",
+  "tag": "article",
+  "presets": [
+    {
+      "category": "content",
+      "name": "Blog"
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "spacing_desktop",
+      "label": "Desktop Spacing",
+      "info": "Adjust spacing below this section for desktop",
+      "min": 0,
+      "max": 100,
+      "default": 80,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "spacing_mobile",
+      "label": "Mobile Spacing",
+      "info": "Adjust spacing below this section for mobile",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    }
+  ]
+}
+{% endschema %}
+
+{% render 'theme_assets', layout: 'blog' %}   
+
+<div class="o-row"
+  style="--row: {{ section.settings.spacing_mobile }}px; --row-desk: {{ section.settings.spacing_desktop }}px;">
+  <div class="o-container">
+
+
+    {%- paginate blog.articles by 6 -%}
+      <div class="c-blog-inner">
+        <div class="c-blog-inner__title">
+          <h1 class="c-blog-inner__title--heading">{{ blog.title | escape }}</h1>
+        </div>
+
+        <div class="c-blog-inner__articles">
+          {%- for article in blog.articles -%}
+            <div class="c-blog-inner__articles-article">
+              {%- render 'articles_card', article: article -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          {%- render 'collection_pagination', paginate: paginate -%}
+        {%- endif -%}
+      </div>
+    {%- endpaginate -%}
+
+  </div>
+</div>

@@ -1,0 +1,315 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "t:sections.newsletter.name",
+    "tag": "section",
+    "class": "o-full",
+    "settings": [
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "header",
+            "content": "Image"
+        },
+        {
+            "type": "select",
+            "id": "lazy_loading",
+            "label": "Image Lazyloading",
+            "info": "If this image is the first and at the top of the page. Change to eager",
+            "options": [
+                {
+                    "value": "lazy",
+                    "label": "Lazy"
+                },
+                {
+                    "value": "eager",
+                    "label": "Eager"
+                }
+            ],
+            "default": "lazy"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Mobile Image",
+            "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+        },
+        {
+            "type": "range",
+            "id": "image_x_position",
+            "label": "Image X-axis Position",
+            "min": 1,
+            "max": 100,
+            "default": 50,
+            "unit": "%"
+        },
+        {
+            "type": "range",
+            "id": "image_y_position",
+            "label": "Image Y-axis Position",
+            "min": 1,
+            "max": 100,
+            "default": 50,
+            "unit": "%"
+        },
+        {
+            "type": "select",
+            "id": "color_scheme",
+            "options": [
+                {
+                    "value": "accent-1",
+                    "label": "t:sections.newsletter.settings.color_scheme.options__1.label"
+                },
+                {
+                    "value": "accent-2",
+                    "label": "t:sections.newsletter.settings.color_scheme.options__2.label"
+                },
+                {
+                    "value": "background-1",
+                    "label": "t:sections.newsletter.settings.color_scheme.options__3.label"
+                },
+                {
+                    "value": "background-2",
+                    "label": "t:sections.newsletter.settings.color_scheme.options__4.label"
+                },
+                {
+                    "value": "inverse",
+                    "label": "t:sections.newsletter.settings.color_scheme.options__5.label"
+                }
+            ],
+            "default": "background-1",
+            "label": "t:sections.newsletter.settings.color_scheme.label"
+        },
+        {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": true,
+            "label": "t:sections.newsletter.settings.full_width.label"
+        },
+        {
+            "type": "paragraph",
+            "content": "t:sections.newsletter.settings.paragraph.content"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "heading",
+            "name": "t:sections.newsletter.blocks.heading.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Subscribe to our emails",
+                    "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "name": "t:sections.newsletter.blocks.paragraph.name",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "paragraph",
+                    "default": "<p>Be the first to know about new collections and exclusive offers.</p>",
+                    "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
+                }
+            ]
+        },
+        {
+            "type": "email_form",
+            "name": "t:sections.newsletter.blocks.email_form.name",
+            "limit": 1
+        },
+        {
+            "type": "@app"
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:sections.newsletter.presets.name",
+            "blocks": [
+                {
+                    "type": "heading"
+                },
+                {
+                    "type": "paragraph"
+                },
+                {
+                    "type": "email_form"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'section_newsletter' %}
+
+<div class="o-container o-container--full c-newsletter">
+    <div class="c-newsletter_background">
+        {%- render 'object_image' with section.settings.image,
+                mobile_image: section.settings.mobile_image,
+                mobile_ratio:'434/386'
+                class: 'o-ar',
+                img_class: "o-ar__item"
+                width: "1500",
+                height: "500"
+        -%}
+    </div>
+    <div class="c-newsletter__content">
+        <div class="c-newsletter__block">
+            {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                    {%- when '@app' -%}
+                        {% render block %}
+                    {%- when 'heading' -%}
+                        <h2 class="t-heading  t-font-size--beta  t-font-align--center">
+                            {{ block.settings.heading | escape }}
+                        </h2>
+                    {%- when 'paragraph' -%}
+                        <div class="t-font-align--center">
+                            {{ block.settings.paragraph }}
+                        </div>
+                    {%- when 'email_form' -%}
+                        {% render 'form_newsletter' %}
+                    {%- endcase -%}
+            {%- endfor -%}
+
+        </div>
+    </div>
+</div>
+
+
+
+

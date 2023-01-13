@@ -1,0 +1,117 @@
+{% render 'theme_assets', layout: 'account' %}
+
+<article class="o-row   c-account">
+    <header class="o-container  c-account__header">
+        
+        {%- assign text = 'customer.logout' | t -%}
+        {%- render 'object_button', 
+            theme: 'tertiary', 
+            href: routes.account_logout_url, 
+            class:'o-button--small  o-button--logout',
+            text: text
+        -%}
+    </header>
+
+    <div class="o-container  o-container--box  c-account__main">
+        {% render 'account_nav', account_page: "address" %}
+        <div class="c-account__content">
+            <header class="c-account__header c--acount-navheader  t-font-align--center">
+                <div class="u-mb-25">
+                    <h1 class="t-font-size--delta  t-font-weight--300">{{ 'customer.addresses.title' | t }}</h1>
+                </div>
+                <div class="u-mb-20 account-buttons">
+                    {%- render 'object_button'
+                    , variant: 'quinary'
+                    , href: routes.account_url
+                    , text: 'Back to Account'
+                    -%}
+                    {%- render 'object_button'
+                    , variant: 'quinary'
+                    , text: 'Add New Address'
+                    , attributes: 'onclick="Shopify.CustomerAddress.toggleNewForm(); return false;"'
+                    -%}
+                </div>
+               
+            </header>
+    
+            <div class="c-account__new-address">
+                {% render 'form_add-address' %}
+            </div>
+    
+            <div class="c-account__addresses">
+                {%- assign count = 0 -%}
+                {% for address in customer.addresses %}
+                    <div {% if address == customer.default_address %} style="grid-row: 1;"{% endif %}>
+                        <div>
+                            {%- capture address_title -%}
+                                {% if address == customer.default_address %}
+                                    {{ 'customer.addresses.default' | t }} Address
+                                {% else %}
+                                    {% assign count = count | plus: 1 %}
+                                    Address {{ count }}
+                                {% endif %}
+                            {%- endcapture -%}
+    
+                            <h2 class="t-font-size--epsilon  t-font-weight--300  u-mb-15" id="{{ address_title | handleize }}">{{ address_title }}</h2>
+    
+                            <div class="u-mb-15 address-content" >
+                                {{ address | format_address }}
+                            </div>
+    
+                            {%- capture button_text -%}{{ 'customer.addresses.edit' | t }}{%- endcapture -%}
+                            {%- capture button_attributes -%}onclick="Shopify.CustomerAddress.toggleForm({{ address.id }}); return false;"{%- endcapture -%}
+                            {%- render 'object_button'
+                            , variant: 'quinary'
+                            , text: button_text
+                            , attributes: button_attributes
+                            , class: 'u-mr-20'
+                            , icon: 'edit'
+                            , icon_position: 'before'
+                            -%}
+    
+                            {%- capture button_text -%}{{ 'customer.addresses.delete' | t }}{%- endcapture -%}
+                            {%- capture button_attributes -%}onclick="Shopify.CustomerAddress.destroy({{ address.id }}, 'Are you sure you wish to delete this address?'); return false;"{%- endcapture -%}
+                            {%- render 'object_button'
+                            , variant: 'quinary'
+                            , text: button_text
+                            , attributes: button_attributes
+                            , class: 'u-mr-20'
+                            , icon: 'remove'
+                            , icon_position: 'before'
+                            -%}
+                        </div>
+    
+                        {% render 'form_edit-address', address: address %}
+                    </div>
+                {% else %}
+                    <div>No addresses found.</div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+
+
+</article>
+
+
+<script>
+  // Modified contents of customer_area.js (shopify_asset_url)
+  Shopify.CustomerAddress = {
+    toggleForm: function(id) {
+      var editEl = document.getElementById('EditAddress_'+id);
+      editEl.hidden = !editEl.hidden;
+      return false;
+    },
+    toggleNewForm: function() {
+      var el = document.getElementById('AddressNewForm');
+      el.hidden = !el.hidden;
+      return false;
+    },
+    destroy: function(id, confirm_msg) {
+      if (confirm(confirm_msg || "Are you sure you wish to delete this address?")) {
+        Shopify.postLink('/account/addresses/'+id, {'parameters': {'_method': 'delete'}});
+      }
+    }
+  }
+</script>

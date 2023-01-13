@@ -1,0 +1,408 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Collection Header",
+    "tag": "header",
+    "class": "c-collection-header  o-row",
+    "templates": [
+        "collection"
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Section Settings"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "header",
+            "content": "Content",
+            "info": "Add your content here"
+        },
+        {
+            "type": "select",
+            "id": "heading_title_tag",
+            "label": "Heading H Tag (for screen readers & SEO - NOT FONT-SIZE)",
+            "options": [
+                {
+                    "value": "h1",
+                    "label": "H1"
+                },
+                {
+                    "value": "h2",
+                    "label": "H2"
+                },
+                {
+                    "value": "h3",
+                    "label": "H3"
+                },
+                {
+                    "value": "h4",
+                    "label": "H4"
+                },
+                {
+                    "value": "h5",
+                    "label": "H5"
+                }
+            ],
+            "default": "h2"
+        },
+        {
+            "type": "select",
+            "id": "header_font_size",
+            "label": "Header Font Size",
+            "options": [
+                {
+                    "value": "h1",
+                    "label": "90px"
+                },
+                {
+                    "value": "h2",
+                    "label": "50px"
+                },
+                {
+                    "value": "h3",
+                    "label": "32px"
+                },
+                {
+                    "value": "h4",
+                    "label": "28px"
+                },
+                {
+                    "value": "h5",
+                    "label": "24px"
+                },
+                {
+                    "value": "h6",
+                    "label": "22px"
+                },
+                {
+                    "value": "h7",
+                    "label": "20px"
+                },
+                {
+                    "value": "h8",
+                    "label": "18px"
+                },
+                {
+                    "value": "h9",
+                    "label": "16px"
+                },
+                {
+                    "value": "h10",
+                    "label": "14px"
+                },
+                {
+                    "value": "h11",
+                    "label": "12px"
+                },
+                {
+                    "value": "h12",
+                    "label": "10px"
+                }
+            ],
+            "default": "h2"
+        },
+        {
+            "type": "color",
+            "id": "heading_colour",
+            "label": "Heading Colour",
+            "default": "#111111",
+            "info": "Pick the colour of the heading"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading Title",
+            "default": "Title",
+            "info": "Add [highlight]Highlighted word[/highlight] to add colour highlight to your word"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subheading Title",
+            "default": "Sub Title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Content",
+            "default": "<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget</p>",
+            "info": "For simple bullets insert the character symbol to the start of the sentence: • (new line for each bullet)"
+        },
+        {
+            "type": "checkbox",
+            "id": "border_content",
+            "label": "Border Content",
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "Button Settings"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open link in new tab?",
+            "default": false
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "radio",
+            "id": "button_type",
+            "label": "Button Type",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "Primary Button"
+                },
+                {
+                    "value": "secondary",
+                    "label": "Secondary Button"
+                },
+                {
+                    "value": "tertiary",
+                    "label": "Tertiary Button"
+                }
+            ],
+            "default": "primary"
+        },
+        {
+            "id": "text_direction",
+            "type": "select",
+            "label": "Text Direction",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Background settings"
+        },
+        {
+            "type": "color",
+            "id": "background_colour",
+            "label": "Pick a background colour"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_bg_image",
+            "label": "Show Background Image?"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_image",
+            "label": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_mobile_image",
+            "label": "Mobile Image"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'collection-header' %}
+
+{%- liquid
+    assign settings = section.settings
+
+    if collection.image != blank
+        assign collection_image = collection.image
+    elsif settings.banner_image != blank
+        assign collection_image = settings.banner_image
+    else
+        assign collection_image = ''
+    endif
+
+    if settings.title != blank
+        assign collection_title = settings.title
+    else
+        assign collection_title = collection.title
+    endif
+
+    if settings.text != blank
+        assign collection_description = settings.text
+    else
+        assign collection_description = collection.description
+    endif
+
+     if collection_image != blank and settings.show_bg_image == true
+        assign content_class = 'o-container  c-content--absolute'
+    else
+        assign content_class = 'o-container  c-content--container'
+    endif
+-%}
+
+{% if collection_image != blank and settings.show_bg_image == true %}
+    {%- render 'object_image' with collection_image,
+        class: 'c-collection-header__image  o-ar  o-ar--banner-half'
+        img_class: "o-ar__item ",
+        width: 1920,
+        height: 400
+    -%}
+{% endif %}
+
+{%- render 'object_content',
+    class: content_class,
+    position: section.settings.content_layout,
+
+    subtitle: section.settings.subtitle,
+    subtitle_class: 't-font-size--milli  u-mb-20',
+
+    title: collection_title,
+    title_tag: "h1",
+    title_class: '',
+    title_color: section.settings.title_color,
+
+    copy: collection_description,
+    copy_color: section.settings.text_color,
+
+    button_label: section.settings.button_label,
+    button_link: section.settings.button_link,
+    button_type: section.settings.button_type,
+-%}
+

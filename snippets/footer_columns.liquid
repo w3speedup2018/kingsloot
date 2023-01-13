@@ -1,0 +1,44 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+
+
+{% for column in (1..4) %}
+
+    {%- assign col_menu = column | plus: 0 | prepend: 'footer_link_' -%}
+    {%- assign footer_link = section.settings[col_menu] -%}
+
+    {% if linklists[footer_link].links.size > 0 %}
+        <div class="o-grid__item">
+            <h3 class="t-font-size--eta  u-mb-24">
+                {{ linklists[footer_link].title }}
+            </h3>
+
+            <ul class="c-list">
+                {% for link in linklists[footer_link].links %}
+                <li class="c-list__item">
+                    {% if link.title == "Accessibility" %}
+                    <div class="access_btn">
+                        {{ link.title }}
+                    </div>
+                    {% else %}
+                    <a href="{{ link.url }}">
+                        {{ link.title }}
+                    </a>
+                    {% endif %}
+                    
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+{% endfor %}

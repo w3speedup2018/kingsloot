@@ -1,0 +1,107 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+
+{% form 'create_customer', novalidate: 'novalidate', class: 'c-form  js-header' %}
+
+    <section class="c-form__fields">
+
+        {%- if form.errors -%}
+            <div class="c-form__field  c-form__field--error  t-size--h9  u-mb-24">
+                {% render 'object_icon', icon: "error-circle", class: "o-icon--error" %}
+                {{ form.errors | default_errors | strip_html }}
+            </div>
+        {%- endif -%}
+
+        <label class="form-label">
+            First Name:
+        </label>
+        {%- assign placeholder = 'customer.register.first_name' | t | append: '*' -%}
+        {%- render 'object_input' ,   
+            name: 'customer[first_name]',   
+            placeholder: placeholder,
+            attributes: 'required autocomplete="given-name"',
+            error: error_message
+        -%}
+        <label class="form-label">
+            Last Name:
+        </label>
+        {%- assign placeholder = 'customer.register.last_name' | t | append: '*' -%}
+        {%- render 'object_input',
+            name: 'customer[last_name]',
+            placeholder: placeholder,
+            attributes: 'required autocomplete="family-nam"',
+            error: error_message
+        -%}
+        <label class="form-label">
+            Email Address:
+        </label>
+        {%- assign placeholder = 'customer.register.email' | t | append: '*' -%}
+        {%- render 'object_input',
+            type: 'email',
+            name: 'customer[email]',
+            placeholder: placeholder,
+            attributes: 'required autocomplete="email"',
+            error: error_message
+        -%}
+        <label class="form-label">
+            Password:
+        </label>
+        {%- assign placeholder = 'customer.register.password' | t | append: '*' -%}
+
+        {%- render 'object_input',
+            type: 'password',
+            name: 'customer[password]',
+            placeholder: placeholder,
+            attributes: 'required autocomplete="current-password"',
+            error: error_message,
+            class: "u-mb-24"
+        -%}
+
+        {%- comment -%}
+            Addtional Field for register form. Duplicate and update as needed
+        {%- assign placeholder = 'customer.register.additional_notes' | t | append: '*' -%}
+        {%- render 'object_input',
+            name: 'customer[note][placholder]',
+            placeholder: placeholder,
+            error: error_message
+        -%}
+        {%- endcomment -%}
+
+        {%- comment -%}
+        Added option to sign up for marketing
+        <label class="c-form__checkbox  u-mb-24"  for="marketing" >
+            <input 
+                class="c-form__checkbox-field"
+                type="checkbox"
+                name="customer[accepts_marketing]"
+                id="marketing"
+                required
+             />
+            <span class="c-form__checkbox-checkmark"></span>
+            {{ 'customer.register.marketing' | t }}
+        </label>
+        {%- endcomment -%}
+
+        {%- capture button_text -%}{{ 'customer.register.submit' | t }}{%- endcapture -%}
+        {%- render 'object_button',
+            type: 'submit',
+            theme: 'primary',
+            text: button_text,
+            attributes: 'value="Create"',
+            class: 'o-button--full'
+        -%}
+
+        <input type="hidden" name="return_to" value="/?=model"/>
+
+    </section>
+{% endform %}
+

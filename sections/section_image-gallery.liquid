@@ -1,0 +1,286 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Image Gallery",
+    "class": "o-row",
+    "tag": "article",
+    "presets": [
+        {
+            "category": "Image",
+            "name": "Image Gallery"
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Region Settings"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Gallery Title"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "color",
+            "id": "background_colour",
+            "label": "Background Colour",
+            "default": "rgba(0,0,0,0)",
+            "info": "Pick a Background Colour"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Image",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Slide Settings"
+                },
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "lazy_loading",
+                    "label": "Image Lazyloading",
+                    "info": "If this image is the first and at the top of the page. Change to eager",
+                    "options": [
+                        {
+                            "value": "lazy",
+                            "label": "Lazy"
+                        },
+                        {
+                            "value": "eager",
+                            "label": "Eager"
+                        }
+                    ],
+                    "default": "lazy"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "range",
+                    "id": "image_x_position",
+                    "label": "Image X-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "image_y_position",
+                    "label": "Image Y-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{%- liquid
+    assign banner = section.settings
+    assign banner_width = banner.width
+    assign background_colour = banner.background_colour
+    assign is_contained = 'o-container'
+
+    if banner_width != "contained"
+        assign is_contained = 'o-container--full'
+    endif
+
+ 
+-%}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ background_colour }};
+        {% if background_colour != 'rgba(0,0,0,0)' %}
+        --padding: 64px;
+        --padding-mob: 48px;
+        {% endif %}
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'section_image-gallery' %} 
+
+<section
+    class=" o-container  {{ is_contained }} c-image_gallery"
+>
+    {% if section.settings.title != blank %}
+        <div class="c-image_gallery-title">
+            <h4> {{section.settings.title}} </h4>
+        </div>
+    {% endif %}
+    <div class="relative">
+        {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+                {% if block.settings.image != blank %}
+                    <div class="c-image_gallery-item">
+                        {%- render 'object_image' with block.settings.image,
+                                mobile_image: block.settings.mobile_image,
+                                class: 'c-home-banner__image o-ar'
+                                img_class: "o-ar__item",
+                                aspect_ratio: true,
+                                use_desktop_ratio: true,
+                                fit: 'contain'
+                        -%}    
+
+                    </div>
+                {% endif %}
+            {%- endfor -%}
+        {%- endif -%}
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,90 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="customize-video-setting"></div>
+    <div id="video-looping" data-loop="{{ section.settings.video_loop }}"></div>
+    <div id="video-controls" data-controls="{{ section.settings.video_controls }}"></div>
+    <div id="video-autoplay" data-autoplay="{{ section.settings.video_autoplay }}"></div>
+<script>
+
+    var times = setInterval(() => {
+        getContent();
+    }, 1500);
+    
+    function getContent () {
+        const videoContent = document.querySelector('.zpa-lazyloaded');    
+        if (videoContent) {
+            const enable_looping = document.querySelector('#video-looping').getAttribute('data-loop') == 'true'? true: false;
+            const enable_controls = document.querySelector('#video-controls').getAttribute('data-controls') == 'true'? true: false;
+            const enable_autoplay = document.querySelector('#video-autoplay').getAttribute('data-autoplay') == 'true'? true: false;
+
+            if (videoContent.src) {
+                var youtube_url = 'https://www.youtube.com/embed/' + youtube_parser(videoContent.src) + '?mute=1';
+
+                if (!enable_controls) {
+                    youtube_url += `&showinfo=0&controls=0`;
+                } else {
+                    youtube_url += `&controls=1`;
+                }
+
+                if (enable_autoplay) {
+                    youtube_url += `&autoplay=1`;
+                } else {
+                    youtube_url += `&autoplay=0`;
+                }
+
+                if (enable_looping) {
+                    youtube_url += `&loop=1&playlist=${youtube_parser(videoContent.src)}`
+                } else {
+                    youtube_url += `&loop=0`
+                }
+            }
+
+            console.log('data = ', youtube_url)
+            videoContent.src = youtube_url;
+            
+            clearInterval(times);
+        }
+    }
+
+    function youtube_parser(url){
+        var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+        var match = url.match(regExp);
+        return (match && match[1].length==11)? match[1] : false;
+    }
+    
+</script>
+
+{% schema %}
+{
+    "name": "Youtube Video Setting",
+    "settings": [
+        {
+            "id": "video_loop",
+            "type": "checkbox",
+            "label": "Video Looping",
+            "default": true
+        },
+        {
+            "id": "video_controls",
+            "type": "checkbox",
+            "label": "Video Controls",
+            "default": false
+        },
+        {
+            "id": "video_autoplay",
+            "type": "checkbox",
+            "label": "Video Autoplay",
+            "default": true
+        }
+    ]
+}
+{% endschema %}

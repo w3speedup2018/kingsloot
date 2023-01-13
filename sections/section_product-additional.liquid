@@ -1,0 +1,474 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Product Additional",
+    "class": "o-row",
+    "tag": "article",
+    "presets": [
+        {
+            "name": "Product Additional"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "tech_item",
+            "name": "Technical Item",
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "image_position",
+                    "label": "Image Position",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "lazy_loading",
+                    "label": "Image Lazyloading",
+                    "info": "If this image is the first and at the top of the page. Change to eager",
+                    "options": [
+                        {
+                            "value": "lazy",
+                            "label": "Lazy"
+                        },
+                        {
+                            "value": "eager",
+                            "label": "Eager"
+                        }
+                    ],
+                    "default": "lazy"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "range",
+                    "id": "image_x_position",
+                    "label": "Image X-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "image_y_position",
+                    "label": "Image Y-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "richtext",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content"
+                },
+                {
+                    "type": "header",
+                    "content": "Techincal List"
+                },
+                {
+                    "type": "text",
+                    "id": "text1",
+                    "label": "Text 1"
+                },
+                {
+                    "type": "text",
+                    "id": "value1",
+                    "label": "Value 1"
+                },
+                {
+                    "type": "text",
+                    "id": "text2",
+                    "label": "Text 2"
+                },
+                {
+                    "type": "text",
+                    "id": "value2",
+                    "label": "Value 2"
+                },
+                {
+                    "type": "text",
+                    "id": "text3",
+                    "label": "Text 3"
+                },
+                {
+                    "type": "text",
+                    "id": "value3",
+                    "label": "Value 3"
+                }
+            ]
+        },
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "image_position",
+                    "label": "Image Position",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "color",
+                    "id": "background",
+                    "label": "Background Color"
+                },
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "lazy_loading",
+                    "label": "Image Lazyloading",
+                    "info": "If this image is the first and at the top of the page. Change to eager",
+                    "options": [
+                        {
+                            "value": "lazy",
+                            "label": "Lazy"
+                        },
+                        {
+                            "value": "eager",
+                            "label": "Eager"
+                        }
+                    ],
+                    "default": "lazy"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "range",
+                    "id": "image_x_position",
+                    "label": "Image X-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "image_y_position",
+                    "label": "Image Y-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content"
+                }
+            ]
+        }
+    ],
+    "settings": [
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Banner Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "text",
+            "id": "custom_class",
+            "label": "Custom Class"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% if section.settings.width == 'full' %}
+    {% assign is_contained = 'o-container--full' %}
+{% else %}
+    {% assign is_contained = 'o-container--box' %}
+{% endif %}
+
+{% render 'theme_assets', layout: 'section_product-additional' %}
+
+
+<div class="c-product-additional">
+    <div class="o-container {{ is_contained }} c-product-additional {{section.settings.custom_class}}">
+        {% for block in section.blocks %}
+            {% if block.type != 'item' %}
+                {% if block.settings.image != blank and block.settings.title != blank %}
+                <div class="c-product-additional__item tech-item">
+                    <div class="c-product-additional__image {% if block.settings.image_position == 'right' %}right{% endif %}">
+                        <div class="c-product-additional__image-rect"></div>
+                        {% if block.settings.image != blank %}
+                            {%- render 'object_image' with block.settings.image,
+                                mobile_image: block.settings.mobile_image,
+                                class: 'c-home-banner__image o-ar'
+                                img_class: "o-ar__item",
+                                aspect_ratio: true,
+                                use_desktop_ratio: true,
+                                fit: 'contain'
+                            -%}    
+                        {% endif %}
+                    </div>
+
+                    <div class="c-product-additional__content">
+                        {% if block.settings.title != blank %}
+                            <h3 class="c-product-additional__content-title">
+                                {{ block.settings.title }}
+                            </h3>
+                        {% endif %}
+                        
+                        <div class="c-product-additional__content-list">
+                            {% for index in (1..3) %}
+                                {% assign text_idx = 'text' | append: index %}
+                                {% assign value_idx = 'value' | append: index %}
+
+                                {% assign text = block.settings[text_idx] %}
+                                {% assign value = block.settings[value_idx] %}
+
+                                {% if text != blank and value != blank %}
+                                    <div class="c-product-additional__content-item">
+                                        <span class="title">{{ text }}</span>
+                                        <span class="value">{{ value }}</span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <div class="c-product-additional__content-desc">
+                            {{ block.settings.content }}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% else %}
+                {% if block.settings.image != blank and  block.settings.title != blank %}
+                    {% assign background = false %}
+                    {% assign background_color = block.settings.background %}
+                    {% if background_color == "#000000" %}
+                    {% assign background = true %}
+                    {% endif %}
+                    <div class="c-product-additional__item" {% if background %} style="background: {{background_color}};" {% endif %}>
+                        <div class="c-product-additional__image {% if block.settings.image_position == 'right' %}right{% endif %}">
+                            <div class="c-product-additional__image-rect"></div>
+                            {% if block.settings.image != blank %}
+                                {%- render 'object_image' with block.settings.image,
+                                    mobile_image: block.settings.mobile_image,
+                                    class: 'c-home-banner__image o-ar'
+                                    img_class: "o-ar__item",
+                                    aspect_ratio: true,
+                                    use_desktop_ratio: true,
+                                    fit: 'contain'
+                                -%}    
+                            {% endif %}
+                        </div>
+
+                        <div class="c-product-additional__content">
+                            {% if block.settings.sub_heading != blank %}
+                                <div class="c-product-additional__content-subHeading {% if background %} text-white {% endif %}">
+                                    {{ block.settings.sub_heading }}
+                                </div>
+                            {% endif %}
+
+                            {% if block.settings.title != blank %}
+                                <h3 class="c-product-additional__content-title {% if background %} text-white {% endif %}">
+                                    {{ block.settings.title }}
+                                </h3>
+                            {% endif %}
+
+                            {% if block.settings.content != blank %}
+                                <div class="c-product-additional__content-desc {% if background %} text-white {% endif %}">
+                                {{ block.settings.content | strip_html }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

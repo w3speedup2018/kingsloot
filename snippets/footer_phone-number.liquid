@@ -1,0 +1,23 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% if shop.phone %}
+<span itemprop="contactPoint" itemscope="" itemtype="http://schema.org/ContactPoint">
+{%- assign shopPhoneNumber = shop.phone | replace: ' ', '' -%}
+{%- assign splitPhone = shopPhoneNumber | split: '' -%}
+{%- if splitPhone[0] == '0' -%}
+    {%- assign shopPhoneNumber = shopPhoneNumber | slice: 1, shopPhoneNumber.size -%}
+    {%- assign shopPhoneNumber = '+44(0)' | append: shopPhoneNumber -%}
+{%- endif -%}
+<meta itemprop="telephone" content="{{ shopPhoneNumber }}" />
+<meta itemprop="contactType" content="customer service" />
+</span>
+{% endif %}

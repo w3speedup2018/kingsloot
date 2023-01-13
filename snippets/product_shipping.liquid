@@ -1,0 +1,94 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- assign todayDate = 'now' | date: "%B %d" -%}
+{%- assign date_format = "%m/%d" -%}
+{% capture now_time_H %} {{'now' | date: "%H" }}{% endcapture %}
+{% capture now_time_M %} {{'now' | date: "%M" }}{% endcapture %}
+{% assign now_time = now_time_H | times: 100 | plus: now_time_M %}
+
+
+{% assign time_flag = false %}
+{% if now_time <= 1400 %}
+    {% assign time_flag = true %}
+
+    {% assign time_cal = 1400 | minus: now_time | divided_by: 100 %}
+    {% assign time_value = "" %}
+    {% if time_cal == 0 %}
+        {% assign time_value = 1400 | minus: now_time | minus: 40 | append: " minutes" %}
+    {% else %}
+        {% assign time_value = time_cal| append: " hour(s)" %}
+    {% endif %}
+{% endif %}
+
+<div class="c-product__shipping">
+
+    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.882 7.5L18.7243 11.1847L21.5 13.0352V16.5H20.3293C19.9175 15.3348 18.8062 14.5 17.5 14.5C16.1938 14.5 15.0825 15.3348 14.6707 16.5H10.3293C9.91746 15.3348 8.80622 14.5 7.5 14.5C6.19378 14.5 5.08254 15.3348 4.67071 16.5H3.5V7.5H16.882ZM21.5 18.5H20.3293C19.9175 19.6652 18.8062 20.5 17.5 20.5C16.1938 20.5 15.0825 19.6652 14.6707 18.5H10.3293C9.91746 19.6652 8.80622 20.5 7.5 20.5C6.19378 20.5 5.08254 19.6652 4.67071 18.5H3.5C2.39543 18.5 1.5 17.6046 1.5 16.5V7.5C1.5 6.39543 2.39543 5.5 3.5 5.5H16.882C17.6395 5.5 18.332 5.928 18.6708 6.60557L20.2757 9.81526L23.5 11.9648V16.5C23.5 17.6046 22.6046 18.5 21.5 18.5ZM8.5 17.5C8.5 18.0523 8.05228 18.5 7.5 18.5C6.94772 18.5 6.5 18.0523 6.5 17.5C6.5 16.9477 6.94772 16.5 7.5 16.5C8.05228 16.5 8.5 16.9477 8.5 17.5ZM18.5 17.5C18.5 18.0523 18.0523 18.5 17.5 18.5C16.9477 18.5 16.5 18.0523 16.5 17.5C16.5 16.9477 16.9477 16.5 17.5 16.5C18.0523 16.5 18.5 16.9477 18.5 17.5Z" fill="black"/>
+    </svg>
+    {% if time_flag ==true %}
+        {%- unless todayDate == "1" -%}
+            <p>{{section.settings.ship_text | replace: "Free Delivery", "<b>Free Delivery</b>" }} within {{time_value}} and receive by {{'now' | date: "%s" | plus : 432000 | date: date_format }}</p>
+        {%- else -%}
+            <p>{{section.settings.ship_text | replace: "Free Delivery", "<b>Free Delivery</b>" }} within {{time_value}} and receive by {{'now' | date: "%s" | plus : 604800 | date: date_format }}</p>
+        {% endunless %}
+    {% else %}
+        {%- unless todayDate == "1" -%}
+        {{section.settings.ship_text}} now and receive by {{'now' | date: "%s" | plus : 518400 | date: date_format }}
+        {%- else -%}
+        {{section.settings.ship_text}} now and receive by {{'now' | date: "%s" | plus : 604800 | date: date_format }}
+        {% endunless %}
+    {% endif %}
+    {% comment %} <div class="ship_modal_info">
+        <svg class="ship_modal_info_icon" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 2px;">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.08337 7.50004C1.08337 11.0439 3.95621 13.9167 7.50004 13.9167C11.0439 13.9167 13.9167 11.0439 13.9167 7.50004C13.9167 3.95621 11.0439 1.08337 7.50004 1.08337C3.95621 1.08337 1.08337 3.95621 1.08337 7.50004ZM12.75 7.50004C12.75 10.3995 10.3995 12.75 7.50004 12.75C4.60055 12.75 2.25004 10.3995 2.25004 7.50004C2.25004 4.60055 4.60055 2.25004 7.50004 2.25004C10.3995 2.25004 12.75 4.60055 12.75 7.50004ZM8.08548 8.66574H8.66843V9.83241H6.3351V8.66574H6.91843V7.49908H6.3351V6.33241H8.08548V8.66574ZM8.08376 5.16574C8.08376 5.48791 7.8225 5.74908 7.50023 5.74908C7.17796 5.74908 6.91671 5.48791 6.91671 5.16574C6.91671 4.84358 7.17796 4.58241 7.50023 4.58241C7.8225 4.58241 8.08376 4.84358 8.08376 5.16574Z" fill="#6B6B6B"/>
+        </svg>
+        <div class="c-modal-ship ">
+            <div class="c-modal-ship__body">
+              <div class="c-modal-ship__close-btn">
+                  {% render 'object_icon', icon: 'close-icon' %}
+              </div>
+              <div class="c-modal-ship-content">
+                <div class="ship_date">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.882 7.5L18.7243 11.1847L21.5 13.0352V16.5H20.3293C19.9175 15.3348 18.8062 14.5 17.5 14.5C16.1938 14.5 15.0825 15.3348 14.6707 16.5H10.3293C9.91746 15.3348 8.80622 14.5 7.5 14.5C6.19378 14.5 5.08254 15.3348 4.67071 16.5H3.5V7.5H16.882ZM21.5 18.5H20.3293C19.9175 19.6652 18.8062 20.5 17.5 20.5C16.1938 20.5 15.0825 19.6652 14.6707 18.5H10.3293C9.91746 19.6652 8.80622 20.5 7.5 20.5C6.19378 20.5 5.08254 19.6652 4.67071 18.5H3.5C2.39543 18.5 1.5 17.6046 1.5 16.5V7.5C1.5 6.39543 2.39543 5.5 3.5 5.5H16.882C17.6395 5.5 18.332 5.928 18.6708 6.60557L20.2757 9.81526L23.5 11.9648V16.5C23.5 17.6046 22.6046 18.5 21.5 18.5ZM8.5 17.5C8.5 18.0523 8.05228 18.5 7.5 18.5C6.94772 18.5 6.5 18.0523 6.5 17.5C6.5 16.9477 6.94772 16.5 7.5 16.5C8.05228 16.5 8.5 16.9477 8.5 17.5ZM18.5 17.5C18.5 18.0523 18.0523 18.5 17.5 18.5C16.9477 18.5 16.5 18.0523 16.5 17.5C16.5 16.9477 16.9477 16.5 17.5 16.5C18.0523 16.5 18.5 16.9477 18.5 17.5Z" fill="black"/>
+                    </svg>
+                    
+                    <p>Ships by
+                        {% if time_flag ==true %}
+                            {%- unless todayDate == "1" -%}
+                                {{'now' | date: "%s" | plus : 432000 | date: date_format }}
+                            {%- else -%}
+                                {{'now' | date: "%s" | plus : 604800 | date: date_format }}
+                            {% endunless %}
+                        {% else %}
+                            {%- unless todayDate == "1" -%}
+                                {{'now' | date: "%s" | plus : 518400 | date: date_format }}
+                            {%- else -%}
+                               {{'now' | date: "%s" | plus : 604800 | date: date_format }}
+                            {% endunless %}
+                        {% endif %}
+                        
+                    </p>
+                </div>
+        
+                <div class="ship_content">
+                    {{section.settings.ship_modal_text}}
+                </div>
+                
+              </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+</div>
+
+
+

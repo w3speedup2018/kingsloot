@@ -1,0 +1,27 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<quick-links class="c-product__quick-links">
+    {% for block in section.blocks %}
+        {% if block.type == 'accordion_item' %}
+            <a 
+                class="c-product__quick-link js-quick-link"
+                data-id="id-{{ block.settings.title | downcase }}"
+            >
+                {{ block.settings.title }}
+            </a>
+
+            <div class="id-{{ block.settings.title | downcase}}">
+                123123123123
+            </div>
+        {% endif %}
+    {% endfor %}
+</quick-links> 

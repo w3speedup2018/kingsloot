@@ -1,0 +1,140 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% form 'customer_address', customer.new_address, class: 'c-form', id: 'AddressNewForm', hidden: true %}
+    <div class="c-form__inner  u-mb-70">
+        <h2 class="sr-only">{{ 'customer.addresses.add_new' | t }}</h2>
+
+        <div class="c-form__fields">
+            {%- if form.errors -%}
+                <div class="c-form__field  c-form__field--error  t-font-size--milli  u-mb-25">
+                    <svg viewBox="0 0 24 24" focusable="false" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm0 20c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9z"></path><circle cx="12" cy="17" r="1"></circle><path d="M12 14c.6 0 1-.4 1-1V8c0-.6-.4-1-1-1s-1 .4-1 1v5c0 .6.4 1 1 1z"></path></svg>
+                    {{ form.errors | default_errors | strip_html }}
+                </div>
+            {%- endif -%}
+
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture input_label -%}<span class="t-font-weight--500  t-font-size--milli">{{ 'customer.addresses.first_name' | t }} *</span>{%- endcapture -%}
+                {%- capture input_value -%}{%- if customer and customer.addresses_count == 0 -%}{{ customer.first_name }}{%- else -%}{{ form.first_name }}{%- endif -%}{%- endcapture -%}
+                {% render 'object_input'
+                , class: 'c-input--secondary'
+                , name: 'address[first_name]'
+                , label: input_label
+                , value: input_value
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture input_label -%}<span class="t-font-weight--500  t-font-size--milli">{{ 'customer.addresses.last_name' | t }} *</span>{%- endcapture -%}
+                {%- capture input_value -%}{%- if customer and customer.addresses_count == 0 -%}{{ customer.last_name }}{%- else -%}{{ form.last_name }}{%- endif -%}{%- endcapture -%}
+                {% render 'object_input'
+                , class: 'c-input--secondary'
+                , name: 'address[last_name]'
+                , label: input_label
+                , value: input_value
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture input_label -%}<span class="t-font-weight--500  t-font-size--milli">{{ 'customer.addresses.address1' | t }} *</span>{%- endcapture -%}
+                {%- capture input_label -%}{{ 'customer.addresses.address1' | t }}{%- endcapture -%}
+                {% render 'object_input'
+                , class: 'c-input--secondary'
+                , name: 'address[address1]'
+                , label: input_label
+                , value: form.address1
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture input_label -%}<span class="t-font-weight--500  t-font-size--milli">{{ 'customer.addresses.address2' | t }} *</span>{%- endcapture -%}
+                {% render 'object_input'
+                , class: 'c-input--secondary'
+                , name: 'address[address2]'
+                , label: input_label
+                , value: form.address2
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture input_label -%}<span class="t-font-weight--500  t-font-size--milli">{{ 'customer.addresses.city' | t }} *</span>{%- endcapture -%}
+                {% render 'object_input'
+                , class: 'c-input--secondary'
+                , name: 'address[city]'
+                , label: input_label
+                , value: form.city
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture inputOptions -%}{{ country_option_tags }}{%- endcapture -%}
+                {%- capture inputAttr -%}id="AddressCountryNew" data-default="{{ form.country }}"{%- endcapture -%}
+                {% render 'object_select'
+                , class: 'c-input--secondary'
+                , name: 'address[country]'
+                , label: 'Country'
+                , value: form.country
+                , options: inputOptions
+                , attributes: inputAttr
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15" id="AddressProvinceContainerNew" style="display: none">
+                {%- capture input_label -%}{{ 'customer.addresses.province' | t }}{%- endcapture -%}
+                {%- capture inputAttr -%}id="AddressProvinceNew" data-default="{{ form.province }}"{%- endcapture -%}
+                {% render 'object_select'
+                , class: 'c-input--secondary'
+                , name: 'address[province]'
+                , label: input_label
+                , value: form.province
+                , attributes: inputAttr
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture input_label -%}{{ 'customer.addresses.zip' | t }}{%- endcapture -%}
+                {% render 'object_input'
+                , class: 'c-input--secondary'
+                , name: 'address[zip]'
+                , label: input_label
+                , value: form.zip
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--2  u-mb-15">
+                {%- capture input_label -%}{{ 'customer.addresses.phone' | t }}{%- endcapture -%}
+                {% render 'object_input'
+                , class: 'c-input--secondary'
+                , name: 'address[phone]'
+                , label: input_label
+                , value: form.phone
+                , attributes: 'inputmode="decimal" pattern="[0-9]*"'
+                %}
+            </div>
+            <div class="c-form__field  u-mb-15">
+				{%- capture input_label -%}<span class="t-font-size--milli">{{ 'customer.addresses.set_default' | t }}</span>{%- endcapture -%}
+                {% render 'object_checkbox'
+                , name: 'address[default]'
+                , value: '1'
+                , label: input_label
+                %}
+            </div>
+            <div class="c-form__field  c-form__field--cta  u-mb-15">
+                {%- capture button_text -%}{{ 'customer.addresses.add' | t }}{%- endcapture -%}
+                {%- render 'object_button'
+                , type: 'submit'
+                , variant: 'secondary'
+                , text: button_text
+                -%}
+
+                {%- capture button_text -%}{{ 'customer.addresses.cancel' | t }}{%- endcapture -%}
+                {%- render 'object_button'
+                , variant: 'quinary'
+                , type: 'button'
+                , text: button_text
+                , attributes: 'onclick="Shopify.CustomerAddress.toggleNewForm(); return false;"'
+                -%}
+            </div>
+        </div>
+    </div>
+{% endform %}

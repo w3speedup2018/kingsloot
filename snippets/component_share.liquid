@@ -1,0 +1,63 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- assign url = url | prepend: shop.url -%}
+{%- comment -%}
+
+https://www.linkedin.com/sharing/share-offsite/?url=${pageLink}
+
+{%- endcomment -%}
+
+<div class="c-share  {{ class }}">
+    <h4 class="c-share__title">
+        Share on
+    </h4>
+
+    <div class="c-share__links">
+        <a
+            class="c-share__link"
+            rel="nofollow"
+            href="https://www.facebook.com/sharer/sharer.php?u={{ url }}">
+            {% render 'object_icon', icon: 'facebook' %}
+        </a>
+
+        <a
+            class="c-share__link"
+            rel="nofollow"
+            href="https://twitter.com/intent/tweet?url={{ url }}"
+        >
+            {% render 'object_icon', icon: 'twitter' %}
+        </a>
+
+        <a
+            class="c-share__link"
+            rel="nofollow"
+            href="https://pinterest.com/pin/create/button/?url={{ url }}"
+        >
+            {% render 'object_icon', icon: 'pinterest' %}
+        </a>
+
+        <a
+            class="c-share__link"
+            href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site {{ url }}"
+            aria-label="Share by Email"
+        >
+            {% render 'object_icon', icon: 'email' %}
+        </a>
+
+        <share-button class="c-share__link" data-url="{{ url }}">
+            <span class="c-share__tool-tip  js-tool-tip">Copied to clipboard</span>
+            {% render 'object_icon', icon: 'link' %}
+        </share-button>
+    </div>
+
+</div>
+

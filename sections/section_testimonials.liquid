@@ -1,0 +1,298 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Section Testimonials",
+    "class": "o-row",
+    "tag": "article",
+    "max_blocks": 5,
+    "presets": [
+        {
+            "name": "Section Testimonials"
+        }
+    ],
+    "settings": [
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Banner Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content"
+        },
+        {
+            "type": "header",
+            "content": "button"
+        },
+        {
+            "type": "header",
+            "content": "Button Settings"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open link in new tab?",
+            "default": false
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "radio",
+            "id": "button_type",
+            "label": "Button Type",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "Primary Button"
+                },
+                {
+                    "value": "secondary",
+                    "label": "Secondary Button"
+                },
+                {
+                    "value": "tertiary",
+                    "label": "Tertiary Button"
+                }
+            ],
+            "default": "primary"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content"
+                },
+                {
+                    "type": "text",
+                    "id": "author",
+                    "label": "Author"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% if section.settings.width == 'full' %}
+    {% assign is_contained = 'o-container--full' %}
+{% else %}
+    {% assign is_contained = 'o-container--box' %}
+{% endif %}
+
+{% render 'theme_assets', layout: 'section_testimonials' %} 
+
+<div class="o-container o-container--full testimonials" >
+    <div class="c-testimonials {{ is_contained }}">
+        {% if section.settings.title != blank %}
+            <h3 class="c-testimonials__title">{{ section.settings.title }}</h3>
+        {% endif %}
+
+        {% if section.settings.content != blank %}
+            <div class="c-testimonials__content">
+                {{ section.settings.content | strip_html }}
+            </div>
+        {% endif %}
+
+        <div class="c-testimonials__list">
+            <div class="c-carousel__slider js-carousel" js-carousel" data-settings="setGallerySize watchCSs" {{ carousel_mq | prepend: 'data-carousel-mq="' | append: '"' }}>
+                {% for block in section.blocks %}
+                    <div class="c-testimonials__item c-carousel__slide">
+                        {% if block.settings.title != blank %}
+                            <h3 class="c-testimonials__item-title">{{ block.settings.title | replace: '<p>', '' | replace: '</p>', '' }}</h3>
+                        {% endif %}
+    
+                        {% if block.settings.content != blank %}
+                            <div class="c-testimonials__item-content">{{ block.settings.content | strip_html }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {%- if section.blocks.size > 1 -%}
+                <div class="c-carousel__nav  c-carousel__nav--overlay c-featured-collections__carousel">
+                    <button class="c-carousel__arrow  c-carousel__arrow--prev  js-carousel-arrow"
+                        data-direction="prev" aria-label="Previous">
+                        {% render 'object_icon', 
+                            icon: 'white-chevron-left'
+                            class: "",
+                        %}                                                   
+                    </button>
+
+                    <button class="c-carousel__arrow  c-carousel__arrow--next  js-carousel-arrow"
+                        data-direction="next" aria-label="Next">
+                        {% render 'object_icon', 
+                            icon: 'white-chevron-right'
+                            class: "",
+                        %}                                                                            
+                    </button>
+                </div>
+            {%- endif -%}
+        </div>
+        
+        {% if section.settings.button_link != blank and section.settings.button_label != blank  %}
+            {%- render 'object_button',
+                theme: section.settings.button_type,
+                text: section.settings.button_label,
+                href: section.settings.button_link
+            -%}
+        {% endif %}
+    </div>
+</div>

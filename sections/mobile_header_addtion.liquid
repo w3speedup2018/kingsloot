@@ -1,0 +1,155 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% assign product_page = false %}
+{% if template contains 'product' %}
+  {% assign product_page = true %}
+{% endif %}
+
+{% assign openMenu = false %}
+{% if template contains 'index' %}
+  {% assign openMenu = true %}
+{% else %}
+  {% if settings.enable_mega_menu_open %}
+      {% assign openMenu = true %}
+  {% endif %}
+{% endif %}
+
+<section class="mobile-view" id="mobile_addition_header">
+    <div class="c-accordion">
+        <div class="c-accordion__items">
+            <div class="c-accordion__items-item js-accordion">
+                <div class="c-accordion__items-item--header js-accordion-trigger {% if openMenu %} is-open {% endif %}">
+                    {% render 'object_icon',
+                        icon: 'chevron-down', 
+                        class: "o-icon--chevron-down" 
+                    %}
+                </div>
+                <div class="c-accordion__items-item--content js-accordion-content" {% unless openMenu %} style="max-height: 0;" {% else %} style="max-height: 199px;" {% endunless %}>
+                    <div class="c-carousel__slider  js-carousel" data-settings="setGallerySize  watchCSs  draggable" data-carousel-mq="mq-med" tabindex="0">
+                        {% for block in section.blocks %}
+                            {% if block.type == 'collection' %}
+                            <div class="collection-item c-carousel__slide">
+                                {% assign collection = block.settings.link %}
+                                <a href="{{ collection.url }}" class="u-h7">
+                                    <div class="image_wrapper">
+                                    {% if block.settings.image != blank %}
+                                        {% assign old_image = block.settings.image | img_url: '100x' %}
+                                        <img src="{% render 'imagekit' src:old_image %}">
+                                    {% else %}
+                                        {% assign img = collection.products[0].featured_image %}
+                                        {% assign old_image = img | img_url: '100x' %}
+                                        <img src="{% render 'imagekit' src:old_image %}">
+                                    {% endif %}
+                                    
+                                    </div>	
+                                    {{collection.title}}
+                                </a>
+                            </div>
+                            {% else %}
+                            <div class="product-item c-carousel__slide">
+                                {% assign product = all_products[block.settings.product] %}
+                                <a href="{{ product.url }}" class="u-h7">
+                                    <div class="image_wrapper">
+                                        {% if block.settings.image != blank %}
+                                          {% assign old_image = block.settings.image | img_url: '100x' %}
+                                          <img src="{% render 'imagekit' src:old_image %}">
+                                        {% else %}
+                                          {% assign old_image =  product.featured_image | img_url: '100x' %}
+                                          <img src="{% render 'imagekit' src:old_image %}">
+                                        {% endif %}
+                                    </div>	
+                                    {{product.title}}
+                                </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if product_page == false %}
+<style>
+  .mobile-view .c-accordion__items-item--content {
+    max-height: 200px;
+  }
+  body main {
+    margin-top: 190px;
+    
+  }
+  @media screen and (min-width: 640px) {
+    body main {
+      margin-top: 0px;
+    }
+  }
+</style>
+{% endif %}
+{% schema %}
+{
+  "name": "Mobile Addition Header",
+  "class": "shopify-section--bordered",
+  "settings": [
+    {
+      "type": "select",
+      "id": "item_type",
+      "label": "Item Type",
+      "default": "collection",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collections"
+        },
+        {
+          "value": "product",
+          "label": "Products"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Menu",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection Image"
+        },
+        {
+        "type": "collection",
+        "id": "link",
+        "label": "Collection"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product List",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product IMage"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

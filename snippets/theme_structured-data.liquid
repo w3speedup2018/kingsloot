@@ -1,0 +1,122 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": {{ shop.name | json }},
+        "url": "{{ shop.url }}",
+        {% if section.settings.logo %}
+        {% assign image_size = section.settings.logo.width | append: 'x' %}
+        "logo": {{ section.settings.logo | image_url: width: image_size | prepend: "https:" | json }},
+        {% endif %}
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "{{ shop.email }}",
+            "url": {{ shop.url | append: page.url | json }}
+        },
+        "sameAs": [
+            {{ settings.social_twitter_link | json }},
+            {{ settings.social_facebook_link | json }},
+            {{ settings.social_pinterest_link | json }},
+            {{ settings.social_instagram_link | json }},
+            {{ settings.social_tumblr_link | json }},
+            {{ settings.social_snapchat_link | json }},
+            {{ settings.social_youtube_link | json }},
+            {{ settings.social_vimeo_link | json }}
+        ]
+    }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ shop.url | append: page.url | json }}
+    }
+  </script>
+{% elsif template contains 'article' %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "{{ article.author }}",
+            "url": "{{ article.user.homepage }}"
+        },
+        "datePublished": "{{ article.created_at | date: "%F" }}",
+        "headline": "{{ article.title | strip_html | escape }}",
+        "image": "{{ article.image }}",
+        "publisher": {
+        "@type": "Organization",
+        "name": "{{ shop.name }}",
+        "url": "{{ shop.url }}"
+        {% if settings.social_logo != blank %},
+        {%- assign image_size = '600x' -%}
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ settings.social_logo | image_url: width: image_size }}"
+        }
+        {% endif %}
+        },
+        "dateModified": "{{ article.published_at | date: "%F" }}",
+        "mainEntityOfPage": "{{ article.url }}"
+    }
+    </script>
+{% elsif template contains 'product' %}
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "Product",
+            "name": {{ product.title | json }},
+            "url": {{ shop.url | append: product.url | json }},
+            {%- if product.selected_or_first_available_variant.featured_media -%}
+            {%- assign media_size = product.selected_or_first_available_variant.featured_media.preview_image.width | append: 'x' -%}
+            "image": [
+                {{ product.selected_or_first_available_variant.featured_media | image_url: width: media_size | prepend: "https:" | json }}
+            ],
+            {%- endif -%}
+            "description": {{ product.description | strip_html | json }},
+            {%- if product.selected_or_first_available_variant.sku != blank -%}
+            "sku": {{ product.selected_or_first_available_variant.sku | json }},
+            {%- endif -%}
+            "brand": {
+            "@type": "Thing",
+            "name": {{ product.vendor | json }}
+            },
+            "offers": [
+            {%- for variant in product.variants -%}
+                {
+                "@type" : "Offer",
+                {%- if variant.sku != blank -%}
+                    "sku": {{ variant.sku | json }},
+                {%- endif -%}
+                "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+                "price" : {{ variant.price | divided_by: 100.00 | json }},
+                "priceCurrency" : {{ cart.currency.iso_code | json }},
+                "url" : {{ shop.url | append: variant.url | json }}
+                }{% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+            ]
+        }
+    </script>
+{% endif %}

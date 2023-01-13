@@ -1,0 +1,40 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<aside class="c-product__sidebar">
+    <div class="c-product__sidebar-inner">
+        {% render 'product_header' %}
+
+        {% render 'product_form' %}
+        <div class="product_desktop">
+            {% render 'product_icons' %}
+        </div>
+       
+            {% render 'product_accordion' %}
+            <div class="product_mobile">
+                {% render 'product_icons' %}
+            </div>
+            {% render 'product_lifetime' %}
+     
+
+        {%- render 'object_button',
+            href: '#'
+            theme: 'secondary',
+            text: 'Back to search results',
+            class: 'js-back-to-search  c-button--right  is-hidden',
+            attributes: ''
+        -%}
+        
+        {% if section.settings.show_info %}
+            {% render 'product_show-info' %}
+        {% endif %}
+    </div>
+</aside>

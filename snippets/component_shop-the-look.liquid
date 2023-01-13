@@ -1,0 +1,71 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- liquid
+    assign show_look = false
+    
+    if product_list != null and product_list.count != 0
+        assign show_look = true
+    endif
+
+-%}
+
+{%- if show_look -%}
+    <shop-the-look class="c-shop-the-look{{ button_position | prepend: '  c-shop-the-look--' }}">
+        <div class="c-shop-the-look__products  js-look-products">
+            <header class="c-shop-the-look__header">
+                <h3 class="t-size--h8">
+                    {{ 'general.shop_the_look.title' | t }}
+                </h3>
+            </header>
+            {%- for product in product_list -%}
+                <a href="{{ product.url }}" class="c-shop-the-look__product">
+
+                    {%- render 'object_image' with product.images[0],
+                        class: '  o-img__frame--fill  c-shop-the-look__product-image',
+                        aspect_ratio: "theme-default",
+                        width: 48,
+                        height: 48
+                    -%}
+
+                    <aside class="c-shop-the-look__product-details">
+                        <h4 class="t-size--h8  u-mb-10">
+                            {{ product.title }}
+                        </h4>
+
+                        {% render 'product_price',
+                            product: product,
+                            font_size: 'c-price--look  t-size--h8',
+                            compare_size: 't-size--h9';
+                        %}
+                    </aside>
+                </a>
+
+            {%- endfor -%}
+
+        </div>
+
+        <button class="c-shop-the-look__button  js-look-button">
+            {% render 'object_icon', 
+                icon: 'shopping-bag' 
+                class: "c-shop-the-look__button-icon  js-look-button-bag"
+             %}
+
+             {% render 'object_icon',
+                icon: "cross",
+                class: "c-shop-the-look__button-icon  js-look-button-close is-hidden"
+            %}
+        </button>
+
+
+    </shop-the-look>
+{%- endif -%}
+

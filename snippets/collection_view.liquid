@@ -1,0 +1,26 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<collection-view  class="c-toolbar__view-container">
+    <a 
+        href="{{ collection.url }}/?view=2-col"  
+        class="c-toolbar__view  {% if template contains '2-col' %}is-active{% endif %}"
+    >
+        {% render 'object_icon', icon: 'view-two' %}
+    </a>
+
+    <a 
+        href="{{ collection.url }}/" 
+        class="c-toolbar__view  {% unless template contains '2-col' %}is-active{% endunless %}"
+    >
+        {% render 'object_icon', icon: 'view-three' %}
+    </a>
+</collection-view>

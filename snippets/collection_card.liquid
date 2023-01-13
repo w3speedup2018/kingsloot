@@ -1,0 +1,35 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% assign image = collection.image | default: collection.products.first.featured_image %}
+{% assign mobile_image = collection.image | default: collection.products.first.featured_image %}
+{% assign title = collection.title %}
+{% assign button_text = block.settings.button_label | default: 'Shop now' %}
+{% assign button_link = block.settings.button_link | default: collection.url %}
+
+<div class="c-collection-card">
+    {%- render 'object_image' with image,
+        mobile_image: mobile_image,
+        mobile_ratio: "366/240"
+        class: 'c-carousel__img  o-ar  o-ar--square',
+        img_class: "o-ar__item"
+        width: "680",
+        height: "400"
+    -%}
+
+    <div class="c-collection-card__content">
+        <h3 class="title">{{ title }}</h3>
+
+        <a href="{{ button_link }}" class="button">
+            {{ button_text }}
+        </a>
+    </div>
+</div>

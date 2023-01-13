@@ -1,0 +1,30 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="c-header__search">
+    <div class="c-header__search-form  js-search-target  is-hidden">
+        {% render 'form_search', type: "header" %}
+    </div>
+
+    <button type="button"  class="c-header__search-open  js-search-trigger">
+        {% render 'object_icon',
+            icon: "search",
+            class: "c-header__search-icon"
+        %}
+    </button>
+
+    <button type="button"  class="c-header__search-close  js-search-close  is-hidden">
+        {% render 'object_icon',
+            icon: "cross",
+            class: "c-header__search-icon"
+        %}
+    </button>
+</div>

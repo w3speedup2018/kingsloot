@@ -1,0 +1,24 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="c-product__show-info">
+    {%- render 'object_image' with section.settings.icon_img,
+        class: 'c-carousel__img  o-ar  o-ar--square',
+        img_class: "o-ar__item"
+        use_desktop_ratio: true,
+        aspect_ratio: true,
+        fit: "cover"
+    -%}
+
+    <div class="c-product__show-info--content">
+        {{ section.settings.content }}
+    </div>
+</div>

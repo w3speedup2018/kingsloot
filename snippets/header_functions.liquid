@@ -1,0 +1,60 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<aside class="c-header__functions">
+    <!-- <a class="c-header__support" href="{{section.settings.support_link}}">
+        <span>support</span>
+    </a> -->
+    <a
+        href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+        class="o-button  o-button--header"
+        data-mq-hide="mob-lrg"
+        data-type="customer"
+    >
+        {% render 'object_icon',
+            icon: "user"
+            class: "o-icon--heart"
+        %}
+    </a>
+
+    {% render 'header_search' %}
+
+
+    {% if settings.wishlist_enabled %}
+        <button
+            class="c-wishlist__trigger  u-mr-24  js-model-trigger"
+            data-type="wishlist"
+            data-mq-hide="mob-lrg"
+        >
+            {% render 'object_icon',
+                icon: "heart"
+                class: "o-icon--heart"
+            %}
+        </button>
+    {% endif %}
+
+    <a
+        href="{{ routes.cart_url }}"
+        class="c-mini-cart__trigger js-minicart-trigger {% unless template contains 'cart' %}  js-model-trigger{% endunless %}"
+        data-type="mini-cart"
+    >
+        {% render 'object_icon',
+            icon: "shopping-bag"
+            class: "o-icon--shopping-bag"
+        %}
+
+        <span class="c-mini-cart__count  js-minicart-count">
+            {{ cart.item_count }}
+        </span>
+    </a>
+
+</aside>
+

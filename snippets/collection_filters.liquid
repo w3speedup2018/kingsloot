@@ -1,0 +1,160 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="c-collection__filters">
+  <div class="c-collection__filter js-filter-btn">
+    {{ 'products.facets.filter_button' | t }}
+
+    <div class="c-collection__filter-plus c-collection__filter-btnicon">+</div>
+    <div class="c-collection__filter-minus c-collection__filter-btnicon">-</div>
+  </div>
+
+  <div class="c-collection__sortby is-desktop">
+    {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+    {% if collection.handle == "all" %}
+        {% assign sort_by = 'best-selling' %}
+    {% endif %}
+
+    <h3 class="c-collection__sortby-title">
+      {{ 'products.facets.sort_by' | t }}
+      <span class="js-sort-by">
+        <div class="js-sort-by-value">{{ sort_by }}</div>
+
+        {% render 'object_icon', icon: 'chevron-down' %}
+      </span>
+    </h3> 
+
+    <ul class="hidden js-sort-list">
+      {% for option in collection.sort_options %}
+        <li value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %} class="js-sort-item">
+          {{ option.name }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="c-collection__filters-modal js-filter-modal">
+  {% comment %}
+  <div class="c-collection__filters-modal--close js-filter-close">
+    <button class="o-button  o-button--close"  data-type="customer">
+      {% render 'object_icon', icon: "cross", class: "o-icon--cross"  %}
+    </button>
+  </div>
+  {% endcomment %}
+  {% comment %}
+  <div class="c-collection__filters-modal--top">
+    <input value="" class="js-search-input" placeholder="Type to search...">
+    <a class="js-search-btn" href="#">
+      {% render 'object_icon', icon: 'search' %}
+    </a>
+  </div>
+  {% endcomment %}
+
+  {% comment %} <div class="c-collection__filters-modal--header">
+    <div class="c-collection__filters-modal--resetBtn js-filter-reset-btn">
+      {{ 'sections.collection_list.reset_filter' | t }}
+    </div>
+  </div> {% endcomment %}
+
+  <div class="c-collection__filters-modal-body">
+
+    <div class="c-collection__sortby is-mobile">
+      {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+      {% if collection.handle == "all" %}
+          {% assign sort_by = 'best-selling' %}
+      {% endif %}
+
+      <h3 class="c-collection__sortby-title">
+        {{ 'products.facets.sort_by' | t }}
+        <span class="js-sort-by-mobile">
+          <div class="js-sort-by-value-mobile">{{ sort_by }}</div>
+
+          {% render 'object_icon', icon: 'chevron-down' %}
+        </span>
+      </h3> 
+
+      <ul class="hidden js-sort-list-mobile">
+        {% for option in collection.sort_options %}
+          <li value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %} class="js-sort-item-mobile">
+            {{ option.name }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+
+    {% for filter in collection.filters %}
+      {% unless filter.label contains 'color' or filter.label contains 'Color' %}
+       
+
+        {% if filter.type == 'price_range' %}
+          <div class="c-collection__filters-modal--range js-filter-content active" data-label="{{ filter.label }}" style="order: 5;">
+            <div class="c-collection__filters-modal--range__content">
+              <div class="c-ollection__filters-label"> Price </div>
+              <div class="price-input">
+                <div class="field">
+                  <span>{{ cart.currency.symbol }} &nbsp;</span>
+                  <input type="number" class="input-min" value="0" data-key="{{ filter.min_value.param_name }}">
+                </div>
+                <div class="separator"> - </div>
+                <div class="field">
+                  <span>{{ cart.currency.symbol }} &nbsp;</span>
+                  <input type="number" class="input-max" value="500" data-key="{{ filter.max_value.param_name }}">
+                </div>
+              </div>
+              <div class="slider">
+                <div class="progress"></div>
+              </div>
+              <div class="range-input">
+                <input type="range" data-key="{{ filter.min_value.param_name }}" class="range-min" min="0" max="500" value="0" step="10">
+                <input type="range" data-key="{{ filter.max_value.param_name }}" class="range-max" min="0" max="500" value="500" step="10">
+              </div>
+              <div class="range-value">
+                <div>0</div>
+                <div>500</div>
+              </div>
+
+            </div>
+
+            {% comment %} <div class="remove-btn" data-label="{{ filter.label }}">
+              {{ 'sections.collection_list.remove_price' | t }}
+            </div> {% endcomment %}
+          </div>
+        {% else %}
+          <div class="c-collection__filters-modal--list js-filter-content active" data-label="{{ filter.label }}">
+            <div class="c-ollection__filters-label">
+            {{ filter.label }}
+            </div>
+            <div class="list">
+              {% for filter_value in filter.values %}
+                <div class="item js-filter-item" data-label="{{ filter.label }}" data-key="{{ filter_value.param_name }}" data-value="{{ filter_value.value }}">
+                  {{ filter_value.label }}
+                  {% render 'object_icon',
+                      icon: "check",
+                      class: "o-icon--check"
+                  %}
+                </div>
+              {% endfor %}
+            </div>
+
+            {% comment %} <div class="remove-btn" data-label="{{ filter.label }}">
+              {{ 'sections.collection_list.remove_list' | t }}
+            </div> {% endcomment %}
+          </div>
+        {% endif %}
+        
+      {% endunless %}
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,63 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Search",
+    "class": "o-row",
+    "tag": "section",
+    "templates": [
+        "search"
+    ],
+    "settings": []
+}
+{% endschema %}
+
+{% render 'theme_assets', layout: 'search' %}
+
+<div class="o-container c-search">
+    {%- if search.performed -%}
+      <h1 class="t-heading  t-font-size--delta  t-font-align--center  u-mb-20  u-mt-20">{{ 'templates.search.title' | t }}: {{search.terms }}</h1>
+    {%- else -%}
+      <h1 class="t-heading  t-font-size--delta  t-font-align--center  u-mb-20  u-mt-20">{{ 'general.search.search' | t }}: {{search.terms }}</h1>
+    {%- endif -%}
+
+    <div class="c-search__form-results  js-search-results" ></div>
+
+    {%- paginate search.results by 50 -%}
+        <div class="c-search__grid  js-search-grid">
+            {%- if search.results.size == 0 -%}
+
+                    <h1 class="t-heading  t-font-size--gamma">
+                        Sorry, there are no results for this search
+                    </h1>
+
+                {%- else -%}
+
+                <collection-grid class="c-search__grid-inner">
+
+                    {%- for product in search.results -%}
+                        {%- render 'product_card',
+                            product: product,
+                            showAddToBasket: true
+                        -%}
+                    {%- endfor -%}
+
+                </collection-grid>
+
+                {%- if paginate.pages > 1 -%}
+                    {% render 'collection_pagination', paginate: paginate, anchor: '', class: '' %}
+                {%- endif -%}
+
+            {%- endif -%}
+        </div>
+     {%- endpaginate -%}
+</div>

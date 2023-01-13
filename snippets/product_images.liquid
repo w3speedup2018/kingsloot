@@ -1,0 +1,136 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% if product.type == 'Gift Cards' %}
+    {% assign type = 'gift' %}
+{% else %}
+    {% assign type = 'default' %}
+{% else %}
+        
+{% endif %}
+{% if type == 'gift' %}
+<div class="c-product__image {{ type }}">
+    <div class="c-product__image--{{ type }}">
+        <div class="product-main-image">
+            {%- render 'object_image' with product.featured_image,
+                class: 'c-carousel__img  o-ar  o-ar--square',
+                img_class: "o-ar__item"
+                width: "680",
+                height: "680",
+                mobile_ratio: "400/400",
+                loading: 'lazy'
+            -%}
+        </div>
+        
+    </div>
+    
+</div>
+{% else %}
+<div class="c-product__image {{ type }}">
+    <div class="c-carousel  c-carousel--product c-product__image--{{ type }}">
+        <div
+        style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+        class="swiper mySwiper2"
+        >
+            <div class="swiper-wrapper">
+                {%- if product.media.size > 0 -%}
+                    {%- for media in product.media -%}
+                            {% case media.media_type %}
+                                {% when "image" %}
+                                    {% unless media.alt contains 'Hover' or media.alt contains 'Hidden' %}
+                                        <div class="swiper-slide product-main-image">
+                                            {%- render 'object_image' with media,
+                                                class: 'c-carousel__img  o-ar  o-ar--square',
+                                                img_class: "o-ar__item"
+                                                width: "680",
+                                                height: "520",
+                                                mobile_ratio: "400/280",
+                                                loading: 'lazy'
+                                            -%}
+                                        </div>
+                                    {% endunless %}
+                                {% else %}
+                            {% endcase %}
+                      
+                    {%- endfor -%}
+                {%- endif -%}
+            </div>
+            <div class="swiper-button-next">
+                <svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>       
+            </div>
+            <div class="swiper-button-prev">
+                <svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow"></path></svg>
+            </div>
+        </div>
+
+        <div thumbsSlider="" class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {%- if product.media.size > 0 -%}
+                    {%- for media in product.media -%}
+                        {% case media.media_type %}
+                            {% when "image" %}
+                                {% unless media.alt contains 'Hover' or media.alt contains 'Hidden' %}
+                                    <div class="swiper-slide product-thumb-image">
+                                        {%- render 'object_image' with media,
+                                            class: 'c-carousel__img  o-ar  o-ar--square',
+                                            img_class: "o-ar__item"
+                                            width: "680",
+                                            height: "680",
+                                            mobile_ratio: "400/400",
+                                            loading: 'lazy'
+                                        -%}
+                                    </div>
+                                {% endunless %}
+                            {% else %}
+                        {% endcase %}
+                    {%- endfor -%}
+                {%- endif -%}
+            </div>
+            <div class="swiper-button-next">
+                {% render 'object_icon', 
+                    icon: 'chevron-right'
+                %}        
+            </div>
+            <div class="swiper-button-prev">
+                {% render 'object_icon', 
+                    icon: 'chevron-left'
+                %} 
+            </div>
+        </div>
+        
+    </div>
+
+    {%- if product.media.size > 0 -%}
+        {%- for media in product.media -%}
+            {% case media.media_type %}
+            
+                {% when "external_video" %}
+                    <div class="c-product__video hidden">
+                        {% render 'object_icon',
+                            icon: "video",
+                            class: "video-icon"
+                        %}
+                        Watch the Video Preview
+                        {% render 'object_icon',
+                            icon: "chevron-right",
+                            class: "right-icon"
+                        %}
+                    </div>
+                    {% break %}
+                {% else %}
+
+            {% endcase %}
+        {%- endfor -%}
+    {%- endif -%}
+</div>
+{% endif %}
+
+

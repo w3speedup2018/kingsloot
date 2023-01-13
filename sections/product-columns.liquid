@@ -1,0 +1,95 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% render 'theme_assets', layout: 'product-column' %}
+<div class="c-product-column">
+    <div class="c-product-column__container o-container">
+        <div class="c-product-column__header">
+            {% if section.settings.title != blank %}
+                <h1 class="c-product-column__header-title">
+                    {{ section.settings.title }}
+                </h1>
+            {% endif %}
+
+            {% if section.settings.desc != blank %}
+                <p class="c-product-column__header-desc">{{ section.settings.desc }}</p>
+            {% endif %}
+        </div>
+
+        {% if section.blocks.size > 0 %}
+            <div class="c-product-column__list">
+                {% for block in section.blocks %}
+                    {% assign product = all_products[block.settings.product] %}
+                    <a class="c-product-column__list-item" href="{{ product.url }}">
+                        <div class="c-product-column__list-item-image">
+                            {%- render 'object_image' with product.featured_image,
+                                width: 250,
+                                height: 250,
+                            -%}
+                        </div>
+                        <h3 class="c-product-column__list-item-title">{{ product.title }}</h3>
+                        <div class="c-product-column__list-item-price">
+                            {% render 'product_price',
+                                product: product
+                            %}
+                        </div>
+                        {% if block.settings.title != blank %}
+                            <p class="">
+                                {{ block.settings.title }}
+                            </p>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% schema %}
+    {
+        "name": "Product Columns",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "textarea",
+                "id": "desc",
+                "label": "Description"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "product",
+                "name": "Product",
+                "settings": [
+                    {
+                        "type": "product",
+                        "id": "product",
+                        "label": "Product"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Product Columns",
+                "category": "Product"
+            }
+        ]
+    }
+{% endschema %}

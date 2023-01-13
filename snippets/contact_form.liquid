@@ -1,0 +1,96 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% form 'contact', id: '' %}
+
+    {% if form.posted_successfully? %}
+        <div class="c-contact__form-message--success">
+            {{ 'templates.contact.form.post_success' | t }}
+        </div>
+    {% endif %}
+
+    {% if form.errors %}
+        <div class="c-contact__form-message--error">
+            <!-- {{ form.errors.size }} or {{ form.errors | size }} -->
+            <p>
+                Your contact form has {{ form.errors | size | pluralize: "an error", "a few errors" }}. To submit your form,
+                make
+                the following changes and try again:
+            </p>
+            {% for field in form.errors %}
+                <p>
+                    The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}.
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div id="contactFormWrapper" class="c-contact__form-wrapper">
+        <span class="c-contact__form-wrapper__description">{{ section.settings.form_paragraph }}</span>
+        <ul class="c-contact__form-wrapper__fields">
+            <li class="form-field">
+                <label class="form-field_label" for="helpWith">Select a Subject</label>
+                <div class="form-field_input">
+                    <select name="contact[help]" id="helpWith" class="form-field__input form-field__select--input">
+                        {%- for block in section.blocks -%}
+                            {%- if block.type == "help_option" -%}
+                                <option value="{{ block.settings.help_option_value }}">{{ block.settings.help_option_label }}</option>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </select>
+                    {% render 'object_icon',
+                        icon: "chevron-down",
+                        class: 'o-icon--down'
+                    %}
+                </div>
+            </li>
+            <li class="form-field">
+                <label class="form-field_label" for="name">Name *</label>
+                <div class="form-field_input">
+                    <input class="form-field__input" placeholder="Full Name" type="text" required id="contactFormName"
+                    name="contact[name]">
+                </div>
+                
+            </li>
+            <li class="form-field">
+                <label class="form-field_label" for="email">Email Address *</label>
+                <div class="form-field_input">
+                    <input class="form-field__input" placeholder="Email" type="email" required id="contactFormEmail"
+                    name="contact[email]">
+                </div>
+               
+            </li>
+            
+            <li class="form-field flex-start">
+                <label class="form-field_label" for="message">Message</label>
+                <div class="form-field_input">
+                    <textarea class="form-field__input" placeholder="Message" required rows="10" id="contactFormMessage"
+                    name="contact[body]"></textarea>
+                </div>
+                
+            </li>
+            <li class="form-field" class="buttons">
+                <label class="form-field_label" for="message"></label>
+                <div class="form-field_input">
+                    {% render 'object_button',
+                        text: 'SUBMIT MESSAGE',
+                        theme: 'secondary',
+                        color: 'black',
+                        type: 'submit',
+                        class: 'form-field__submit'
+                    %}
+                </div>
+                
+            </li>
+        </ul>
+
+    </div>
+{% endform %}

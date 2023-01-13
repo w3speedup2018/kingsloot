@@ -1,0 +1,82 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% form 'product',
+    product,
+    class: 'js-product-form  c-product-form',
+    data-product-id: product.id,
+    data-product-type: product_type
+%}
+
+    <!-- <input
+        type="hidden"
+        name="quantity"
+        value="1"
+    >  -->
+    <div class="c-product-form__qty  js-product-form-qty">
+        {%- render 'cart_qty', qty: 1, id: product.selected_or_first_available_variant.id -%}
+    </div>
+
+    <div class="c-product-form__select">
+        <label class="c-product-form__select-label">
+            Pack Size
+        </label>
+        <select
+            name="id"
+            class="c-product-form__select-field  js-product-variant"
+            id="ProductSelect-{{ product.id }}"
+        >
+            {% for variant in product.variants %}
+                {% if variant.available %}
+
+                    <option
+                        {% if variant == current_variant %}selected="selected" {% endif %}
+                        data-sku="{{ variant.sku }}"
+                        value="{{ variant.id }}"
+                        data-price="{{ variant.price }}"
+                        data-quantity="{{ variant.inventory_quantity }}"
+                    >
+                        {%- if variant.title contains 'Default' -%}
+                            {{ product.title }}
+                        {%- else -%}
+                            {{ variant.title }}
+                        {%- endif -%}
+                </option>
+
+                {% else %}
+                    <option
+                        disabled="disabled"
+                        value="{{ variant.id }}"
+                        data-sku="{{ variant.sku }}"
+                        data-price="{{ variant.price }}"
+                        data-quantity="{{ variant.inventory_quantity }}"
+                    >
+                        {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                    </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+
+    <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+    >
+
+    {%- render 'object_button',
+        type: 'submit'
+        theme: 'primary',
+        text: 'Add to Basket',
+        class: 'js-product-form-submit  c-button--full  c-button--thin  c-product-card__image-container__footer--button',
+        attributes: ''
+    -%}
+{%- endform -%}

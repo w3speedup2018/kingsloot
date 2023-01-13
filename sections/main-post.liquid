@@ -1,0 +1,324 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Main Post",
+    "class": "o-row",
+    "tag": "article",
+    "templates": [
+        "article"
+    ],
+    "presets": [
+        {
+            "name": "Main Post"
+        }
+    ],
+    "settings": [
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Banner Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "text",
+            "id": "title_relatedproduct",
+            "label": "Related Product Title",
+            "default": "you may also like"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% if section.settings.width == 'full' %}
+    {% assign is_contained = 'o-container--full' %}
+{% else %}
+    {% assign is_contained = 'o-container' %}
+{% endif %}
+
+
+{% render 'theme_assets', layout: 'post' %}
+
+<div class="main-post o-container {{ is_contained }}">
+    {% if article.image != blank %}
+        {% assign mobile_image = section.settings.mobile_image %}
+        {% if mobile_image == blank %}
+            {% assign moblie_image = article.image %}
+        {% endif %}
+        {%- render 'object_image' with article.image,
+            mobile_image: mobile_image,
+            mobile_ratio: '400/300',
+            class: 'main-post__image o-ar o-ar--banner-half'
+            img_class: "o-ar__item "
+          
+        -%}
+    {% endif %}
+
+    <div class="main-post__container">
+        <div class="o-container {{ is_contained }} main-post__inner">
+            <div class="main-post__content center">
+                {% if article.title != blank %}
+                    <h3 class="main-post__title box">
+                        {{ article.title }}
+                    </h3>
+                {% endif %}
+                
+                {% if article.metafields.custom.tag_title != blank %}
+                    <div class="main-post__tag">
+                        <label>{{article.metafields.custom.tag_title}}</label>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-post_content">
+    <div class="o-container {{ is_contained }}">
+        {{article.content}}
+    </div>
+    <div class="o-container {{ is_contained }}">
+        {% if article.metafields.custom.image_1 != blank %}
+        <div class="style-two">
+            <div class="post-content row-reserve">
+                <div class="post-content__image">
+                    {%- render 'object_image' with article.metafields.custom.image_1,
+                        mobile_image: article.metafields.custom.image_1,
+                        mobile_ratio:'428/419'
+                        class: 'o-ar',
+                        img_class: "o-ar__item"
+                        width: "494",
+                        height: "392"
+                    -%}
+                </div>
+                
+                <div class="post-content__content">
+                    {% if article.metafields.custom.content_1 != blank %}
+                        {{ article.metafields.custom.content_1 }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+    {% endif %}
+
+    {% if article.metafields.custom.image_2 != blank %}
+        <div class="style-two">
+            <div class="post-content">
+                <div class="post-content__image">
+                    {%- render 'object_image' with article.metafields.custom.image_2,
+                        mobile_image: article.metafields.custom.image_2,
+                        mobile_ratio:'428/419'
+                        class: 'o-ar',
+                        img_class: "o-ar__item"
+                        width: "494",
+                        height: "392"
+                    -%}
+                </div>
+                
+                <div class="post-content__content">
+                    {% if article.metafields.custom.content_2 != blank %}
+                        {{ article.metafields.custom.content_2 }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if article.metafields.custom.image_3 != blank %}
+        <div class="style-one">
+            <div class="post-content">
+                <div class="post-content__image">
+                    {%- render 'object_image' with article.metafields.custom.image_3,
+                        mobile_image: article.metafields.custom.image_3,
+                        mobile_ratio:'428/419'
+                        class: 'o-ar',
+                        img_class: "o-ar__item"
+                        width: "494",
+                        height: "392"
+                    -%}
+                </div>
+                
+                <div class="post-content__content">
+                    {% if article.metafields.custom.content_3 != blank %}
+                        {{ article.metafields.custom.content_3 }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+    {% endif %}
+    {% if article.metafields.custom.image_4 != blank %}
+        <div class="style-one">
+            <div class="post-content row-reserve">
+                <div class="post-content__image">
+                    {%- render 'object_image' with article.metafields.custom.image_4,
+                        mobile_image: article.metafields.custom.image_4,
+                        mobile_ratio:'428/419'
+                        class: 'o-ar',
+                        img_class: "o-ar__item"
+                        width: "494",
+                        height: "392"
+                    -%}
+                </div>
+                
+                <div class="post-content__content">
+                    {% if article.metafields.custom.content_4 != blank %}
+                        {{ article.metafields.custom.content_4 }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+    {% endif %}
+    </div>
+    {% if article.metafields.custom.product != blank %}
+    <div class="related-product">
+        {% render 'cart_related-products', product: all_products[article.metafields.custom.product] %}
+    </div>
+    {% endif %}
+    <div class="o-container">
+        <div class="c-list-collection">
+            <div class="c-list-collection__item">
+                {% render 'collection_card', collection: collections[article.metafields.custom.collection_1] %}
+            </div>
+            <div class="c-list-collection__item">
+                {% render 'collection_card', collection: collections[article.metafields.custom.collection_2] %}
+            </div>
+        </div>
+    </div>
+    
+</div>
+

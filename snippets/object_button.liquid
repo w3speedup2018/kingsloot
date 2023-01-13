@@ -1,0 +1,63 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% comment %}
+    Renders button component
+    Accepts:
+    - text: {String} Button text (required)
+    - theme: {'primary'} Button theme. Default to 'primary' (optional)
+    - type: {'button' | 'submit'} Button type. Default to 'button' (optional)
+    - color: {String} Button background color (optional)
+    - href: {String} Link href (optional)
+    - class: {String} Additional class names (optional)
+    - attributes: {String} Additional attributes (optional)
+    - icon: {String} Add an icon (optional)
+    Usage:
+    {% render 'object_button' %}
+{% endcomment %}
+
+{%- if text != blank -%}
+    {%- if href != blank -%}
+
+        <a 
+            class="o-button  o-button--{{ theme | default: 'primary' }} {{ class }}" 
+            href="{{ href }}" 
+            aria-label=""
+            {{ attributes }}
+        >
+            {%- if hideText != true -%}
+                {{ text }}
+            {%- endif -%}
+
+            {%- if icon -%}
+                {% render 'object_icon', icon: icon %}
+            {%- endif -%}
+        </a>
+
+    {%- else -%}
+
+        <button 
+            type="{{ type | default: 'button' }}" 
+            class="o-button  o-button--{{ theme | default: 'primary' }} {{ class }}" 
+            aria-label=""
+            {{ attributes }}
+        >
+            {%- if hideText != true -%}
+                {{ text }}
+            {%- endif -%}
+
+            {%- if icon -%}
+                {% render 'object_icon', icon: icon %}
+            {%- endif -%}
+        </button>
+
+    {%- endif -%}
+{%- endif -%}

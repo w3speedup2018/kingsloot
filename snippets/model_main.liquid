@@ -1,0 +1,21 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="c-model__overlay  js-overlay"></div>
+
+{% unless template contains "login" %}
+    {% render 'model_customer' %}
+{% endunless %}
+{%- comment -%}
+{% if settings.wishlist_enabled %}
+    {% render 'model_wishlist', get: 'wishlist-summary' %}
+    {% endif %}
+    {%- endcomment -%}

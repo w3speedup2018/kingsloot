@@ -1,0 +1,338 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Section Life Time",
+    "class": "o-row",
+    "tag": "article",
+    "presets": [
+        {
+            "name": "Section Life Time"
+        }
+    ],
+    "settings": [
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#000"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Banner Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "header",
+            "content": "Icon Image"
+        },
+        {
+            "type": "header",
+            "content": "Image"
+        },
+        {
+            "type": "select",
+            "id": "lazy_loading",
+            "label": "Image Lazyloading",
+            "info": "If this image is the first and at the top of the page. Change to eager",
+            "options": [
+                {
+                    "value": "lazy",
+                    "label": "Lazy"
+                },
+                {
+                    "value": "eager",
+                    "label": "Eager"
+                }
+            ],
+            "default": "lazy"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Mobile Image",
+            "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+        },
+        {
+            "type": "range",
+            "id": "image_x_position",
+            "label": "Image X-axis Position",
+            "min": 1,
+            "max": 100,
+            "default": 50,
+            "unit": "%"
+        },
+        {
+            "type": "range",
+            "id": "image_y_position",
+            "label": "Image Y-axis Position",
+            "min": 1,
+            "max": 100,
+            "default": 50,
+            "unit": "%"
+        },
+        {
+            "type": "header",
+            "content": "Content"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#fff"
+        },
+        {
+            "type": "text",
+            "id": "modal_subtitle",
+            "label": "Modal SubTitle",
+            "default": "LIFETIME REPLACEMENT"
+        },
+        {
+            "type": "text",
+            "id": "modal_title",
+            "label": "Modal Title",
+            "default": "How it works"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "step",
+            "name": "Step",
+            "limit": 4,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "step_title",
+                    "label": "Step Title",
+                    "default": "STEP"
+                },
+                {
+                    "type": "text",
+                    "id": "step_text",
+                    "label": "Step Text",
+                    "default": "Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. "
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% if section.settings.width == 'full' %}
+    {% assign is_contained = 'o-container--full' %}
+{% else %}
+    {% assign is_contained = 'o-container--box' %}
+{% endif %}
+
+{% render 'theme_assets', layout: 'section_lifetime' %} 
+
+<div class="c-lifetime" style="background-color: {{ section.settings.bg_color }};">
+    <div class="o-container c-lifetime__container {{ is_contained }}">
+        <div class="c-lifetime__image">
+            {%- render 'object_image' with section.settings.image,
+                mobile_image: block.settings.mobile_image,
+                class: "o-ar o-ar--square"
+                mobile_ratio: "264/154",
+                width: 380,
+                height: 250,
+                fit: 'contain'
+            -%}
+        </div>
+
+        <div class="c-lifetime__inner">
+            {% if section.settings.content != blank %}
+                <div class="c-lifetime__content" style="color: {{ section.settings.text_color }};">
+                    <span>
+                        {{ section.settings.content }}
+                        <span class="modal_lifetime">Learn More</span>
+                    </span>
+                    
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="c-modal-lifetime js-customize-modal">
+    <div class="c-modal-lifetime__close js-customize-close"></div>
+
+    <div class="c-modal-lifetime__body">
+        <div class="c-modal-lifetime__close-btn js-customize-close">
+            {% render 'object_icon', icon: 'close-icon' %}
+        </div>
+
+        <div class="c-modal-lifetime__step1 active">
+            <h3 class="subtitle"> {{ section.settings.modal_subtitle }}</h3>
+            <h3 class="title">
+                {{ section.settings.modal_title }}
+            </h3>
+            <div class="step">
+                {% for block in section.blocks %}
+                    <div class="step_item">
+                        <h4>{{block.settings.step_title}}</h4>
+                        <p>{{block.settings.step_text}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="modal_image">
+                {%- render 'object_image' with section.settings.image,
+                    obile_image: block.settings.mobile_image,
+                    class: "o-ar o-ar--square"
+                    mobile_ratio: "264/154",
+                    width: 380,
+                    height: 250,
+                    fit: 'contain'
+                -%}
+            </div>
+        </div>
+    </div>
+</div>

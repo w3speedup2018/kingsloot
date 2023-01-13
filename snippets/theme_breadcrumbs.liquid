@@ -1,0 +1,196 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% comment %}
+  Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
+{% endcomment %}
+
+{% assign divider = "&rsaquo;" %}
+{%- capture divider_span -%}
+    <span class="c-breadcrumb__divider" aria-hidden="true">{{ divider }}</span>
+{%- endcapture -%}
+
+{% unless template == 'index' %}
+<div class="o-row" style="--row: {{ section.settings.spacing_mobile }}px; --row-desk: {{ section.settings.spacing_desktop }}px;">
+    <div class="o-container">
+        <nav class="c-breadcrumb" role="navigation" aria-label="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <ul class="c-breadcrumb__inner">
+
+                    <li class="c-breadcrumb__item  c-breadcrumb__item--first" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <meta itemprop="position" content="1">
+                        <span itemprop="name">
+                            <a itemprop="item" href="/" title="Home">Home</a>
+                        </span>
+                    </li>
+
+                    {% if template contains 'page' %}
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="2">
+                            <span itemprop="item" >{{ page.title | downcase }}</span>
+                        </li>
+
+                    {% elsif template contains 'product' %}
+
+                        {% if collection.url %}
+
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="2">
+                                <span itemprop="name">
+                                    <a itemprop="item" href="{{ collection.url }}" title="{{ collection.title | downcase }}">
+                                        {{ collection.title | downcase }}
+                                    </a>
+                                </span>
+                            </li>
+
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="3">
+                                <span itemprop="name">{{ product.title | downcase }}</span>
+                            </li>
+
+                        {%- else -%}
+
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="2">
+                                <span itemprop="name">{{ product.title | downcase }}</span>
+                            </li>
+
+                        {% endif %}
+
+                    {% elsif template contains 'collection' and collection.handle %}
+
+                        {% if current_tags %}
+                            {% capture url %}/collections/{{ collection.handle | downcase }}{% endcapture %}
+
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="2">
+                                <span itemprop="name">{{ collection.title | link_to: url | downcase }}</span>
+                            </li>
+
+                             <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="3">
+                                <span itemprop="name">
+                                    {%- liquid
+
+                                        assign theseTags = ''
+                                        for tag in current_tags
+                                            assign cat = tag | split: '_' | last
+
+                                            capture theseTags
+                                                echo theseTags | downcase
+                                                    if forloop.first != true
+                                                        echo '+'
+                                                    endif
+                                                echo cat | downcase
+                                            endcapture
+                                        endfor
+                                    -%}
+
+                                    {{ theseTags | downcase }}
+                                </span>
+                            </li>
+
+                        {% else %}
+
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="2">
+                                <span itemprop="name">{{ collection.title | downcase }}</span>
+                            </li>
+
+                        {% endif %}
+
+                    {% elsif template contains 'page' %}
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="2">
+                            <span itemprop="name">{{ page.title }}</span>
+                        </li>
+
+                    {% elsif template == 'blog' %}
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="2">
+                            <span itemprop="name">blog</span>
+                        </li>
+
+                        {% if current_tags %}
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="3">
+                                <span itemprop="name">{{ blog.title | link_to: blog.url | downcase }}</span>
+                            </li>
+
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="4">
+                                <span itemprop="name">{{ current_tags | join: " + " | downcase }}</span>
+                            </li>
+                        {% else %}
+                            <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                {{ divider_span }}
+                                <meta itemprop="position" content="3">
+                                <span itemprop="name">{{ blog.title | link_to: blog.url | downcase }}</span>
+                            </li>
+                        {% endif %}
+
+                    {% elsif template == 'article' or template contains 'article' %}
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="2">
+                            <span itemprop="name">blog</span>
+                        </li>
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="3">
+                            <span itemprop="name">{{ blog.title | link_to: blog.url | downcase }}</span>
+                        </li>
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="4">
+                            <span itemprop="name">{{ article.title | downcase }}</span>
+                        </li>
+
+                    {% elsif template contains 'search' %}
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="2">
+                            <span itemprop="name">{{ page_title | replace: '*', '' }}</span>
+                        </li>
+
+                    {% else %}
+
+                        <li class="c-breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            {{ divider_span }}
+                            <meta itemprop="position" content="2">
+                            <span itemprop="name">{{ page_title | downcase }}</span>
+                        </li>
+
+                    {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endunless %}
+
+

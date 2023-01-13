@@ -1,0 +1,243 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- liquid
+    case view
+        when "full"
+            assign card_width = "c-product-card--full"
+        when "half"
+            assign card_width = "c-product-card--half"
+        when "quarter"
+            assign card_width = "c-product-card--quarter"
+        else
+            assign card_width = "c-product-card--third"
+    endcase
+-%}
+
+<div class="c-product-card  {{ card_width }} js-product-card js-product-seller">
+    <div class="c-product-card__container">
+        <div class="c-product-card__image-container">
+            {% assign product_link = product.url  %}
+            {% if link != blank %}
+                {% assign product_link = link  %}
+            {% endif%}
+            <a class="c-product-card__info"  href="{{ product_link }}">
+
+                {%- assign badge_tags_count = product.tags | where: 'badge_' | size -%}
+                {%- if badge_tags_count >= 1 -%}
+                    <div class="c-product-card__badges">
+                        {%- for tag in product.tags -%}
+                            {%- if tag contains 'badge_' -%}
+                                <div class="c-product-card__badges-container">
+                                    <span class="c-product-card__badges-container--badge">{{ tag | replace: 'badge_', '' }}</span>
+                                </div>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </div>
+                {%- endif -%}
+
+                {%- unless product.available -%}
+                    <div class="c-product-card__oos-badge">
+                        <div class="c-product-card__oos-badge-container">
+                            <span class="c-product-card__oos-badge-container--badge">Out of stock</span>
+                        </div>
+                    </div>
+                {%- endunless -%}
+                
+                <div class="c-product-card__images js-product-image">
+                    {%- if product.media.size > 0 -%}
+                        {%- if product.media.size <= 1 -%}
+                            {%- assign img_class = "c-product-card__image  o-ar" -%}
+                        {%- else -%}
+                            {%- assign img_class = "c-product-card__image  o-ar" -%}
+                        {%- endif -%}
+
+                        {% assign current_variant = product.selected_or_first_available_variant %}
+                        {% assign first_img = current_variant.featured_media %}
+
+                        {% if first_img == blank %}
+                            {% assign first_img = product.featured_image %}
+                        {% endif %}
+                        
+                        {%- if product.media[0].media_type == 'video' -%}
+                            <div class="{{ img_class }}  product-single__media" data-media-id="{{ product.media[0].id }}">
+                                {{ product.media[0] | video_tag: controls: true, autoplay: true }}
+                            </div>
+                        {%- elsif product.media[0].media_type == 'external_video' -%}
+                            <div class="{{ img_class }}" data-media-id="{{ product.media[0].id }}">
+                                {%- render 'object_video' with image,
+                                    autoplay: true,
+                                    muted: true,
+                                    video_class: 'o-ar__item-external-video',
+                                    frame_class: 'o-ar',
+                                -%}
+                            </div>
+                        {%- else -%}
+                            
+                            {%- capture image_class -%}
+                                {{ img_class }} o-ar--square first-image active
+                            {%- endcapture -%}
+                            {% if pro_image != blank %}
+                                {% assign first_img = pro_image %}
+                            {%- render 'object_image' with first_img,
+                                class: image_class,
+                                img_class: "o-ar__item",
+                                width: 436,
+                                height: 436,
+                                use_desktop_ratio: true,
+                            -%}
+                            {% else %}
+                                {%- render 'object_image' with first_img,
+                                    class: image_class,
+                                    img_class: "o-ar__item",
+                                    width: 320,
+                                    height: 436,
+                                    use_desktop_ratio: true,
+                                -%}
+                            {% endif %}
+                            
+                        {%- endif -%}
+
+                        {%- if product.media.size > 1 -%}
+                            {%- if product.media[1].media_type == 'video' -%}
+                                <div class="c-product-card__image  o-ar  product-single__media  second-image" data-media-id="{{ product.media[1].id }}">
+                                    {{ product.media[1] | video_tag: controls: true, autoplay: true }}
+                                </div>
+                            {%- elsif product.media[1].media_type == 'external_video' -%}
+                                    <div class="c-product-card__image o-ar" data-media-id="{{ product.media[1].id }}">
+                                        {%- render 'object_video' with product.media[2],
+                                            autoplay: true,
+                                            muted: true,
+                                            video_class: 'o-ar__item-external-video',
+                                            frame_class: 'o-ar',
+                                        -%}
+                                    </div>
+                            {%- else -%}
+                                {% assign hoverImage = product.images[1]%}
+                                {% for image in product.images %}
+                                    {% if image.alt == "Hover" %}
+                                        {% assign hoverImage = image %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% if pro_image != blank %}
+                                    {%- render 'object_image' with hoverImage,
+                                        class: 'c-product-card__image  o-ar second-image' ,
+                                        img_class: "o-ar__item",
+                                        width: 436,
+                                        height: 436,
+                                        use_desktop_ratio: true,
+                                    -%}
+                                {% else %}
+                                    {%- render 'object_image' with hoverImage,
+                                        class: 'c-product-card__image  o-ar second-image' ,
+                                        img_class: "o-ar__item",
+                                        width: 320,
+                                        height: 436,
+                                        use_desktop_ratio: true,
+                                    -%}
+                                {% endif %}
+                                
+                            {%- endif -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                </div>
+            </a>
+
+            
+        </div>
+        
+        <div class="c-product-card__info  js-product-card">
+            <div class="c-product-card__review">
+                <span 
+                    class="stamped-product-reviews-badge stamped-main-badge" 
+                    data-id="{{ product.id }}" 
+                    data-product-sku="{{ product.handle }}" 
+                    data-product-title="{{product.title}}" 
+                    style="display: block;" font-size:12px;>
+                </span>
+            </div>
+            <div class="t-heading  t-heading--normal  t-font-size--zeta  t-font-size--centi@mob u-mb-10 c-product-card__title" >
+                <a href="{{ product.url }}">
+                    {% assign product_title = product.title %}
+                    {% if product.title.size > 20 %}
+                        {% assign product_title  = product.title | replace: "Leather Sleeve", "Sleeve"%}
+                        {% assign product_title = product_title | truncatewords: 2 | replace: "...", " " %}
+                    {% endif %}
+                    {% if pro_title != blank %}
+                        {% assign product_title = pro_title %}
+                    {% endif %}
+                    {{ product_title }}
+                </a>
+            </div>
+            <div class="c-product-card__details">
+                <!-- <div class="c-product-card__vendor">
+                    {{ product.vendor }}
+                </div> -->
+                
+
+                <script type="application/json" class="bold-product-json">{{ item | json }}</script>
+
+                {% render 'product_price',
+                    product: product,
+                    show_ex_vat: false,
+                    font_size: 'card'
+                %}
+
+                {% assign options = '' %}
+                {% unless product.has_only_default_variant %}
+                    {% for option in product.options_with_values %}
+                        {% if option.name == 'Color' %}
+                            {% assign idx = forloop.index0 | plus: 1 %}
+                            {% assign option_value = 'option' | append: idx %}
+
+                            {% for variant in product.variants %}
+                                {% unless options contains variant[option_value] %}
+                                    {% assign v_img = variant.featured_media | img_url: 'master' %}
+                                    {% assign item_value = variant.id | append: '|' | append: variant[option_value] | append: '|' | append: v_img %}
+                                    {% assign options = options | append: item_value | append: ',' %}
+                                {% endunless %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% endunless %}
+
+                {% assign options = options | split: ',' %}
+                <div class="c-product-card__variants">
+                {% if options.size > 0 %}
+                    
+                        {% for option in options limit: 6 %}
+                            {% assign item = option | split: '|' %}
+                            {% assign id = item[0]%}
+                            {% assign text = item[1] %}
+                            {% assign image = item[2] %}
+
+                            {% assign text = text | downcase %}
+                            {% assign color_value = text | replace: ' ', '_' %}
+                            {% assign new_color = text | replace: ' ', '-' | downcase %}
+                            {%- assign color_swatch_name = new_color | handle | append: '.png' -%}
+                            {%- assign color_swatch_image = images[color_swatch_name] -%}
+                            <li 
+                                class="c-product-card__option {% if forloop.first %}active{% endif %} js-product-variant"
+                                data-product-id="{{ product.id }}"
+                                data-img-url="{{ image }}"
+                            >
+                                <span data-color="{{ text | handle }}" class="color-{{ color_value }}" style="--color: {{ text }}; {% if color_swatch_image != blank %}background-image: url({{ color_swatch_image | img_url: '64x64' }}); background-position:center;{% endif %}"></span>
+                            </li>
+                        {% endfor %}
+                    
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% if template contains '2-col' %}
+    {%- assign view = "half" -%}
+{% endif %}
+
+{%- paginate collection.products by 12 -%}
+    <section class="c-collection__grid">
+        {%- if collection.products.size == 0 -%}
+
+                <h1 class="t-heading  t-font-size--gamma">
+                    Sorry, there are no products in this collection
+                </h1>
+
+            {%- else -%}
+
+            <collection-grid class="c-collection__grid-inner">
+
+                {%- for product in collection.products -%}
+                    <script type='application/json' class='bold-product-json'>{{ product | json }}</script>
+                    {% render 'product_card', product: product, showAddToBasket: true, view: view %}
+                {%- endfor -%}
+
+            </collection-grid>
+
+            {%- if paginate.pages > 1 -%}
+                {% render 'collection_pagination', paginate: paginate, anchor: '', class: '' %}
+            {%- endif -%}
+
+        {%- endif -%}
+    </section>
+ {%- endpaginate -%}

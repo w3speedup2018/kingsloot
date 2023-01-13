@@ -1,0 +1,50 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% capture IMAGEKIT %}
+  {% if settings.enableImageKit %}
+    {% for i in (1..1) %}
+      {% unless src or settings.imagekitUrl != blank %}
+        {{ src }}
+        {% break %}
+      {% endunless %}
+      {% assign cdnUrls = settings.imagekitShopifyCdnUrl | split: ',' %}
+    {% if cdnUrls.size  == 0 %}
+    {{ src }}
+        {% break %}
+    {% endif %}
+      {% assign cdnUrl = cdnUrls[0] %}
+      {% for temp in cdnUrls %}
+        {% if src contains temp %}
+          {% assign cdnUrl = temp %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% assign cdnUrl = cdnUrl | strip %}
+    {% unless src contains cdnUrl %}
+        {{ src }}
+        {% break %}
+      {% endunless %}
+    {% assign imagekitUrl = settings.imagekitUrl | strip %}
+      {% assign tempImagekitUrl = imagekitUrl %}
+      {% assign lastChar = imagekitUrl | slice:-1 %}
+      {% assign imagekitUrlLength = imagekitUrl | size %}
+      {% assign newImagekitUrl = imagekitUrlLength | minus:1 %}
+      {% if lastChar == "/" %}
+        {% assign tempImagekitUrl = imagekitUrl | slice:0,newImagekitUrl %}
+      {% endif %}
+    {% assign newSrc = src | strip | replace:cdnUrl,tempImagekitUrl %}
+    {{ newSrc | default:src }}
+    {% endfor %}
+  {% else %}
+    {{ src }}
+  {% endif %}
+{% endcapture %}{{ IMAGEKIT | strip | replace:'  ' | strip_newlines }}

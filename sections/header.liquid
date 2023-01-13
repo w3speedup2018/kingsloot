@@ -1,0 +1,384 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Header",
+    "tag": "div",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Header Settings"
+        },
+        {
+            "type": "header",
+            "content": "Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "main_menu",
+            "label": "t:sections.header.settings.menu.label",
+            "default": "main-menu"
+        },
+        {
+            "type": "url",
+            "id": "support_link",
+            "label": "Support Link"
+        },
+        {
+            "type": "header",
+            "content": "Predictive Search"
+        },
+        {
+            "type": "checkbox",
+            "id": "predictive_search_enabled",
+            "label": "Enable Predictive Search",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "transparent_bg",
+            "label": "Transparent on top",
+            "default": false
+        }
+    ],
+    "blocks": [
+        {
+            "type": "product",
+            "name": "Megamenu",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_mob",
+                    "label": "Image (Mobile)"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Label"
+                },
+                {
+                    "type": "text",
+                    "id": "description",
+                    "label": "Short Description"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                },
+                {
+                    "type": "text",
+                    "id": "menu_id",
+                    "label": "Menu ID",
+                    "info": "Menu ID for Megamenu"
+                }
+            ]
+        },
+        {
+            "type": "left_menu",
+            "name": "Left Menu",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "menu_title",
+                    "label": "Menu Title",
+                    "info": "Menu Title"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                },
+                {
+                    "type": "text",
+                    "id": "menu_id",
+                    "label": "Menu ID",
+                    "info": "Menu ID for Megamenu"
+                }
+            ]
+        },
+        {
+            "type": "image",
+            "name": "Mega Menu Banner Images",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "parent",
+                    "label": "Main Nav item",
+                    "info": "Select the Main Nav item, for these images to appear in the subnav e.g Womens"
+                },
+                {
+                    "type": "header",
+                    "content": "Subnav Image 1"
+                },
+                {
+                    "label": "Subnav Image",
+                    "id": "image",
+                    "type": "image_picker"
+                },
+                {
+                    "label": "Subnav Image Heading",
+                    "type": "text",
+                    "id": "title"
+                },
+                {
+                    "label": "Subnav Image Link",
+                    "type": "url",
+                    "id": "link"
+                },
+                {
+                    "type": "header",
+                    "content": "Subnav Image 2"
+                },
+                {
+                    "label": "Subnav Image",
+                    "id": "image_2",
+                    "type": "image_picker"
+                },
+                {
+                    "label": "Subnav Image Heading",
+                    "id": "title_2",
+                    "type": "text"
+                },
+                {
+                    "label": "Subnav Image Link",
+                    "id": "link_2",
+                    "type": "url"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+<section class="o-container  c-header__inner {% if section.settings.transparent_bg %}is-transparent{% endif %}">
+    <button
+        class="js-nav-toggle"
+        type="button"
+        aria-label="Open mobile navigation"
+        aria-controls="navigation"
+        data-title="false"
+        data-mq-hide="desk"
+    >
+        {% render 'object_icon',
+            icon: 'burger-menu', 
+            class: "o-icon--burger-menu" 
+        %}
+        <span class="sr-only">Open navigation</span>
+    </button>
+    <a href="{{ routes.root_url }}" class="c-header__brand  js-brand">
+        {% if settings.logo_svg != blank %}
+            {{settings.logo_svg}}
+        {% else %}
+            {% if section.settings.transparent_bg %}
+                <img
+                    src="{{ settings.transparent_logo | image_url }}"
+                    alt="{{ settings.logo_alt }}"
+                    loading="eager"
+                    width="{{ settings.transparent_logo.width }}"
+                    height="{{ settings.transparent_logo.height }}"
+                />
+            {% else %}
+                <img
+                    src="{{ settings.logo | image_url }}"
+                    alt="{{ settings.logo_alt }}"
+                    loading="eager"
+                    width="{{ settings.logo.width }}"
+                    height="{{ settings.logo.height }}"
+                />    
+            {% endif %}
+        {% endif %}
+        
+        <span class="sr-only">Home</span>
+    </a>
+    <div class="c-header__left">
+        <nav class="c-nav js-nav" aria-label="Main">
+            <ul class="c-nav__list js-nav-inner {% if section.settings.transparent_bg %}c-nav__list--white{% endif %}">
+                {% for block in section.blocks %}
+                    {% if block.type == 'left_menu' %}
+                        {% assign menuId = block.settings.menu_id%}
+                        <li class="c-nav__item  js-nav-item  {% if link.active %}is-active{% endif %}" data-id="{{ block.settings.menu_title }}">
+                            <a
+                            class="c-nav__item-link{% if has_child > 0  %}  js-subnav-link{% endif %}" 
+                            href="{{ block.settings.link }}"
+                            data-id="{{ block.settings.menu_id }}"
+                        >
+                            <span class="c-nav__item-link-wrapper">
+                                {{ block.settings.menu_title  }}
+                            </span>
+                        </a>
+                            
+                        {%- if block.settings.menu_id  != blank  -%}
+                            <button 
+                                class="c-nav__next  js-next-level" 
+                                data-id="{{ block.settings.menu_title  }}" 
+                                aria-label="Go to {{ block.settings.menu_title  }} menu"
+                            >
+                                {% render 'object_icon',
+                                    icon: "chevron-right",
+                                    class: 'o-icon--next'
+                                %}
+                            </button>
+                        {%- endif -%}
+                        {%- if block.settings.menu_id  != blank  -%}
+                        <div class="c-nav__subnav  js-subnav-target" data-id="{{ block.settings.menu_id  }}">
+                            <div class="c-carousel__slider" id="slider-{{block.settings.menu_id}}">
+                                <div class="swiper-wrapper">
+                                    {% for block in section.blocks %}
+                                        {% if block.type == 'product'  and block.settings.menu_id == menuId %}
+                                            <div class=" c-carousel__slide swiper-slide">
+                                                <a href="{{ block.settings.link }}" class="Collapsible__Button Heading Text--subdued Link Link--primary u-h7">
+                                                    <div class="image_wrapper">
+                                                    {% assign mob_img = block.settings.image_mob | default: block.settings.image %}
+                                                    {% assign old_image = mob_img | img_url: '300x'%}
+                                                    <img src="{% render 'imagekit' src:old_image %}">
+                                                    </div>
+                                                    <div>
+                                                        <div class="title">{{block.settings.title}}</div>
+                                                        <div class="description">{{block.settings.description}}</div>
+                                                    </div>
+                                                    
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="swiper-button-next">
+                                    {% render 'object_icon', 
+                                        icon: 'chevron-right'
+                                        class: "",
+                                    %}   
+                                </div>
+                                <div class="swiper-button-prev">
+                                    {% render 'object_icon', 
+                                        icon: 'chevron-left'
+                                        class: "",
+                                    %}    
+                                </div>
+                                
+                            </div>
+                            
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    new Swiper("#slider-{{block.settings.menu_id}}", {
+                                        spaceBetween: 20,
+                                        centeredSlides: true,
+                                        loop: true,
+                                        loopedSlides: 7,
+                                        slidesPerView: 'auto',
+                                        speed: 1000,
+                                        navigation: {
+                                        nextEl: ".swiper-button-next",
+                                        prevEl: ".swiper-button-prev",
+                                        },
+                                        
+                                    });
+                                });
+                            </script>
+                        </div>
+                        {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor%}
+            </ul>
+        </nav>
+    </div>
+
+   
+    {% render 'header_functions' %}
+
+    <div class="destkop-nav">
+        <div class="close-btn">
+            <button class="o-button  o-button--close  js-nav-close"  data-type="customer">
+                {% render 'object_icon', icon: "cross", class: "o-icon--cross"  %}
+            </button>
+        </div>
+        
+        <div class="desktop-nav__content">
+            <div class="desktop-nav__search">
+                {% render 'form_search' %}
+            </div>        
+            <div class="c-accordion">
+                <div class="c-accordion__items">
+                    {% for block in section.blocks %}
+                        {% if block.type == 'left_menu' %}
+                            {% assign menuId = block.settings.menu_id%}
+                            {% if block.settings.menu_id != blank %}
+                            <div class="c-accordion__items-item desktop-nav__menu  js-accordion">
+                                <div class="c-accordion__items-item--header   js-accordion-trigger">
+                                    <span>{{ block.settings.menu_title  }}</span>        
+                                    {% render 'object_icon',
+                                        icon: 'chevron-down', 
+                                        class: "o-icon--chevron-down" 
+                                    %}
+                                </div>
+                                <div class="c-accordion__items-item--content  js-accordion-content">
+                                    {% for block in section.blocks %}
+                                        {% if block.type == 'product'  and block.settings.menu_id == menuId %}
+                                            <a href="{{ block.settings.link }}" class="product-item u-h7">
+                                                <div class="image_wrapper">
+                                                    {% assign mob_img = block.settings.image_mob | default: block.settings.image %}
+                                                    {% assign old_image = mob_img | img_url: '300x'%}
+                                                    <img src="{% render 'imagekit' src:old_image %}">
+                                                </div>
+                                                <div class="product-content">
+                                                    <div class="title">{{block.settings.title}}</div>
+                                                    <div class="description">{{block.settings.description}}</div>
+                                                </div>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a class="view_all" href="{{block.settings.link}}">View All {{block.settings.menu_title}}</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor%}
+                </div>
+            </div>
+            
+            <div class="desktop-nav__main-menu">
+                {%- assign nav_menu = linklists[section.settings.main_menu].links -%}
+                {% for link in nav_menu %}
+                    <li class="destkop-nav__item">
+                        <a
+                            class="destkop-nav__item-link" 
+                            href="{{ link.url }}"
+                            data-id="{{ link.title | handleize }}"
+                        >
+                            <span class="destkop-nav__item-link-wrapper">
+                                {{ link.title }}
+                            </span>
+                        </a>
+                    </li>
+
+                {% endfor %}
+                <li class="destkop-nav__item">
+                    <a
+                        href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+                        class="destkop-nav__item-link"
+                    >
+                        <span class="destkop-nav__item-link-wrapper">
+                        Account
+                        </span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </div>
+
+</section>
+

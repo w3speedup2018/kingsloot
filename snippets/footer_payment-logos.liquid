@@ -1,0 +1,36 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% if section.settings.payment_logos != blank %}
+    {%- render 'object_image' with section.settings.payment_logos,
+        class: "c-footer__payment-logos",
+        img_class: ""
+    -%}
+{% else %}
+    {%- liquid
+        # Use below variable to define the payment logo output 
+        if shop.enabled_payment_types != empty and shop.enabled_payment_types > 1
+            assign enabled_payment_types = shop.enabled_payment_types
+        else
+            assign enabled_payment_types = 'visa,master,american_express,paypal,apple_pay,gpay' | remove: ' ' | split: ','
+        endif
+    -%}
+
+    {%- unless enabled_payment_types == empty -%}
+        <div class="o-grid  o-grid--row  o-grid--gap-xxs">
+            <span class="sr-only">Supported payment methods</span>
+            {%- for type in enabled_payment_types -%}
+                {{ type | payment_type_svg_tag }}
+            {%- endfor -%}
+        </div>
+    {%- endunless -%}
+
+{% endif %}

@@ -1,0 +1,54 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<style>
+    {% for block in section.blocks %}
+      [data-color='{{ block.settings.title | handle }}'] {
+        {% if block.settings.color != blank %}
+          background-color: {{ block.settings.color }} !important;
+        {% endif %}
+        {% if block.settings.image != blank %}
+          background-image: url({{ block.settings.image | img_url: '100x' }}) !important;
+        {% endif %}
+      }
+    {% endfor %}
+  </style>
+  
+  {% schema %}
+  {
+    "name": "Color swatch",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "swatch",
+        "name": "Swatch",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Color name"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Swatch image"
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Swatch color"
+          }
+        ]
+      }
+    ]  
+  }
+  {% endschema %}

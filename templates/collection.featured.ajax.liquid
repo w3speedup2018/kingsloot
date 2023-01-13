@@ -1,0 +1,8 @@
+{% layout none %}
+{% for product in collection.products limit: 4 %}
+    {%- render 'product_card',
+        product: product,
+        showAddToBasket: true,
+        view: "quarter"
+    -%}
+{% endfor %}

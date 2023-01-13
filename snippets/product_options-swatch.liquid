@@ -1,0 +1,59 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="c-product__swatch">
+    {% for option in product.options_with_values %}
+        {% assign pos = option.position %}
+        {% if option.name == 'Color' %}
+            <div class="c-product__swatch-top js-swatch-value">
+                Color: {{ current_variant.option1 }}
+            </div> 
+
+            <div class="c-product-card__variants c-product__swatch-inner {% if isWatch %}is-watch{% endif %}">
+                {% assign options = '' %}
+                {% assign idx = forloop.index0 | plus: 1 %}
+                {% assign option_value = 'option' | append: idx %}
+    
+                {% for item in option.values %}
+                    {% assign count = 0 %}
+                    {% for variant in product.variants %}
+                        {% if variant[option_value] == item and count == 0 %}
+                            {% assign option_item = variant.id | append: '|' | append: variant.option1 %}
+                            {% assign options = options | append: option_item | append: ',' %}
+                            {% assign count = count | plus: 1 %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            
+                {% assign options = options | split: ',' %}
+                {% for option in options %}
+                    {% assign id = option | split: '|' | first %}
+                    {% assign text = option | split: '|' | last %}
+                    {% assign color_value = text | replace: ' ', '_' | downcase %}
+                    {% assign new_color = text | replace: ' ', '-' | downcase %}
+                    {%- assign color_swatch_name = new_color | handle | append: '.png' -%}
+                    {%- assign color_swatch_image = images[color_swatch_name] -%}
+                    {% assign option_name = 'option' | append: pos %}
+                    <li 
+                        class="c-product__swatch-item c-product-card__option {% if text == current_variant.option1 %}active{% endif %} js-product-variant"
+                        data-product-id="{{ id }}"
+                        data-text="{{ text }}"
+                        data-position="{{ pos }}"
+                    >
+                        <span data-color="{{ text | handle }}" class="color-{{ color_value }}" style="--color: {{ text }}; {% if color_swatch_image != blank %}background-image: url({{ color_swatch_image | img_url: '64x64' }}); background-position:center;{% endif %}"></span>
+                    </li>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

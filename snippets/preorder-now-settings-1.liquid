@@ -1,0 +1,68 @@
+<script type="text/javascript">
+  {% if cart %}
+    window.pn.cart = {};
+  	window.pn.cart = {{cart | json}}
+    window.pn.cart.items = [];
+
+    {% for item in cart.items %}
+      var cart_item = {{item | json}};
+      cart_item["collection_ids"] = [];
+      {% for c in item.product.collections %}
+        cart_item["collection_ids"].push({{c.id}})
+        {% endfor %}
+      window.pn.cart.items.push(cart_item);
+    {% endfor %}
+
+    if (typeof window.pn.cart.items == "object") {
+      for (var i=0; i<window.pn.cart.items.length; i++) {
+        ["sku", "vendor", "url", "image", "handle", "product_type", "product_description"].map(function(a) {
+          delete window.pn.cart.items[i][a]
+        })
+      }
+    }
+  {% endif %}
+</script>
+
+{% raw %}
+<script>
+if(typeof pn === "undefined"){
+  pn = {};
+}
+if(typeof pn.settings === "undefined"){
+  pn.settings = {};
+}
+pn.settings.defaultSetting={"id":26303073,"a":"Preorder Now","b":true,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":null,"h":null,"i":false,"j":null,"k":null,"l":null,"m":"default","n":null,"o":true,"handle":null,"p":null,"y":null,"q":false,"r":false,"s":null,"t":null,"u":1,"v":false,"w":"ribbon","tag":null,"x":null,"z":"no_discount","aa":"0.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0};
+pn.settings.singleProductSettings=[{"id":26303085,"a":"Pre-order","b":false,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"We will fulfill the order as soon as this item becomes available (Mid September)","h":"hover","i":false,"j":null,"k":null,"l":null,"m":"variant","n":"41475767697599","o":false,"handle":"hybrid","p":"3818591879256","y":"https://cdn.shopify.com/s/files/1/0058/7776/0088/products/HybridBS6_Floating_Transparent.png?v=1665119111","q":false,"r":false,"s":1261,"t":null,"u":1,"v":true,"w":"ribbon","tag":null,"x":"This item in your cart is available for pre-order ","z":"no_discount","aa":"0.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0},{"id":26430621,"a":"Preorder Now","b":false,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"We Will Fulfill Your Order As Soon As It Is Available (End of September)","h":"hover","i":false,"j":null,"k":null,"l":null,"m":"variant","n":"39422051909823","o":false,"handle":"traveler-wallet","p":"4778912284760","y":"https://cdn.shopify.com/s/files/1/0058/7776/0088/products/TravelerBS5withCardsandCash_Transparent.png?v=1665110986","q":false,"r":false,"s":-10,"t":null,"u":1,"v":false,"w":"ribbon","tag":null,"x":"","z":"no_discount","aa":"0.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0},{"id":26430623,"a":"Preorder Now","b":false,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"","h":"below","i":false,"j":null,"k":null,"l":null,"m":"variant","n":"41090419392703","o":true,"handle":"traveler-wallet","p":"4778912284760","y":"https://cdn.shopify.com/s/files/1/0058/7776/0088/products/TravelerBS5withCardsandCash_Transparent.png?v=1665110986","q":false,"r":false,"s":-1,"t":null,"u":1,"v":false,"w":"ribbon","tag":null,"x":"","z":"no_discount","aa":"0.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0},{"id":26430622,"a":"Preorder Now","b":false,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"We Will Fulfill Your Order As Soon As It Is Available (End of September)","h":"hover","i":false,"j":null,"k":null,"l":null,"m":"variant","n":"39422051942591","o":false,"handle":"traveler-wallet","p":"4778912284760","y":"https://cdn.shopify.com/s/files/1/0058/7776/0088/products/TravelerBS5withCardsandCash_Transparent.png?v=1665110986","q":false,"r":false,"s":-10,"t":null,"u":1,"v":false,"w":"ribbon","tag":null,"x":"","z":"no_discount","aa":"0.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0},{"id":26430620,"a":"Preorder Now","b":false,"c":null,"d":"Out of stock","e":false,"f":"Only {{qty}} remaining","g":"We Will Fulfill Your Order As Soon As It Is Available (End of September)","h":"hover","i":false,"j":null,"k":null,"l":null,"m":"variant","n":"39422060986559","o":false,"handle":"traveler-wallet","p":"4778912284760","y":"https://cdn.shopify.com/s/files/1/0058/7776/0088/products/TravelerBS5withCardsandCash_Transparent.png?v=1665110986","q":false,"r":false,"s":-11,"t":null,"u":1,"v":false,"w":"ribbon","tag":null,"x":"","z":"no_discount","aa":"0.0","ab":0,"price":"0.0","compare_at_price":"0.0","partial_payment_z":"no_partial_discount","partial_payment_aa":"0.0","partial_payment_ab":0}];
+pn.settings.tagSettings=[];
+</script>
+<style type="text/css">
+  .pn-original-subtotal{
+    text-decoration: line-through;
+    display:inline-block;
+  }
+  .pn-discounted-subtotal{
+    font-weight:bold;
+    margin-left:20px;
+    display:inline-block;
+    font-size: 1.3em;
+  }
+
+  .pn-line-item-original-price {
+    text-decoration: line-through;
+  }
+
+  .pn-line-item-discounted-price {
+    font-size: 1.2em;
+    margin-left: 8px;
+  }
+</style>
+{% endraw %}
+
+
+<div id="pn-mixed-cart-warning" class="pn-modal">
+  <div id="pn-mixed-cart-warning-content">
+    <span id="pn-modal-close-btn">x</span>
+    <h2 id="pn-mixed-cart-warning-title"></h2>
+    <div id="pn-mixed-cart-warning-text"></div>
+  </div>
+</div>

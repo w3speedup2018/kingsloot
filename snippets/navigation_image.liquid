@@ -1,0 +1,46 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% for block in nav_banner %}
+    {%- assign parent = block.settings.parent | downcase | handleize -%}
+    {% if parent == link_title and block.settings.image != blank %}
+        <li class="c-nav__subnav-column">
+            {% if block.settings.link != blank %}
+                <a
+                    class="c-nav__image"
+                    href="{{ block.settings.link }}"
+                >
+            {% else %}
+                <div class="c-nav__image">
+            {% endif %}
+    
+            {%- render 'object_image' with block.settings.image,
+                class: 'u-mb-16'
+                width: 210
+                height: 285
+                x_position: slide.settings.image_x_position,
+                y_position: slide.settings.image_y_position,
+            -%}
+    
+            {% if block.settings.title != blank %}
+                <h3 class="t-font-size--centi">
+                    {{ block.settings.title }}
+                </h3>
+            {% endif %}
+    
+            {% if block.settings.link != blank %}
+                </a>
+            {% else %}
+                </div>
+            {% endif %}
+        </li>
+    {% endif %}
+{% endfor %}

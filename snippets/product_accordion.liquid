@@ -1,0 +1,96 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- assign featurePage = null -%}
+{%- assign SpecificationPage = null -%}
+{%- assign shippingDetail  = section.settings.shipping_info -%}
+
+{%- for block in section.blocks -%}
+  {%- if block.settings.product == product.handle -%}
+
+    {%- if block.settings.feature_page != blank -%}
+		{%- assign featurePage = block.settings.feature_page -%}
+	{%- endif -%}
+
+    {%- if block.settings.specification_page != blank -%}
+		{%- assign SpecificationPage = block.settings.specification_page -%}
+	{%- endif -%}
+
+	{% break %}  
+  {%- endif -%}
+{%- endfor -%}
+<div class="c-accordion__items">
+    {% for block in section.blocks %}
+        {% if block.type == 'accordion_item'%}
+        <div class="c-accordion__items-item  js-accordion">
+            <div class="c-accordion__items-item--header js-accordion-trigger">
+                {{ block.settings.title }}
+                <div class="plus">
+                    {% render 'object_icon', icon: 'icon-plus' %}
+                </div>
+                
+                <div class="minus">
+                    {% render 'object_icon', icon: 'icon-minus' %}
+                </div>
+            </div>
+            <div class="c-accordion__items-item--content js-accordion-content">
+                {% if block.settings.content == blank and block.settings.title == 'Description' %}
+                    {{ product.description }}
+                {% endif %}
+                {% if block.settings.content != blank %}
+                    <div> {{ block.settings.content }} </div>
+                {% endif %}
+                {% if block.settings.title == "Features" %}
+                    <div class="featured_items">
+                        {% for i in (1..5) %}
+                            {% assign featured_image = "featured_image_" | append: i %}
+                            {% assign featured_title = "featured_title_" | append: i %}
+                            {% if product.metafields.custom[featured_image] != blank and product.metafields.custom[featured_title] != blank%}
+                            <div class="featured_item">
+                                <div class="featured_item-image">
+                                    {%- render 'object_image' with product.metafields.custom[featured_image],
+                                        mobile_image: product.metafields.custom[featured_image],
+                                        mobile_ratio:'40/40',
+                                        class: 'o-ar',
+                                        img_class: "",
+                                        width: "60",
+                                        height: "60",
+                                        fit: 'contain'
+                                    -%}
+                                </div>
+                                
+                                <p>{{product.metafields.custom[featured_title]}}</p>
+                            </div>
+                            
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if product.metafields.custom.featured_context != blank %}
+                            {{ product.metafields.custom.featured_context }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if block.settings.title == "specifications" %}
+                    <div class="Rte">
+                        {{- pages[SpecificationPage].content -}}
+                    </div>
+                {% endif%}
+                {% if block.settings.title == "shipping & Delivery" %}
+                    <div class="Rte">
+                        {{- pages[shippingDetail].content -}}
+                    </div>
+                {% endif%}
+                
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,0 +1,486 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Image Slider",
+    "class": "o-row",
+    "tag": "article",
+    "max_blocks": 5,
+    "presets": [
+        {
+            "category": "Image",
+            "name": "Image Slider"
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Region Settings"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Slider Title",
+            "default": "See it in action"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "color",
+            "id": "background_colour",
+            "label": "Background Colour",
+            "default": "rgba(0,0,0,0)",
+            "info": "Pick a Background Colour"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "header",
+            "content": "Carousel Settings"
+        },
+        {
+            "type": "checkbox",
+            "id": "auto_play",
+            "label": "autoplay?",
+            "default": false,
+            "info": "Auto play carousel"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_arrows",
+            "label": "Show arrows?",
+            "default": false,
+            "info": "Show Navigation Arrows"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_pagination",
+            "label": "Show Pagination?",
+            "default": false,
+            "info": "Show pagination dots at bottom of carousel"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Image",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Slide Settings"
+                },
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "lazy_loading",
+                    "label": "Image Lazyloading",
+                    "info": "If this image is the first and at the top of the page. Change to eager",
+                    "options": [
+                        {
+                            "value": "lazy",
+                            "label": "Lazy"
+                        },
+                        {
+                            "value": "eager",
+                            "label": "Eager"
+                        }
+                    ],
+                    "default": "lazy"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "range",
+                    "id": "image_x_position",
+                    "label": "Image X-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "image_y_position",
+                    "label": "Image Y-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                }
+            ]
+        },
+        {
+            "type": "video",
+            "name": "Video",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "video_url",
+                    "label": "Video Link"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{%- liquid
+    assign banner = section.settings
+    assign banner_width = banner.width
+    assign background_colour = banner.background_colour
+    assign is_contained = 'o-container--box'
+    assign autoplay = banner.auto_play
+    assign show_arrows = banner.show_arrows
+    assign show_pagination = banner.show_arrows
+
+    if banner_width != "contained"
+        assign is_contained = 'o-container--full'
+    endif
+
+    # Update to set screen width to initialise carousel
+    capture carousel_mq
+        case section.blocks.size
+            when 1
+                echo 'disabled'
+            else
+                echo ''
+        endcase
+    endcapture
+-%}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ background_colour }};
+        {% if background_colour != 'rgba(0,0,0,0)' %}
+        --padding: 64px;
+        --padding-mob: 48px;
+        {% endif %}
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'section_image-slider' %} 
+
+<section
+    class=" o-container  {{ is_contained }} c-image_slider"
+>
+    {% if section.settings.title != blank %}
+        <div class="c-image_slider-title">
+            <h4> {{section.settings.title}} </h4>
+        </div>
+    {% endif %}
+    <div class="relative desktop">
+        <div  class="c-carousel__slider" data-settings="setGallerySize watchCSs" {{ carousel_mq | prepend: 'data-carousel-mq="' | append: '"' }} >
+
+            {%- if section.blocks.size > 0 -%}
+                {%- for block in section.blocks -%}
+                    {%- if block.type == 'video' -%}
+                    
+                        {%- if block.settings.video_url != blank -%}
+                            {%- liquid
+                                assign img_class = ""
+                                assign video_src = block.settings.video_url | default: block.settings.video_url
+                            -%}
+                            <div class="c-image_slider-item c-carousel__slide" data-video="{{block.id}}">
+                                <iframe frameborder="0"
+                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                 allowfullscreen="allowfullscreen" 
+                                 src="{{video_src}}?color=white&amp;controls=1&amp;enablejsapi=1&amp;modestbranding=1&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;autoplay=1" 
+                                 >
+                                </iframe>
+                                <!-- {%- render 'object_video' with video_src,
+                                    use_desktop_ratio: true,
+                                    autoplay: block.settings.video_autoplay,
+                                    muted: block.settings.video_muted,
+                                    image: block.settings.video_image,
+                                    frame_class: img_class,
+                                    width: "360",
+                                    height: "480"
+                                -%} -->
+                            </div>
+                        {%- endif -%}
+                    {%- else -%}
+                        {% if block.settings.image != blank %}
+                            <div class="c-image_slider-item c-carousel__slide">
+                                {%- render 'object_image' with block.settings.image,
+                                    mobile_image: block.settings.mobile_image,
+                                    mobile_ratio: "360/480"
+                                    class: 'c-carousel__img  o-ar  o-ar--square',
+                                    img_class: "o-ar__item"
+                                    width: "360",
+                                    height: "480"
+                                -%}
+        
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {%- endfor -%}
+            {%- endif -%}
+            
+        </div>
+    
+        {%- if section.blocks.size > 4 and show_arrows -%}
+            <nav class="c-image_slider__carousel c-carousel__nav  c-carousel__nav--overlay">
+                <button
+                    class="c-carousel__arrow  c-carousel__arrow--prev  js-carousel-arrow"
+                    data-direction="prev"
+                    aria-label="Previous"
+                >
+                    {% render 'object_icon', 
+                        icon: 'chevron-left',
+                        class: "",
+                     %}
+                </button>
+                <button
+                    class="c-carousel__arrow  c-carousel__arrow--next  js-carousel-arrow"
+                    data-direction="next"
+                    aria-label="Next"
+                >
+                    {% render 'object_icon', 
+                        icon: 'chevron-right'
+                        class: "",
+                    %}
+                </button>
+            </nav>
+        {%- endif -%}
+    
+        {%- if section.blocks.size > 4 and show_pagination -%}
+            <nav class="c-carousel__pager  js-carousel-pager">
+                {% for slide in section.blocks limit: banner.size %}
+                    <button
+                        class="c-carousel__pager-status"
+                        data-slide="{{ forloop.index0 }}"
+                        aria-label="Page {{ forloop.index0 }}"
+                        {%- if forloop.index0 == 0 -%}aria-current="step"{%- endif -%}
+                    ></button>
+                {% endfor %}
+            </nav><!-- /c-carousel__pager -->
+        {%- endif -%}
+    </div>
+    <div class="relative mobile">
+        <div  class="c-carousel__slider js-carousel" data-settings="setGallerySize watchCSs" {{ carousel_mq | prepend: 'data-carousel-mq="' | append: '"' }} >
+
+            {%- if section.blocks.size > 0 -%}
+                {%- for block in section.blocks -%}
+                    {%- if block.type == 'video' -%}
+                    
+                        {%- if block.settings.video_url != blank -%}
+                            {%- liquid
+                                assign img_class = ""
+                                assign video_src = block.settings.video_url | default: block.settings.video_url
+                            -%}
+                            <div class="c-image_slider-item c-carousel__slide" data-video="{{block.id}}">
+                                <iframe frameborder="0"
+                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                 allowfullscreen="allowfullscreen" 
+                                 src="{{video_src}}?color=white&amp;controls=1&amp;enablejsapi=1&amp;modestbranding=1&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;autoplay=1" 
+                                 >
+                                </iframe>
+                                <!-- {%- render 'object_video' with video_src,
+                                    use_desktop_ratio: true,
+                                    autoplay: block.settings.video_autoplay,
+                                    muted: block.settings.video_muted,
+                                    image: block.settings.video_image,
+                                    frame_class: img_class,
+                                    width: "360",
+                                    height: "480"
+                                -%} -->
+                            </div>
+                        {%- endif -%}
+                    {%- else -%}
+                        {% if block.settings.image != blank %}
+                            <div class="c-image_slider-item c-carousel__slide">
+                                {%- render 'object_image' with block.settings.image,
+                                    mobile_image: block.settings.mobile_image,
+                                    mobile_ratio: "360/480"
+                                    class: 'c-carousel__img  o-ar  o-ar--square',
+                                    img_class: "o-ar__item"
+                                    width: "360",
+                                    height: "480"
+                                -%}
+        
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {%- endfor -%}
+            {%- endif -%}
+            
+        </div>
+        
+        <nav class="c-carousel__pager  js-carousel-pager">
+            {% for slide in section.blocks limit: banner.size %}
+                <button
+                    class="c-carousel__pager-status"
+                    data-slide="{{ forloop.index0 }}"
+                    aria-label="Page {{ forloop.index0 }}"
+                    {%- if forloop.index0 == 0 -%}aria-current="step"{%- endif -%}
+                ></button>
+            {% endfor %}
+        </nav><!-- /c-carousel__pager -->
+    </div>
+    
+</section>
+{%- for block in section.blocks -%}
+    {%- if block.type == 'video' -%}
+        <div class="c-modal-action" id="{{block.id}}">
+            <div class="c-modal-action__close  js-customize-close"></div>
+            <div class="c-modal-action__body">
+
+                <div class="c-modal-action__close-btn js-customize-close">
+                    {% render 'object_icon', icon: 'close-icon' %}
+                </div>
+
+                <div class="modal_video">
+                    <iframe frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen="allowfullscreen" 
+                        src="{{block.settings.video_url}}?color=white&amp;controls=1&amp;mute=1" 
+                        >
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor%}
+

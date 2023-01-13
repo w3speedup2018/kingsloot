@@ -1,0 +1,9 @@
+{% if template contains 'index' %} 
+    {% render 'homepage-critical-css' %}
+{% elsif template contains 'collection' %}
+    {% render 'collection-critical-css' %}
+{% elsif template contains 'product' %}
+    {% render 'product-critical-css' %}
+{% else %}
+    {% render 'theme-css' %}
+{% endif %}

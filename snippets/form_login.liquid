@@ -1,0 +1,62 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% form 'customer_login', class: 'c-form  js-form  js-login', id: 'CustomerLoginForm' %}
+
+
+    <section class="c-form__fields">
+
+        {%- if form.errors -%}
+            <div class="c-form__field  c-form__field--error  t-size--h9  u-mb-24">
+                {% render 'object_icon', icon: "error-circle", class: "o-icon--error" %}
+                {{ form.errors | default_errors | strip_html }}
+            </div>
+        {%- endif -%}
+        <label class="form-label">
+            Email Address:
+        </label>
+        {%- assign placeholder = 'Enter your Email Address here' -%}
+        {%- render 'object_input',
+            type: 'email',
+            name: 'customer[email]',
+            placeholder: placeholder,
+            attributes: 'required autocomplete="email"',
+            error: error_message
+        -%}
+        <label class="form-label">
+            Password:
+        </label>
+        {% if form.password_needed %}
+            {%- assign placeholder = '**********' -%}
+
+             {%- render 'object_input',
+                type: 'password',
+                name: 'customer[password]',
+                placeholder: placeholder,
+                attributes: 'required autocomplete="current-password"',
+                error: error_message,
+                class: "u-mb-24"
+            -%}
+        {% endif %}
+
+
+        {%- capture button_text -%}{{ 'customer.login_page.sign_in' | t }}{%- endcapture -%}
+      
+        {%- render 'object_button',
+            type: 'submit',
+            text: button_text,
+            attributes: 'name="submitted" value="Send"',
+            class: 'o-button--full'
+        -%}
+
+        <input type="hidden" name="checkout_url" value="{{ return | default: "/" }}" />
+    </section>
+{% endform %}

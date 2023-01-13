@@ -1,0 +1,102 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Setup",
+    "class": "o-row",
+    "tag": "section",
+    "settings": [],
+    "presets": [
+        {
+            "category": "Setup",
+            "name": "Setup"
+        }
+    ]
+}
+{% endschema %}
+
+<div class="o-container  o-container--short  u-mb-32">
+    <p class="t-size--h3  u-mb-24">
+        This section is here you help you setup your styling for typography, buttons, list etc...
+    </p>
+    <p>Please delete once you've setup the colour, fonts, typography and buttons</p>
+
+    <h1 class="t-size--h1">Heading 1</h1>
+    <h2 class="t-size--h2">Heading 2</h2>
+    <h3 class="t-size--h3">Heading 3</h3>
+    <h4 class="t-size--h4">Heading 4</h4>
+    <h5 class="t-size--h5">Heading 5</h5>
+    <h6 class="t-size--h6">Heading 6</h6>
+    <h6 class="t-size--h7">Heading 7</h6>
+    <h6 class="t-size--h8">Heading 8</h6>
+    <h6 class="t-size--h9">Heading 9</h6>
+    <h6 class="t-size--h10">Heading 10</h6>
+
+    <div class="c-wysiwyg  u-mt-24">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non lectus eget nulla molestie rhoncus ac sed turpis. <a href="#">Maecenas velit metus</a>, dictum nec ornare eu, facilisis pulvinar justo. Nunc auctor lorem quis luctus egestas.
+        </p>
+    
+        <p>
+            Donec sodales, arcu eget aliquet ornare, mauris lorem maximus nisi, a mollis metus urna ut orci. Pellentesque pharetra, risus id imperdiet consectetur, sem libero eleifend metus, ut condimentum ex arcu vitae ante. Donec facilisis massa quis quam scelerisque, sed semper quam ultricies. Praesent nec sem lorem. Donec id nulla ut sem tincidunt sollicitudin vitae sit amet mi.
+        </p>
+    
+        <blockquote class="u-mb-16">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non lectus eget nulla molestie rhoncus ac sed turpis. Maecenas velit metus, dictum nec ornare eu, facilisis pulvinar justo. Nunc auctor lorem quis luctus egestas.
+        </blockquote>
+    
+        <h3 class="t-size--h5">
+            Unordered list
+        </h3>
+    
+        <ul>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+        </ul>
+    
+        <h3 class="t-size--h5">
+            Ordered list
+        </h3>
+    
+        <ol>    
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+        </ol>
+    </div>
+
+    <h3 class="t-size--h5">
+        Buttons
+    </h3>
+
+    {%- assign buttons = "primary,secondary,tertiary" | split: ',' -%}
+
+    {% for button in buttons %}
+        {%- assign button_text = button | capitalize | prepend: 'Button ' -%}
+
+        {%- render 'object_button',
+            text: button_text,
+            theme: button,
+            href: "#",
+            class: "",
+            hideText: false,
+        -%}
+
+    {% endfor %}
+
+</div>
+
+

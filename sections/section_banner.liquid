@@ -1,0 +1,1217 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+
+{% schema %}
+{
+    "name": "Banner",
+    "class": "o-row",
+    "tag": "article",
+    "presets": [
+        {
+            "category": "Image",
+            "name": "Banner"
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Region Settings"
+        },
+        {
+            "type": "radio",
+            "id": "height",
+            "label": "Banner Height",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "half",
+                    "label": "Half"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Banner Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "color",
+            "id": "background_colour",
+            "label": "Background Colour",
+            "default": "rgba(0,0,0,0)",
+            "info": "Pick a Background Colour"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "header",
+            "content": "Content Settings"
+        },
+        {
+            "type": "select",
+            "id": "content_position_mobile",
+            "label": "Content Layout Mobile",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left "
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ],
+            "default": "left"
+        },
+        {
+            "type": "select",
+            "id": "content_position",
+            "label": "Content Layout",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left "
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ],
+            "default": "center"
+        },
+        {
+            "type": "radio",
+            "id": "content_placement",
+            "label": "Content Position",
+            "options": [
+                {
+                    "value": "overlay",
+                    "label": "Overlay"
+                },
+                {
+                    "value": "top",
+                    "label": "Top"
+                }
+            ],
+            "default": "overlay"
+        },
+        {
+            "type": "checkbox",
+            "id": "mobile_stacked",
+            "label": "Stack on mobile",
+            "default": false,
+            "info": "Stack the content on top on mobile"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "shop",
+            "name": "Shop the look",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Shop The Look - Settings",
+                    "info": "Settings for Shop The Look"
+                },
+                {
+                    "type": "product_list",
+                    "id": "product_list",
+                    "label": "Select",
+                    "limit": 4
+                },
+                {
+                    "type": "text",
+                    "id": "view_products_button",
+                    "label": "Button text",
+                    "default": "View Products"
+                },
+                {
+                    "type": "select",
+                    "id": "view_products_button_position",
+                    "label": "Button Position",
+                    "options": [
+                        {
+                            "value": "bottom-left",
+                            "label": "Bottom Left"
+                        },
+                        {
+                            "value": "bottom-right",
+                            "label": "Bottom Right"
+                        }
+                    ],
+                    "default": "bottom-left"
+                }
+            ]
+        },
+        {
+            "type": "image",
+            "name": "Image",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "lazy_loading",
+                    "label": "Image Lazyloading",
+                    "info": "If this image is the first and at the top of the page. Change to eager",
+                    "options": [
+                        {
+                            "value": "lazy",
+                            "label": "Lazy"
+                        },
+                        {
+                            "value": "eager",
+                            "label": "Eager"
+                        }
+                    ],
+                    "default": "lazy"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "aspect_ratio",
+                    "label": "Image Aspect Ratio",
+                    "info": "Adapt to images aspect ratio",
+                    "default": false
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "range",
+                    "id": "image_x_position",
+                    "label": "Image X-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "image_y_position",
+                    "label": "Image Y-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                }
+            ]
+        },
+        {
+            "type": "video",
+            "name": "Video",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Video"
+                },
+                {
+                    "type": "text",
+                    "id": "video_src",
+                    "label": "Hosted Video",
+                    "info": "Upload a .mp4, .webm, .ogv into the Files folder (Settings > Files) all with this name. So if one of your assets is 'my-video.mp4', then just enter 'my-video' here."
+                },
+                {
+                    "type": "video_url",
+                    "id": "video_url",
+                    "accept": [
+                        "youtube",
+                        "vimeo"
+                    ],
+                    "label": "Video Link"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_autoplay",
+                    "label": "Autoplay",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_muted",
+                    "label": "Muted",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "video_image",
+                    "label": "Placeholder image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "name": "Header",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "heading_title_tag",
+                    "label": "Heading H Tag (for screen readers & SEO - NOT FONT-SIZE)",
+                    "options": [
+                        {
+                            "value": "h1",
+                            "label": "H1"
+                        },
+                        {
+                            "value": "h2",
+                            "label": "H2"
+                        },
+                        {
+                            "value": "h3",
+                            "label": "H3"
+                        },
+                        {
+                            "value": "h4",
+                            "label": "H4"
+                        },
+                        {
+                            "value": "h5",
+                            "label": "H5"
+                        }
+                    ],
+                    "default": "h2"
+                },
+                {
+                    "type": "select",
+                    "id": "header_font_size",
+                    "label": "Header Font Size",
+                    "options": [
+                        {
+                            "value": "h1",
+                            "label": "90px"
+                        },
+                        {
+                            "value": "h2",
+                            "label": "50px"
+                        },
+                        {
+                            "value": "h3",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "h4",
+                            "label": "28px"
+                        },
+                        {
+                            "value": "h5",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "h6",
+                            "label": "22px"
+                        },
+                        {
+                            "value": "h7",
+                            "label": "20px"
+                        },
+                        {
+                            "value": "h8",
+                            "label": "18px"
+                        },
+                        {
+                            "value": "h9",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "h10",
+                            "label": "14px"
+                        },
+                        {
+                            "value": "h11",
+                            "label": "12px"
+                        },
+                        {
+                            "value": "h12",
+                            "label": "10px"
+                        }
+                    ],
+                    "default": "h2"
+                },
+                {
+                    "type": "color",
+                    "id": "heading_colour",
+                    "label": "Heading Colour",
+                    "default": "#111111",
+                    "info": "Pick the colour of the heading"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Heading Title",
+                    "default": "Title",
+                    "info": "Add [highlight]Highlighted word[/highlight] to add colour highlight to your word"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_desktop",
+                    "label": "Desktop Spacing",
+                    "info": "Adjust spacing below for desktop",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "8"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_mobile",
+                    "label": "Mobile Spacing",
+                    "info": "Adjust spacing below for mobile",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "8"
+                }
+            ]
+        },
+        {
+            "type": "subheading",
+            "name": "Subheading",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "subheading_font_size",
+                    "label": "subheading Font Size",
+                    "options": [
+                        {
+                            "value": "h1",
+                            "label": "90px"
+                        },
+                        {
+                            "value": "h2",
+                            "label": "50px"
+                        },
+                        {
+                            "value": "h3",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "h4",
+                            "label": "28px"
+                        },
+                        {
+                            "value": "h5",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "h6",
+                            "label": "22px"
+                        },
+                        {
+                            "value": "h7",
+                            "label": "20px"
+                        },
+                        {
+                            "value": "h8",
+                            "label": "18px"
+                        },
+                        {
+                            "value": "h9",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "h10",
+                            "label": "14px"
+                        },
+                        {
+                            "value": "h11",
+                            "label": "12px"
+                        },
+                        {
+                            "value": "h12",
+                            "label": "10px"
+                        }
+                    ],
+                    "default": "h9"
+                },
+                {
+                    "type": "color",
+                    "id": "subheading_colour",
+                    "label": "Text Colour",
+                    "default": "#111111",
+                    "info": "Pick the colour of the Subheading"
+                },
+                {
+                    "type": "text",
+                    "id": "subheading",
+                    "label": "Subheading Title",
+                    "default": "Sub Title"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_desktop",
+                    "label": "Desktop Spacing",
+                    "info": "Adjust spacing below for desktop",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "16"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_mobile",
+                    "label": "Mobile Spacing",
+                    "info": "Adjust spacing below for mobile",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "16"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "name": "Text",
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "text_font_size",
+                    "label": "text Font Size",
+                    "options": [
+                        {
+                            "value": "h1",
+                            "label": "90px"
+                        },
+                        {
+                            "value": "h2",
+                            "label": "50px"
+                        },
+                        {
+                            "value": "h3",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "h4",
+                            "label": "28px"
+                        },
+                        {
+                            "value": "h5",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "h6",
+                            "label": "22px"
+                        },
+                        {
+                            "value": "h7",
+                            "label": "20px"
+                        },
+                        {
+                            "value": "h8",
+                            "label": "18px"
+                        },
+                        {
+                            "value": "h9",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "h10",
+                            "label": "14px"
+                        },
+                        {
+                            "value": "h11",
+                            "label": "12px"
+                        },
+                        {
+                            "value": "h12",
+                            "label": "10px"
+                        }
+                    ],
+                    "default": "h7"
+                },
+                {
+                    "type": "color",
+                    "id": "text_colour",
+                    "label": "Text Colour",
+                    "default": "#111111",
+                    "info": "Pick the colour of the Text"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "text",
+                    "info": "For simple bullets insert the character symbol to the start of the sentence: • (new line for each bullet)",
+                    "default": "<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget</p>"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_desktop",
+                    "label": "Desktop Spacing",
+                    "info": "Adjust spacing below for desktop",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "24"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_mobile",
+                    "label": "Mobile Spacing",
+                    "info": "Adjust spacing below for mobile",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "24"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "name": "Button",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Button Settings"
+                },
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "label": "Button Label"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_target",
+                    "label": "Open link in new tab?",
+                    "default": false
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button Link"
+                },
+                {
+                    "type": "radio",
+                    "id": "button_type",
+                    "label": "Button Type",
+                    "options": [
+                        {
+                            "value": "primary",
+                            "label": "Primary Button"
+                        },
+                        {
+                            "value": "secondary",
+                            "label": "Secondary Button"
+                        },
+                        {
+                            "value": "tertiary",
+                            "label": "Tertiary Button"
+                        }
+                    ],
+                    "default": "primary"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_desktop",
+                    "label": "Desktop Spacing",
+                    "info": "Adjust spacing below for desktop",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "0"
+                },
+                {
+                    "type": "select",
+                    "id": "spacing_mobile",
+                    "label": "Mobile Spacing",
+                    "info": "Adjust spacing below for mobile",
+                    "options": [
+                        {
+                            "value": "0",
+                            "label": "0px"
+                        },
+                        {
+                            "value": "8",
+                            "label": "8px"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "24",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "32",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48px"
+                        },
+                        {
+                            "value": "56",
+                            "label": "56px"
+                        },
+                        {
+                            "value": "64",
+                            "label": "64px"
+                        },
+                        {
+                            "value": "72",
+                            "label": "72px"
+                        },
+                        {
+                            "value": "80",
+                            "label": "80px"
+                        },
+                        {
+                            "value": "96",
+                            "label": "96px"
+                        }
+                    ],
+                    "default": "0"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+{%- liquid
+    assign banner = section.settings
+    assign banner_height = banner.height
+    assign banner_width = banner.width
+    assign background_colour = banner.background_colour
+    assign content_placement = banner.content_placement
+    assign mobile_stacked = banner.mobile_stacked
+    assign is_contained = ''
+
+    if banner_width != "contained"
+        assign is_contained = ' o-container--full'
+    endif
+
+    if banner_height == "half"
+        assign height = '  c-hero--short'
+    endif
+
+    if content_placement == "overlay"
+        assign placement = '  c-hero--overlay'
+    endif
+
+    if mobile_stacked == true
+        assign placement = ''
+        assign stacked = '  c-hero--overlay@desk'
+    endif
+
+    assign media_class = "  c-hero__media  o-img__frame--fill"
+
+-%}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ background_colour }};
+        {% if background_colour != 'rgba(0,0,0,0)' %}
+            --padding: 64px;
+            --padding-mob: 48px;
+        {% endif %}
+    }
+{% endstyle %}
+
+<section class="o-container{{ is_contained }}">
+
+    <div class="c-hero{{ height }}{{ placement }}{{ stacked }}">
+        
+        {% render 'component_content-blocks' 
+            class: "c-hero__content  c-content--hero c-banner__content",
+            position_mobile: section.settings.content_position_mobile,
+            position: section.settings.content_position,
+        %}
+
+        {%- for block in section.blocks -%}
+            {%- if block.type == 'video' -%}
+                {%- if block.settings.video_url != blank or block.settings.video_src != blank -%}
+                    {%- liquid
+                        assign img_class = ""
+                        assign video_src = block.settings.video_src | default: block.settings.video_url
+                    -%}
+
+                    {%- render 'object_video' with video_src,
+                        class: media_class,
+                        autoplay: block.settings.video_autoplay,
+                        muted: block.settings.video_muted,
+                        image: block.settings.video_image,
+                        frame_class: img_class,
+                        width: 1680,
+                        height: 670
+
+                    -%}
+                {%- endif -%}
+            {%- else -%}
+                 {%- if block.settings.image != blank -%}
+                    {%- render 'object_image' with block.settings.image,
+                        mobile_image: block.settings.mobile_image,
+                        class: media_class,
+                        loading: block.settings.lazy_loading,
+                        x_position: block.settings.image_x_position,
+                        y_position: block.settings.image_y_position,
+                        width: 1680,
+                        height: 670,
+                    -%}
+                {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.type == 'shop' -%}
+                {% render 'component_shop-the-look'
+                    product_list: block.settings.product_list,
+                    button_position: block.settings.view_products_button_position,
+                    button_text: block.settings.view_products_button,
+                %}
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</section>

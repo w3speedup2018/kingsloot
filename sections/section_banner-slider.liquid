@@ -1,0 +1,760 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Slideshow",
+    "class": "o-row",
+    "tag": "article",
+    "max_blocks": 5,
+    "presets": [
+        {
+            "category": "Image",
+            "name": "Slideshow",
+            "blocks": [
+                {
+                    "type": "image_slide"
+                },
+                {
+                    "type": "video_slide"
+                }
+            ]
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Region Settings"
+        },
+        {
+            "type": "paragraph",
+            "content": "Adding more that one image turns the banner into an image carousel"
+        },
+        {
+            "type": "radio",
+            "id": "height",
+            "label": "Banner Height",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "half",
+                    "label": "Half"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Banner Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "color",
+            "id": "background_colour",
+            "label": "Background Colour",
+            "default": "rgba(0,0,0,0)",
+            "info": "Pick a Background Colour"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "header",
+            "content": "Carousel Settings"
+        },
+        {
+            "type": "checkbox",
+            "id": "auto_play",
+            "label": "autoplay?",
+            "default": false,
+            "info": "Auto play carousel"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_arrows",
+            "label": "Show arrows?",
+            "default": false,
+            "info": "Show Navigation Arrows"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_pagination",
+            "label": "Show Pagination?",
+            "default": false,
+            "info": "Show pagination dots at bottom of carousel"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image_slide",
+            "name": "Image Slide",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Slide Settings"
+                },
+                {
+                    "type": "url",
+                    "id": "slider_link",
+                    "label": "Slider Link"
+                },
+                {
+                    "type": "select",
+                    "id": "content_position",
+                    "label": "Content Layout",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left "
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ],
+                    "default": "center"
+                },
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "lazy_loading",
+                    "label": "Image Lazyloading",
+                    "info": "If this image is the first and at the top of the page. Change to eager",
+                    "options": [
+                        {
+                            "value": "lazy",
+                            "label": "Lazy"
+                        },
+                        {
+                            "value": "eager",
+                            "label": "Eager"
+                        }
+                    ],
+                    "default": "lazy"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "range",
+                    "id": "image_x_position",
+                    "label": "Image X-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "image_y_position",
+                    "label": "Image Y-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "header",
+                    "content": "Content",
+                    "info": "Add your content here"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Heading Title",
+                    "default": "Title",
+                    "info": "Add [highlight]Highlighted word[/highlight] to add colour highlight to your word"
+                },
+                {
+                    "type": "text",
+                    "id": "subtitle",
+                    "label": "Subheading Title",
+                    "default": "Sub Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Content",
+                    "default": "<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget</p>",
+                    "info": "For simple bullets insert the character symbol to the start of the sentence: • (new line for each bullet)"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "border_content",
+                    "label": "Border Content",
+                    "default": true
+                },
+                {
+                    "type": "header",
+                    "content": "Button Settings"
+                },
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "label": "Button Label"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_target",
+                    "label": "Open link in new tab?",
+                    "default": false
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button Link"
+                },
+                {
+                    "type": "radio",
+                    "id": "button_type",
+                    "label": "Button Type",
+                    "options": [
+                        {
+                            "value": "primary",
+                            "label": "Primary Button"
+                        },
+                        {
+                            "value": "secondary",
+                            "label": "Secondary Button"
+                        },
+                        {
+                            "value": "tertiary",
+                            "label": "Tertiary Button"
+                        }
+                    ],
+                    "default": "primary"
+                },
+                {
+                    "type": "header",
+                    "content": "Shop The Look - Settings",
+                    "info": "Settings for Shop The Look"
+                },
+                {
+                    "type": "product_list",
+                    "id": "product_list",
+                    "label": "Select",
+                    "limit": 4
+                },
+                {
+                    "type": "text",
+                    "id": "view_products_button",
+                    "label": "Button text",
+                    "default": "View Products"
+                },
+                {
+                    "type": "select",
+                    "id": "view_products_button_position",
+                    "label": "Button Position",
+                    "options": [
+                        {
+                            "value": "bottom-left",
+                            "label": "Bottom Left"
+                        },
+                        {
+                            "value": "bottom-right",
+                            "label": "Bottom Right"
+                        }
+                    ],
+                    "default": "bottom-left"
+                }
+            ]
+        },
+        {
+            "type": "video_slide",
+            "name": "Video Slide",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Slide Settings"
+                },
+                {
+                    "type": "select",
+                    "id": "content_position",
+                    "label": "Content Layout",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left "
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ],
+                    "default": "center"
+                },
+                {
+                    "type": "header",
+                    "content": "Video"
+                },
+                {
+                    "type": "text",
+                    "id": "video_src",
+                    "label": "Hosted Video",
+                    "info": "Upload a .mp4, .webm, .ogv into the Files folder (Settings > Files) all with this name. So if one of your assets is 'my-video.mp4', then just enter 'my-video' here."
+                },
+                {
+                    "type": "video_url",
+                    "id": "video_url",
+                    "accept": [
+                        "youtube",
+                        "vimeo"
+                    ],
+                    "label": "Video Link"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_autoplay",
+                    "label": "Autoplay",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_muted",
+                    "label": "Muted",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "video_image",
+                    "label": "Placeholder image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "header",
+                    "content": "Content",
+                    "info": "Add your content here"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Heading Title",
+                    "default": "Title",
+                    "info": "Add [highlight]Highlighted word[/highlight] to add colour highlight to your word"
+                },
+                {
+                    "type": "text",
+                    "id": "subtitle",
+                    "label": "Subheading Title",
+                    "default": "Sub Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Content",
+                    "default": "<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget</p>",
+                    "info": "For simple bullets insert the character symbol to the start of the sentence: • (new line for each bullet)"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "border_content",
+                    "label": "Border Content",
+                    "default": true
+                },
+                {
+                    "type": "header",
+                    "content": "Button Settings"
+                },
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "label": "Button Label"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_target",
+                    "label": "Open link in new tab?",
+                    "default": false
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button Link"
+                },
+                {
+                    "type": "radio",
+                    "id": "button_type",
+                    "label": "Button Type",
+                    "options": [
+                        {
+                            "value": "primary",
+                            "label": "Primary Button"
+                        },
+                        {
+                            "value": "secondary",
+                            "label": "Secondary Button"
+                        },
+                        {
+                            "value": "tertiary",
+                            "label": "Tertiary Button"
+                        }
+                    ],
+                    "default": "primary"
+                },
+                {
+                    "type": "header",
+                    "content": "Shop The Look - Settings",
+                    "info": "Settings for Shop The Look"
+                },
+                {
+                    "type": "product_list",
+                    "id": "product_list",
+                    "label": "Select",
+                    "limit": 4
+                },
+                {
+                    "type": "text",
+                    "id": "view_products_button",
+                    "label": "Button text",
+                    "default": "View Products"
+                },
+                {
+                    "type": "select",
+                    "id": "view_products_button_position",
+                    "label": "Button Position",
+                    "options": [
+                        {
+                            "value": "bottom-left",
+                            "label": "Bottom Left"
+                        },
+                        {
+                            "value": "bottom-right",
+                            "label": "Bottom Right"
+                        }
+                    ],
+                    "default": "bottom-left"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{%- liquid
+    assign banner = section.settings
+    assign banner_width = banner.width
+    assign background_colour = banner.background_colour
+    assign is_contained = ''
+    assign autoplay = banner.auto_play
+    assign show_arrows = banner.show_arrows
+    assign show_pagination = banner.show_arrows
+
+    if banner_width != "contained"
+        assign is_contained = 'o-container--full'
+    endif
+
+    capture banner_height
+        case banner.height
+            when "full"
+                echo "o-ar--banner@desk"
+            else
+                echo "o-ar--banner-short@desk"
+        endcase
+    endcapture
+
+    capture slide_height
+        echo banner_height | append: '  o-ar--mobile-banner'
+    endcapture
+
+    # Update to set screen width to initialise carousel
+    capture carousel_mq
+        case section.blocks.size
+            when 1
+                echo 'disabled'
+            else
+                echo ''
+        endcase
+    endcapture
+-%}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ background_colour }};
+        {% if background_colour != 'rgba(0,0,0,0)' %}
+        --padding: 64px;
+        --padding-mob: 48px;
+        {% endif %}
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'section_banner-slider' %} 
+
+<section
+    class=" o-container  {{ is_contained }}"
+    style="color:{{ banner.text_color | default: '#fff' }}"
+>
+    <div
+        class="c-carousel__slider  js-carousel  o-ar  {{ slide_height }}"
+        data-settings="setGallerySize watchCSs {% if autoplay %}autoPlay{% endif %}"
+        {{ carousel_mq | prepend: 'data-carousel-mq="' | append: '"' }}
+    >
+
+        {%- if section.blocks.size > 0 -%}
+            {%- for slide in section.blocks limit: banner.size -%}
+                {%- liquid
+                    if slide.settings.mobile_stacked
+                        assign class = 'c-hero__content  c-content--hero section-banner-slider'
+                    elsif slide.settings.content_placement == 'top'
+                        assign class = 'c-hero__content c-hero__content--top c-content--hero section-banner-slider'
+                    else
+                        assign class = 'c-hero__content c-content--hero section-banner-slider'
+                    endif 
+                        assign title_class = slide.settings.header_font_size | prepend: 't-size--' | append: '@desk  t-size--h4  u-mb-0 section-banner-slider__title'
+
+                    if slide.settings.slide.settings.border_content
+                        assign copy_class = 'u-mb-48 section-banner-slider__content'
+                    else
+                        assign copy_class = 'u-mb-48 section-banner-slider__content ' | append: 'border'
+                    endif
+                -%}
+
+                <div class="c-hero c-hero--overlay  c-carousel__slide  o-ar  {{ slide_height }} {{ stacked }}">
+                    {%- render 'component_content',
+                        class: class,
+                        position: slide.settings.content_position,
+                        title: slide.settings.title,
+                        title_tag: slide.settings.heading_title_tag,
+                        title_class: title_class,
+                        subtitle: slide.settings.subtitle,
+                        subtitle_class: 't-size--h9  t-style--upper t-weight--400  u-mb-8',
+                        copy: slide.settings.text,
+                        copy_class: copy_class,
+                        button_label: slide.settings.button_label,
+                        button_link: slide.settings.button_link,
+                        button_type: slide.settings.button_type,
+                    -%}
+
+                        {%- case slide.type -%}
+                            {%- when 'image_slide' -%}
+                                {%- if slide.settings.image != blank -%}
+                                    {% if slide.settings.slider_link != blank %}
+                                        <a href="{{ slide.settings.slider_link }}">
+                                    {% endif %}
+                                        {%- render 'object_image' with slide.settings.image,
+                                            mobile_image: slide.settings.mobile_image,
+                                            class: "c-hero__media  o-img__frame--fill",
+                                            loading: block.settings.lazy_loading,
+                                            x_position: slide.settings.image_x_position,
+                                            y_position: slide.settings.image_y_position,
+                                            loading: slide.settings.lazy_loading,
+                                            width: 1680,
+                                            height: 650
+                                        -%}
+                                    {% if slide.settings.slider_link != blank %}
+                                        </a>
+                                    {% endif %}
+                                {%- endif -%}
+                            {%- when 'video_slide' -%}
+                                {%- if slide.settings.video_url != blank or slide.settings.video_src != blank -%}
+                                    {%- liquid
+                                        assign img_class = slide_height | strip | prepend: 'c-hero__media  o-img__frame--fill  c-video--cover  '
+                                        assign video_src = slide.settings.video_src | default: slide.settings.video_url
+                                    -%}
+
+                                    {%- render 'object_video' with video_src,
+                                        autoplay: slide.settings.video_autoplay,
+                                        muted: slide.settings.video_muted,
+                                        image: slide.settings.video_image,
+                                        frame_class: img_class,
+                                    -%}
+                                {%- endif -%}
+                        {%- endcase -%}
+
+                    {% render 'component_shop-the-look'
+                        product_list: slide.settings.product_list,
+                        button_position: slide.settings.view_products_button_position,
+                        button_text: slide.settings.view_products_button,
+                    %}
+                </div>
+            {%- endfor -%}
+        {%- endif -%}
+
+        
+    </div>
+    {%- if section.blocks.size > 1 and show_arrows -%}
+        <nav class="c-carousel__nav  c-carousel__nav--overlay">
+            <button
+                class="c-carousel__arrow  c-carousel__arrow--prev  js-carousel-arrow"
+                data-direction="prev"
+                aria-label="Previous"
+            >
+                {% render 'object_icon', 
+                    icon: 'chevron-left',
+                    class: "",
+                 %}
+            </button>
+
+            <button
+                class="c-carousel__arrow  c-carousel__arrow--next  js-carousel-arrow"
+                data-direction="next"
+                aria-label="Next"
+            >
+                {% render 'object_icon', 
+                    icon: 'chevron-right'
+                    class: "",
+                %}
+            </button>
+        </nav>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 1 and show_pagination -%}
+        <nav class="c-carousel__pager  js-carousel-pager">
+            {% for slide in section.blocks limit: banner.size %}
+                <button
+                    class="c-carousel__pager-status"
+                    data-slide="{{ forloop.index0 }}"
+                    aria-label="Page {{ forloop.index0 }}"
+                    {%- if forloop.index0 == 0 -%}aria-current="step"{%- endif -%}
+                ></button>
+            {% endfor %}
+        </nav><!-- /c-carousel__pager -->
+    {%- endif -%}
+</section>
+

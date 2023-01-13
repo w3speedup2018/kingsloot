@@ -1,0 +1,517 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<mini-cart class="c-model  c-model--drawer  js-model  js-mini-cart {% if settings.theme_design =='dark'%} dark-mode {% endif%}" data-type="mini-cart">
+    <div class="relative">
+        <div class="modal_close">
+            <button class="o-button  o-button--close  js-model-close">
+                {% render 'object_icon', icon: "cross" %}
+            </button>
+        </div>
+        <div class="mini-cart-content">
+            <div class="min-cart-content--items">
+                <header class="c-model__header">
+                    {% if cart.items.size > 0 %}
+                    <h3 class="c-model__header-title  t-font-size--eta  t-font-weight--700">
+                        {% render 'object_icon', icon: "check-circle" %}
+                        <span>Just Added To Cart</span>
+                      
+                    </h3>
+                    {% else %}
+                        <h3 class="c-model__header-title  t-font-size--eta  t-font-weight--700 empty">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.69357 3.35123C6.40157 3.3506 6.12009 3.38365 5.85262 3.44648C5.48596 2.63833 5.00163 1.9133 4.45077 1.36244C3.51581 0.42748 2.04124 0.0588379 0 0.0588379V3.34705C1.24697 3.34705 1.96454 3.52644 2.12565 3.68756C2.74708 4.30898 3.28821 5.57163 3.28821 6.63527L3.30474 6.86778L4.91575 18.1448C2.22013 18.2847 0.131853 20.3781 0.00201992 22.9949L0 24.7204C0.159184 27.4232 2.24051 29.5024 4.839 29.6501L5.21224 29.6507C5.88876 31.5675 7.7163 32.941 9.86464 32.941C12.0122 32.941 13.8392 31.5685 14.5163 29.6528H18.3658C19.0429 31.5685 20.8699 32.941 23.0175 32.941C25.7415 32.941 27.9498 30.7327 27.9498 28.0087C27.9498 25.2846 25.7415 23.0763 23.0175 23.0763C20.8699 23.0763 19.0429 24.4488 18.3658 26.3645H14.5163C13.8392 24.4488 12.0122 23.0763 9.86464 23.0763C7.71708 23.0763 5.89008 24.4488 5.21298 26.3645H4.93232C4.09384 26.3142 3.34171 25.5629 3.28526 24.622L3.28821 23.0763C3.33255 22.2236 4.07954 21.4766 5.01379 21.4302L8.25949 21.431L8.28301 21.4322H24.8537L25.0964 21.3552C26.343 20.9597 27.3409 20.021 27.8134 18.8058L27.9866 18.463L28.5494 17.3481C29.1316 16.194 29.7138 15.0379 30.2811 13.9085C31.6708 11.1419 32.5448 9.38366 32.7383 8.9519C33.7322 6.73465 31.7188 5.02809 29.6609 4.99175L6.69357 3.35123ZM24.2825 18.1441H8.40612C8.30055 18.1147 8.22011 18.0253 8.20436 17.9139L6.59331 6.63655L29.4186 8.27111C29.0193 9.08559 28.2933 10.5404 27.3428 12.4326L27.319 12.48C26.7764 13.5601 26.195 14.7146 25.6136 15.8671L25.0515 16.9806L24.8385 17.4023L24.7583 17.5887C24.6724 17.828 24.5019 18.0247 24.2825 18.1441ZM23.0175 29.6526C23.9255 29.6526 24.6616 28.9165 24.6616 28.0085C24.6616 27.1005 23.9255 26.3644 23.0175 26.3644C22.1095 26.3644 21.3734 27.1005 21.3734 28.0085C21.3734 28.9165 22.1095 29.6526 23.0175 29.6526ZM11.5087 28.0085C11.5087 28.9165 10.7726 29.6526 9.86462 29.6526C8.95661 29.6526 8.22051 28.9165 8.22051 28.0085C8.22051 27.1005 8.95661 26.3644 9.86462 26.3644C10.7726 26.3644 11.5087 27.1005 11.5087 28.0085Z" fill="#D75655"/>
+                            </svg>
+                            <span>You Cart is Empty</span>
+                           
+                        </h3>
+                    {% endif %}
+
+                
+
+                    
+                </header>
+
+                <div class="js-cart-main">                    
+                    {% if settings.enable_shipping %}
+                        {% if settings.promotion_type == 'percentage' %}
+                            {% assign shipping_threshold_value = settings.free_shipping_price | times: 100 %}
+                            {% assign shipping_threshold_difference = shipping_threshold_value | minus: cart.items_subtotal_price %}
+
+                            {% comment %}
+                            ------------------------------------------------------------------------------
+                            Add additional liquid whitespace control here to remove
+                            unecessary whitespace that is added after the span element.
+                            ------------------------------------------------------------------------------
+                            {% endcomment %}
+
+                            {% capture threshold_value %}
+                                <span
+                                    data-price="{{ shipping_threshold_value }}"
+                                    js-currency="price">
+                                    {{ shipping_threshold_value | money }}
+                                </span>
+                            {% endcapture %}
+                            
+                            {%- capture notification_value_template -%}
+                                {%- if shipping_threshold_difference -%}
+                                    <span
+                                    data-price="{{ shipping_threshold_difference }}"
+                                    js-currency="price">
+                                    {{ shipping_threshold_difference | money }}
+                                    </span>
+                                {%- else -%}
+                                    <span
+                                    data-price="{{ shipping_threshold_value }}"
+                                    js-currency="price">
+                                        {{ shipping_threshold_value | money }}
+                                    </span>
+                                {%- endif -%}
+                            {%- endcapture -%}
+
+                            {% capture current_value %}
+                                {% if cart.total_price > 0 %}
+                                    {% if cart.total_price < shipping_threshold_value %}
+                                        {% assign shipping_threshold_value_float = shipping_threshold_value | times: 1.0 %}
+
+                                        {% assign remaining_value = shipping_threshold_difference |
+                                            divided_by: shipping_threshold_value_float |
+                                            times: 100
+                                        %}
+
+                                        {{ 100 | minus: remaining_value }}
+                                    {% else %}
+                                        100
+                                    {% endif %}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            {% endcapture %}
+
+                            <div
+                                class="
+                                free-shipping-notification
+                                "
+                                js-free-shipping-notification="container"
+                            >
+                                <div class="free-shipping-notification__text-wrapper">
+                                    <h3 class="free-shipping-notification__text"
+                                        js-free-shipping-notification="text"
+                                    >
+                                        {% if cart.total_price > 0 %}
+                                            {% if cart.items_subtotal_price < shipping_threshold_value %}
+                                                {{ 'sections.cart.free_shipping.away'
+                                                    | t
+                                                    | replace: '#value-left#', notification_value_template
+                                                }}
+                                            {% else %}
+                                              {{ 'sections.cart.free_shipping.ideal' | t }}
+                                            {% endif %}
+                                
+                                        {% else %}
+                                            {{ 'sections.cart.free_shipping.blank' | t | replace: '#value#', notification_value_template }}
+                                        {% endif %}
+                                    </h3>
+                                </div>
+                            
+                                
+                                <div class="free-shipping-notification__progress" style="--progress-color: {{ settings.progress_bar_color }};">
+                                    <div
+                                        class="free-shipping-notification__progress-bar"
+                                        role="progressbar"
+                                        style="max-width: {{ current_value | strip | append: '%' }}"
+                                        aria-valuemax="100"
+                                        aria-valuemin="0"
+                                        aria-valuenow="{{ current_value | strip }}"
+                                        js-free-shipping-notification="progressBar"
+                                    >
+                                        <p class="visually-hidden">
+                                        {{ current_value }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {% if cart.total_price > 0 %}
+                                    {% if cart.total_price < shipping_threshold_value %}
+                                        
+                                    {% else %}
+                                        
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="free-product-notification">
+                                {% assign isFreeProduct = false %}
+                                {% assign wallet_item_count = 0 %}
+
+                                {% if cart.items.size > 0 %}
+                                    {% for item in cart.items %}
+                                        {% if item.final_price == 0 %}
+                                            {% assign isFreeProduct = true %}
+                                            {% assign wallet_item_count = 2 %}
+                                        {% endif %}
+                                        {% if item.product.tags contains "all wallets" or item.product.tags contains 'accessories' %}
+                                            {% if item.quantity > wallet_item_count %}
+                                                {% assign wallet_item_count = item.quantity %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
+
+                                {% capture free_notification %}
+                                    {% if isFreeProduct %}
+                                        <h3>{{ 'sections.cart.free_shipping_wallet.free' | t }}</h3>
+                                    {% else %}
+                                        <h3>
+                                            {% if wallet_item_count == 0 %}
+                                                {{ 'sections.cart.free_shipping_wallet.blank' | t}}
+                                            {% elsif wallet_item_count == 1 %}
+                                                {{ 'sections.cart.free_shipping_wallet.partial' | t}}
+                                            {% else %}
+                                                {{ 'sections.cart.free_shipping_wallet.ideal' | t}}
+                                            {% endif %}
+                                        </h3>
+                                    {% endif %}
+                                {% endcapture %}
+
+                                {{ free_notification }}
+
+                                {% assign percentage = '0%' %}
+
+                                {% if wallet_item_count == 1 %}
+                                    {% assign percentage = '33%' %}
+                                {% endif %}
+
+                                {% if wallet_item_count > 1 %}
+                                    {% assign percentage = '67%' %}
+                                {% endif %}
+
+                                {% if isFreeProduct %}
+                                    {% assign percentage = '100%' %}
+                                {% endif %}
+
+
+                                <div class="free-product-notification__bars" style="--border-color: {{ settings.progress_bar_color }}">
+                                    <div class="free-product-notification__bars-item" style="max-width: {{ percentage }};"></div>
+                                </div>
+
+                                <h3>
+                                    {% if isFreeProduct %}
+                                        {{ 'sections.cart.free_shipping_wallet.step_complete' | t }}
+                                    {% else %}
+                                        {% if wallet_item_count == 0 %}
+                                            {{ 'sections.cart.free_shipping_wallet.step_0' | t }}
+                                        {% elsif wallet_item_count == 1 %}
+                                            {{ 'sections.cart.free_shipping_wallet.step_1' | t }}
+                                        {% else %}
+                                            {{ 'sections.cart.free_shipping_wallet.step_2' | t }}
+                                        {% endif %}
+                                    {% endif %}
+                                </h3>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if cart.items.size > 0 %}
+
+                        {% render 'cart_items' %}
+                    
+                        <footer class="c-cart__summary">
+
+                            <div class="c-cart__summary-row">
+                                <span>
+                                    Subtotal
+                                </span>
+                                <strong>
+                                    {{ cart.items_subtotal_price | money }}
+                                </strong>
+                            </div>
+                            {% assign savings = 0 %}
+                            {% for item in cart.items %}
+                            {% if item.variant.compare_at_price > item.variant.price %}
+                                {% assign difference = item.variant.compare_at_price | minus: item.variant.price %}
+                                {% assign diffSaving = difference | times: item.quantity %}
+                                {% assign savings = savings | plus: diffSaving %}
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if savings > 0 %}
+                            <div class="c-cart__summary-row savings">
+                                <span>
+                                    total savings
+                                </span>
+                                <strong>
+                                    {{ savings | money }}
+                                </strong>
+                            </div>
+
+                            {% endif %}
+
+                            <form action="/checkout" class="c-cart__contents  c-cart-form  js-cart-form" method="post">
+                                {% render 'object_button',
+                                    text: 'Checkout Now',
+                                    type: 'submit',
+                                    class: 'c-button--rounded  checkout'
+                                    attributes: 'form="cart" name="checkout"'
+                                    href: '/checkout'
+                                %}
+
+                                <div class="c-cart__description">
+                                    <b>Free Shipping and Returns</b>
+                                    <p>Discounts, Taxes and shipping are calculated at checkout</p>
+                                </div>
+                            </form>
+
+                        </footer>
+                        <div class="upsell_section">
+                            {% if settings.upsell_title != blank %}
+                                <h3 class="upsell_section_title"> {{settings.upsell_title}}</h3>
+                            {% endif %}
+                            {% if settings.upsell_product_1 != blank %}
+                                <div class="upsell_section_product">
+                                    {% render 'product_mini',
+                                        product: settings.upsell_product_1,
+                                        showAddToBasket: true,
+                                        view: "full"
+                                    %}
+                                </div>
+                                
+                            {% endif %}
+
+                            {% if settings.review_text_1 != blank %}
+                                <div class="upsell_section_review">
+                                    <div class="upsell_section_review-content">
+                                        <h4>"{{settings.review_text_1}}"</h4>
+                                        <div class="upsell_section_review-stars">
+                                            {% for i in (1..5) %}
+                                                <span>{% render 'object_icon', icon: "star-filled" %}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            {% endif %}
+                            
+                            {% if settings.upsell_product_2 != blank %}
+                                <div class="upsell_section_product">
+                                    {% render 'product_mini',
+                                        product: settings.upsell_product_2,
+                                        showAddToBasket: true,
+                                        view: "full"
+                                    %}
+                                </div>
+                                
+                            {% endif %}
+                            {% if settings.review_text_2 != blank %}
+                                <div class="upsell_section_review">
+                                    <div class="upsell_section_review-content">
+                                        <h4>"{{settings.review_text_2}}"</h4>
+                                        <div class="upsell_section_review-stars">
+                                            {% for i in (1..5) %}
+                                                <span>{% render 'object_icon', icon: "star-filled" %}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            {% endif %}
+                        </div>
+                
+
+                        <footer class="c-cart__summary box">
+                            <div class="box">
+                                <div class="c-cart__summary-row">
+                                    <span>
+                                        Subtotal
+                                    </span>
+                                    <strong>
+                                        {{ cart.items_subtotal_price | money }}
+                                    </strong>
+                                </div>
+                                {% assign savings = 0 %}
+                                {% for item in cart.items %}
+                                {% if item.variant.compare_at_price > item.variant.price %}
+                                    {% assign difference = item.variant.compare_at_price | minus: item.variant.price %}
+                                    {% assign diffSaving = difference | times: item.quantity %}
+                                    {% assign savings = savings | plus: diffSaving %}
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if savings > 0 %}
+                                <div class="c-cart__summary-row savings">
+                                    <span>
+                                        total savings
+                                    </span>
+                                    <strong>
+                                        {{ savings | money }}
+                                    </strong>
+                                </div>
+                                {% endif %}
+
+                                <form action="/checkout" class="c-cart__contents  c-cart-form  js-cart-form no-border" method="post">
+                                    {% render 'object_button',
+                                        text: 'Checkout Now',
+                                        type: 'submit',
+                                        class: 'c-button--rounded  checkout'
+                                        attributes: 'form="cart" name="checkout"'
+                                        href: '/checkout'
+                                    %}
+                                </form>
+
+                                <div class="c-cart__description">
+                                    <b>Free Shipping and Returns</b>
+                                    <p>Discounts, Taxes and shipping are calculated at checkout</p>
+                                </div>
+                            </div>
+                            
+                            
+                        </footer>
+                    {% else %}
+                        <div class="c-model__content  c-model__content--center">
+                        
+                            {% if settings.collection_1 != blank %}
+                            <a href="{{settings.collection_1.url}}" class="cart_collection">
+                                <div class="cart_collection-image">
+                                    {% if settings.theme_design == 'dark' %}
+                                        {%- render 'object_image' with settings.collection_image_1_dark,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% else %}
+                                        {%- render 'object_image' with settings.collection_image_1,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% endif %}
+                                    
+                                </div>
+                                <div class="cart_collection-content">
+                                    {% if settings.collection_title_1 != blank %}
+                                        <h5>{{ settings.collection_title_1 }}</h5>
+                                    {% endif %}
+                                    {% if settings.collection_description_1 != blank %}
+                                        <p> {{settings.collection_description_1 }} </p>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            {% endif %}
+
+                            {% if settings.collection_2 != blank %}
+                            <a href="{{settings.collection_2.url}}" class="cart_collection">
+                                <div class="cart_collection-image">
+                                    {% if settings.theme_design == 'dark' %}
+                                        {%- render 'object_image' with settings.collection_image_2_dark,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% else %}
+                                        {%- render 'object_image' with settings.collection_image_2,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% endif %}
+                                </div>
+                                <div class="cart_collection-content">
+                                    {% if settings.collection_title_2 != blank %}
+                                        <h5>{{ settings.collection_title_2 }}</h5>
+                                    {% endif %}
+                                    {% if settings.collection_description_2 != blank %}
+                                        <p> {{settings.collection_description_2 }} </p>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            {% endif %}
+
+                            {% if settings.collection_3 != blank %}
+                            <a href="{{settings.collection_3.url}}" class="cart_collection">
+                                <div class="cart_collection-image">
+                                    {% if settings.theme_design == 'dark' %}
+                                        {%- render 'object_image' with settings.collection_image_3_dark,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% else %}
+                                        {%- render 'object_image' with settings.collection_image_3,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% endif %}
+                                </div>
+                                <div class="cart_collection-content">
+                                    {% if settings.collection_title_3 != blank %}
+                                        <h5>{{ settings.collection_title_3 }}</h5>
+                                    {% endif %}
+                                    {% if settings.collection_description_3 != blank %}
+                                        <p> {{settings.collection_description_3 }} </p>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            {% endif %}
+
+                            {% if settings.collection_4 != blank %}
+                            <a href="{{settings.collection_4.url}}" class="cart_collection">
+                                <div class="cart_collection-image">
+                                    {% if settings.theme_design == 'dark' %}
+                                        {%- render 'object_image' with settings.collection_image_4_dark,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% else %}
+                                        {%- render 'object_image' with settings.collection_image_4,
+                                                class: 'c-home-banner__image o-ar o-ar--banner-half'
+                                                img_class: "o-ar__item ",
+                                                use_desktop_ratio: true,
+                                                aspect_ratio: true,
+                                                fit: 'contain'
+                                        -%}
+                                    {% endif %}
+                                </div>
+                                <div class="cart_collection-content">
+                                    {% if settings.collection_title_4 != blank %}
+                                        <h5>{{ settings.collection_title_4 }}</h5>
+                                    {% endif %}
+                                    {% if settings.collection_description_4 != blank %}
+                                        <p> {{settings.collection_description_4 }} </p>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            {% endif %}
+
+                        </div>
+                    
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</mini-cart>

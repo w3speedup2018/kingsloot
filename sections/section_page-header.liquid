@@ -1,0 +1,205 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Page Header",
+    "tag": "section",
+    "class": "c-page-header",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Page Header"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "header",
+            "content": "Background settings"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_image",
+            "label": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_mobile_image",
+            "label": "Mobile Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Our Loyal Team"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Page Header"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'section_page-header' %}
+
+{%- liquid
+    assign settings = section.settings
+
+
+    assign background_image = settings.banner_image
+
+    if settings.title != blank
+        assign header_title = settings.title
+    endif
+
+-%}
+<div class="o-container o-container--full">
+    <div class="c-page-header">
+        {% if background_image != blank %}
+            <div class="c-page-header-background">
+                {%- render 'object_image' with background_image,
+                    mobile_image: section.settings.banner_mobile_image,
+                    class: 'c-page-header__image  o-ar  o-ar--banner-half'
+                    img_class: "o-ar__item",
+                    width: 1570,
+                    height: 457
+                -%}
+            </div>
+            
+        {% endif %}
+    {% if header_title != blank %}
+        <div class="c-page-header__content">
+            <h1 class="c-page-header__title">
+                {{ header_title }}
+            </h1>
+        </div>
+    {% endif %}
+    </div>
+    
+</div>
+
+
+
+

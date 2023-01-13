@@ -1,0 +1,75 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- case get -%}
+  {%- when 'product-button' -%}
+
+
+  {% assign productIdString = product.id | append: '' %}
+  {% if customer %}
+    {% assign isInWishList = false %}
+    {% if customer.metafields.global.wishlist != blank %}
+      {% assign wishListProducts = customer.metafields.global.wishlist | split: "," %}
+      {% comment %}<!-- numbers will {{product.id}}_{{variant.id}} /-->{% endcomment %}
+      {% for thisWishListProduct in wishListProducts %}
+        {% assign thisProductId = thisWishListProduct | split: "_" | first %}
+        {% if productIdString == thisProductId %}
+          {% assign isInWishList = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <div id="productWishListWrapper"{% if isInWishList %} class="added"{% endif %}>
+      <p class="wishlistAdded"><span class="icon"><i class="bx bx-heart"></i></span> In your wishlist</p>
+      <a href="#" class="button btn wishlistAdded removeFromWishlist" data-id="{{ product.id }}">Remove from wishlist</a>
+      <a href="#" id="addToWishlist" class="button btn wishlistNotAdded" data-id="{{ product.id }}"><span class="icon"><i class="bx bx-heart"></i></span> Add to wishlist</a>
+    </div>
+  {% else %}
+    <p><a href="/account/login"><span class="icon"><i class="bx bx-heart"></i></span> Login to add to your wishlist</a></p>
+  {% endif %}
+
+
+  {%- when 'collection-init' -%}
+  {% assign customerWishlistProductIds = "" %}
+  {% if customer.metafields.global.wishlist != blank %}
+    {% assign wishListProducts = customer.metafields.global.wishlist | split: "," %}
+    {% comment %}<!-- numbers will {{product.id}}_{{variant.id}} /-->{% endcomment %}
+    {% for thisWishListProduct in wishListProducts %}
+      {% assign thisProductId = thisWishListProduct | split: "_" | first %}
+      {% unless customerWishlistProductIds == "" %}{% assign customerWishlistProductIds = customerWishlistProductIds | append: "___" %}{% endunless %}
+      {% assign customerWishlistProductIds = customerWishlistProductIds | append: thisProductId %}
+    {% endfor %}
+  {% endif %}
+  {% assign customerWishlistProductIdsArray = customerWishlistProductIds | split: "___" %}
+
+
+  {%- when 'collection-button' -%}
+  {% assign thisProductId = product.id | append: "" %}
+  <div class="collectionWishlistButton{% if customerWishlistProductIdsArray contains thisProductId %} added{% endif %}" data-id="{{ product.id }}">  
+    <span class="icon"><i class="bx bx-heart"></i></span>
+  </div>
+
+
+  {%- when 'wishlist-summary' -%}
+  <div id="wishlistWrapper"><div id="wishlistPanel"><button type="button" class="closeToggle button-icon"><span class="icon"><i class="bx bx-x close"></i></span></button>
+  {% if customer %}
+    <div id="wishlistOutput"></div>
+    <script>
+    var junoWishlistCustomer = "{{ customer.id }}";
+    var junoWishlistStore = "{{ shop.secure_url | remove: 'https://' }}";
+    jQuery(function() { getWishlist(false); });
+    </script>
+  {% else %}
+  <p><a href="/account/login"><span class="icon"><i class="bx bx-heart"></i></span> <a href="/account/">Login</a> to add to your wishlist</a></p>
+  {% endif %}
+  </div></div>
+
+{%- endcase -%}

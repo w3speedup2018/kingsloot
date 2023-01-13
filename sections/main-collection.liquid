@@ -1,0 +1,211 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Collection",
+    "class": "o-row",
+    "tag": "article",
+    "templates": [
+        "collection"
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Section Settings"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "range",
+            "id": "products_per_page",
+            "min": 10,
+            "max": 25,
+            "step": 1,
+            "default": 20,
+            "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+        },
+        {
+            "type": "header",
+            "content": "Select Collection to feature above grid"
+        },
+        {
+            "type": "collection_list",
+            "id": "featured_collection",
+            "label": "Featured Collection",
+            "limit": 8
+        },
+        {
+            "type": "header",
+            "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_filtering",
+            "default": true,
+            "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+            "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_sorting",
+            "default": true,
+            "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'collection' %}
+
+{%- liquid
+    assign settings = section.settings
+    assign featured_collections = settings.featured_collection
+-%}
+
+<collection-section class="c-collection" data-value="{{ collection.url }}">
+    <div class="o-container  c-collection__inner">
+        {% render 'collection_filters' %}
+
+        <div id="collection-grid">
+            {%- paginate collection.products by section.settings.products_per_page -%}
+                <collection-grid class="c-collection__grid">
+                    {%- if collection.products.size == 0 -%}
+                        <h2 class="t-heading  t-font-size--gamma" style="text-align: center;grid-column: 1 / span 4;">
+                            Sorry, there are no products in this collection
+                        </h2>
+                    {%- else -%}
+                        {%- for product in collection.products -%}
+                            {% render 'product_card', product: product, %}
+                        {%- endfor -%}
+                    {%- endif -%}
+
+                </collection-grid>
+
+                {% render 'collection_pagination', paginate: paginate, anchor: '' %}
+
+            {%- endpaginate -%}
+        </div>
+    </div>
+</collection-section>
+

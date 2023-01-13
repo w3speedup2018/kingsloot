@@ -1,0 +1,79 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Announcement Bar",
+    "class": "c-announcement-bar",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Settings"
+        },
+        {
+            "type": "color",
+            "id": "promo_text_colour",
+            "label": "Text Colour",
+            "default": "#ffffff",
+            "info": "Pick the colours of the text for top bar"
+        },
+        {
+            "type": "color",
+            "id": "promo_bg_colour",
+            "label": "Background Colour",
+            "default": "#000000",
+            "info": "Pick a Background Colour for top bar"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_promotion",
+            "label": "Enable Promotion Bar",
+            "default": true
+        },
+        {
+            "type": "richtext",
+            "id": "promo_copy",
+            "label": "Promotion Copy"
+        },
+        {
+            "type": "url",
+            "id": "promo_link",
+            "label": "Promotion Link"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --text-colour: {{ section.settings.promo_text_colour }};
+        --bg-colour: {{ section.settings.promo_bg_colour }};
+    }
+    
+{% endstyle %}
+{% if section.settings.enable_promotion %}
+    {% assign promo_link = '#' %}
+
+    {% if section.settings.promo_link != blank %}
+        {% assign promo_link = section.settings.promo_link %}
+    {% endif %}
+
+    <a class="c-announcement-bar__copy" href="{{ promo_link }}">
+        {{ section.settings.promo_copy }}
+    </a>
+{% endif %}
+
+
+{%- if settings.show_currency -%}    
+    <button class="c-button--currency  js-model-trigger"  data-type="currency">
+
+    </button>
+{%- endif -%}

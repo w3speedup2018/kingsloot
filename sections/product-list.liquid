@@ -1,0 +1,125 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% render 'theme_assets', layout: 'product-list' %}
+
+<div class="c-product-list" style="--bg-color: {{ section.settings.bg_color }};">
+    {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+            {% assign product = all_products[block.settings.product] %}
+
+            <div class="c-product-list__item">
+                <div class="c-product-list__item-image">
+                    {% if block.settings.image != blank %}
+                        {%- render 'object_image' with block.settings.image,
+                            width: 1280,
+                            height: 1280,
+                        -%}
+                    {% endif %}
+                </div>
+                <div class="c-product-list__item-content">
+                    {% if block.settings.title != blank %}
+                        <h2 class="c-product-list__item-title">
+                            {{ block.settings.title }}
+                        </h2>
+                    {% endif %}
+
+                    {% if product != blank %}
+                        <div class="c-product-list__item-price">
+                            {% render 'product_price',
+                                product: product
+                            %}
+                        </div>
+                    {% endif %}
+
+                    {% if block.settings.description != blank %}
+                        <p class="c-product-list__item-desc">{{ block.settings.description }}</p>
+                    {% endif %}
+
+                    {% if block.settings.button_text != blank %}
+                        <a class="o-button o-button--secondary c-product-list__item-button" href="{{ product.url }}">
+                            {{ block.settings.button_text }}
+                        </a>
+                    {% endif %}
+
+                    {% if block.settings.collection_url != blank %}
+                        <a class="c-product-list__item-collection" href="{{ block.settings.collection_url }}">
+                            {{ block.settings.collection_text }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% schema %}
+    {
+        "name": "Product List",
+        "settings": [
+            {
+                "type": "color",
+                "id": "bg_color",
+                "label": "Backgroud Color",
+                "default": "#ececec"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "product",
+                "name": "Product",
+                "settings": [
+                    {
+                        "type": "product",
+                        "id": "product",
+                        "label": "Product"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    },
+                    {
+                        "type": "textarea",
+                        "id": "description",
+                        "label": "Description"
+                    },
+                    {
+                        "type": "text",
+                        "id": "button_text",
+                        "label": "Button Text"
+                    },
+                    {
+                        "type": "url",
+                        "id": "collection_url",
+                        "label": "Collection Url"
+                    },
+                    {
+                        "type": "text",
+                        "id": "collection_text",
+                        "label": "Collection Text"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Product List",
+                "category": "Product"
+            }
+        ]
+    }
+{% endschema %}

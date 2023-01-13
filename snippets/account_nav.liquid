@@ -1,0 +1,74 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="c-account__nav">
+
+    <div class="c-account__navheader">
+        <h3> Account Details</h3>
+    </div>
+    <div class="c-account__details">
+        <h3 class="c-account__name">
+            {{customer.first_name }}
+            {{customer.last_name }}
+        </h3>
+        <p class="c-account__email">
+            {{customer.email}}
+        </p>
+    </div>
+    <ul class="c-account__nav-list">
+        
+        <li class="c-account__nav-item{% if account_page == "address" %}  is-active{% endif %}">
+            <a class="c-account__nav-link" href="{{ routes.account_addresses_url }}">
+                <span class="c-account__nav-wrapper">
+                    {{ 'customer.addresses.title' | t }}
+                </span>
+            </a>
+            {% render 'object_icon',
+                icon: "chevron-right",
+                class: 'o-icon--next'
+            %}
+        </li>
+        <li class="c-account__nav-item">
+            <a class="c-account__nav-link" href="/pages/help-center">
+                <span class="c-account__nav-wrapper">
+                    warranty claim
+                </span> 
+            </a>
+            {% render 'object_icon',
+                icon: "chevron-right",
+                class: 'o-icon--next'
+            %}
+        </li>
+        <li class="c-account__nav-item">
+            <a class="c-account__nav-link" href="/pages/faqs">
+                <span class="c-account__nav-wrapper">
+                    start a return
+                </span>
+            </a>
+            {% render 'object_icon',
+                icon: "chevron-right",
+                class: 'o-icon--next'
+            %}
+        </li>
+        <li class="c-account__nav-item">
+            <a class="c-account__nav-link" href="/pages/contact-us">
+                <span class="c-account__nav-wrapper">
+                    {{ 'customer.account.contact_us' | t }}
+                </span>
+            </a>
+            {% render 'object_icon',
+                icon: "chevron-right",
+                class: 'o-icon--next'
+            %}
+        </li>
+    </ul>
+</div>
+

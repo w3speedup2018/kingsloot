@@ -1,0 +1,93 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% comment %}
+    Renders content component
+    Accepts:
+    - class: {String} Content additional class (optional)
+    - copy: {String} Content copy text (optional)
+    - position: {String} Content position (optional)
+    - title: {String} Title text (optional)
+    - title_tag: {'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'} Title element tag. Default to 'h2' (optional)
+    - title_class: {String} Title additional class (optional)
+    - title_link: {String} Link for title (optional)
+    - button_label: {String} Button label (optional)
+    - button_theme: {String} Button type (optional)
+    - button_link: {String} Button link (optional)
+    - button_color: {String} Button color (optional)
+    - button_class: {String} Button class (optional)
+    Usage:
+    {% render 'object_content' %}
+{% endcomment %}
+
+{%- liquid
+    if position != blank 
+        assign position = position | prepend: 'c-content--'
+   else
+        assign position = "" 
+    endif
+
+    assign button_class = button_class | prepend: 'c-content__button  '
+-%}
+
+{%- if title != blank or copy != blank or button_label != blank -%}
+
+    <div class="c-content {{ position }} {{ class }}">
+
+            {%- if subtitle != blank -%}
+                <span class="t-heading  {{ subtitle_class }}">
+                    {{ subtitle }}
+                </span>
+            {%- endif -%}
+
+            {%- if title != blank -%}
+                {%- if title_link != blank -%}<a href="{{ title_link }}">{%- endif -%}
+
+                        <{{ title_tag | default: 'h2' }}
+                            class="c-content__heading  t-heading  {{ title_class }}"
+                             style=" color: {{ title_color }};"
+                         >
+                            {% comment %}theme-check-disable{% endcomment %}
+                            {{ title
+                                | replace: '[/highlight]', '</span>'
+                                | replace: '[highlight]', '<span class="t-highlight">'
+                            }}
+                            {% comment %}theme-check-enable{% endcomment %}
+                        </{{ title_tag | default: 'h2' }}>
+
+                {%- if title_link != blank -%}</a>{%- endif -%}
+            {%- endif -%}
+
+            {%- if copy != blank -%}
+                <div class="c-wysiwyg  c-content__copy  {{ copy_class }}">
+                    {% comment %}theme-check-disable{% endcomment %}
+                    {{ copy
+                        | replace: '[read-more]', '<span class="c-read-more  js-read-more"><span class="c-read-more__inner  js-read-more-inner">'
+                        | replace: '[/read-more]', '</span><span class="c-read-more__dots  js-read-more-dots">...</span> <button class="c-read-more__button  js-read-more-trigger" >Read more</button></span>'
+                    }}
+                    {% comment %}theme-check-enable{% endcomment %}
+
+                </div>
+            {%- endif -%}
+
+
+            {%- render 'object_button',
+                theme: button_type,
+                text: button_label,
+                href: button_link,
+                color: button_color,
+                class: button_class
+            -%}
+
+
+    </div>
+
+{%- endif -%}

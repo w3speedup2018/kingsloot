@@ -1,0 +1,61 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+
+{%- assign form_id = form_id | default: 'newsletter' -%}
+
+{% case type %}
+    {% when "klaviyo" %}
+        <h2 class="t-font-size--eta  u-mb-24">
+            {{ section.settings.title_newsletter }}
+        </h2>
+        <div class="klaviyo-form-XenafZ"></div>
+    {% else %}
+        {% form 'customer', id: form_id, class: 'c-form  js-form', novalidate: true, data-name: 'newsletter' %}
+
+            <header class="c-form__intro  u-mb-16">
+                <h2 class="t-font-size--eta  u-mb-24">
+                    {{ section.settings.title_newsletter }}
+                </h2>
+
+                {% if section.settings.subtitle_newsletter != blank %}
+                    <p>
+                        {{ section.settings.subtitle_newsletter }}
+                    </p>
+                {% endif %}
+            </header>
+
+            <section class="c-form__fields  c-form__fields--inline  c-form__fields--newsletter  {% if form.posted_successfully? %}c-form__fields--success{% endif-%}">
+                {%- if form.posted_successfully? -%}
+                    {% render 'object_icon', icon: "check-circle", class: "o-icon--error  u-mr-8" %}
+                    {{ 'newsletter.success' | t }}
+                {%- else -%}
+                    {%- assign placeholder = 'newsletter.label' | t -%}
+                    {%- render 'object_input',
+                        type: 'email',
+                        name: 'contact[email]',
+                        placeholder: placeholder,
+                        attributes: 'required autocomplete="email"',
+                        error: form.errors.messages['email'],
+                        class: 'u-mb-0'
+                        input_class: "c-form__input-field--no-border"
+                    -%}
+                    <button type="submit" name="submitted" value="Send">
+                        {% render 'object_icon', icon: "email", class: "o-icon--email  u-mr-8" %}
+                    </button>
+                    
+                {%- endif -%}
+            </section>
+        {% endform %}
+{% endcase %}
+
+
+

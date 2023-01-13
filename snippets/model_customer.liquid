@@ -1,0 +1,77 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<aside class="c-model  c-model--drawer  js-model" data-type="customer">
+    <header class="c-model__header">
+        <div class="o-grid  o-grid--no-gap  o-grid--row  o-grid--align-center">
+            <button
+                class="c-model__form-button  t-font-size--eta  js-model-tab-trigger  js-model-header  is-active"
+                data-type="login"
+            >
+                {{ 'customer.login' | t }}
+            </button>
+            <button
+                class="c-model__form-button  t-font-size--eta  js-model-tab-trigger  js-model-header"
+                data-type="register"
+            >
+                {{ 'customer.register.title_short' | t }}
+            </button>
+        </div>
+        <button class="o-button  o-button--close  js-model-close"  data-type="customer">
+            {% render 'object_icon', icon: "cross", class: "o-icon--cross"  %}
+        </button>
+    </header>
+
+    <section
+        class="c-model__form  js-model-tab-target  is-active"
+        data-type="login"
+    >
+        {% render 'form_login' %}
+
+        {% render 'form_recover-password' %}
+
+        <footer class="c-form__footer  js-login-footer">
+            <h4 class="t-font-align--center  u-mb-16">
+                {{ 'customer.register.new_customer' | t }}
+            </h4>
+
+            {%- assign text = 'customer.register.title_short' | t -%}
+            {%- render 'object_button', 
+                theme: 'secondary', 
+                text: text, 
+                class: 'o-button--full  js-model-tab-trigger',
+                attributes: 'data-type="register"'
+            -%}
+        </footer>
+    </section>
+
+    <section
+        class="c-model__form  js-model-tab-target"
+        data-type="register"
+    >
+        {% render 'form_register' %}
+
+         <footer class="c-form__footer">
+            <h4 class="t-align--center  t-weight--400  u-mb-16">
+                {{ 'customer.login_page.has_account' | t }}
+            </h4>
+
+            {%- assign text = 'customer.login' | t -%}
+            {%- render 'object_button', 
+                theme: 'secondary', 
+                text: text, 
+                class: 'o-button--full  js-model-tab-trigger',
+                attributes: 'data-type="login"'
+            -%}
+        </footer>
+    </section>
+</aside>
+

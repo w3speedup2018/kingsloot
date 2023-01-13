@@ -1,0 +1,43 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% comment %}
+    Renders form select component
+    Accepts:
+    - options: {String} Options html (required)
+    - name: {String} Select name (optional)
+    - initial_value: {String} Select initial value (optional)
+    - label: {String} Label text (optional)
+    - attributes: {String} Additional attributes (optional)
+    - error: {String} Error message (optional)
+
+    Usage:
+    {%- capture country_options -%}<option value="Poland">Poland</option>{%- endcapture -%}
+    {%- render 'object_select'
+    ,   name: 'country'
+    ,   options: country_options,
+    ,   label: 'Country'
+    ,   attributes: 'required'
+    -%}
+ {% endcomment %}
+
+<label class="c-input" {%- if error -%}data-error="{{ error | capitalize }}"{%- endif -%}>
+    <span class="c-input__text">{{ label }}</span>
+
+    <select class="c-input__field" name="{{ name }}" {{ attributes }}>
+        <option value="{{ initial_value }}" selected disabled>{{ initial_value }}</option>
+        {{ options }}
+    </select>
+
+    <svg class="c-input__icon" focusable="false" aria-hidden="true">
+        <use xlink:href="#icon-chevron-right"></use>
+    </svg>
+</label>

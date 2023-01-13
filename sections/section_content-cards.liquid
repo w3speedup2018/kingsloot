@@ -1,0 +1,669 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Content Cards",
+    "class": "o-row",
+    "tag": "article",
+    "presets": [
+        {
+            "category": "Image",
+            "name": "Content Cards"
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Region Settings"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "color",
+            "id": "background_colour",
+            "label": "Background Colour"
+        },
+        {
+            "type": "header",
+            "content": "Card Settings"
+        },
+        {
+            "type": "radio",
+            "id": "content_position",
+            "label": "Content Position",
+            "options": [
+                {
+                    "value": "overlay",
+                    "label": "Overlay"
+                },
+                {
+                    "value": "under",
+                    "label": "Underneath"
+                }
+            ],
+            "default": "under"
+        },
+        {
+            "type": "checkbox",
+            "id": "mobile_carousel",
+            "label": "Carousel on mobile",
+            "default": false,
+            "info": "Turn into a carousel on mobile"
+        },
+        {
+            "type": "header",
+            "content": "header Settings"
+        },
+        {
+            "type": "select",
+            "id": "heading_title_tag",
+            "label": "Heading H Tag (for screen readers & SEO - NOT FONT-SIZE)",
+            "options": [
+                {
+                    "value": "h1",
+                    "label": "H1"
+                },
+                {
+                    "value": "h2",
+                    "label": "H2"
+                },
+                {
+                    "value": "h3",
+                    "label": "H3"
+                },
+                {
+                    "value": "h4",
+                    "label": "H4"
+                },
+                {
+                    "value": "h5",
+                    "label": "H5"
+                }
+            ],
+            "default": "h2"
+        },
+        {
+            "type": "select",
+            "id": "header_font_size",
+            "label": "Header Font Size",
+            "options": [
+                {
+                    "value": "h1",
+                    "label": "90px"
+                },
+                {
+                    "value": "h2",
+                    "label": "50px"
+                },
+                {
+                    "value": "h3",
+                    "label": "32px"
+                },
+                {
+                    "value": "h4",
+                    "label": "28px"
+                },
+                {
+                    "value": "h5",
+                    "label": "24px"
+                },
+                {
+                    "value": "h6",
+                    "label": "22px"
+                },
+                {
+                    "value": "h7",
+                    "label": "20px"
+                },
+                {
+                    "value": "h8",
+                    "label": "18px"
+                },
+                {
+                    "value": "h9",
+                    "label": "16px"
+                },
+                {
+                    "value": "h10",
+                    "label": "14px"
+                },
+                {
+                    "value": "h11",
+                    "label": "12px"
+                },
+                {
+                    "value": "h12",
+                    "label": "10px"
+                }
+            ],
+            "default": "h2"
+        },
+        {
+            "type": "color",
+            "id": "heading_colour",
+            "label": "Heading Colour",
+            "default": "#111111",
+            "info": "Pick the colour of the heading"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading Title",
+            "default": "Title",
+            "info": "Add [highlight]Highlighted word[/highlight] to add colour highlight to your word"
+        },
+        {
+            "type": "header",
+            "content": "Button Settings"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open link in new tab?",
+            "default": false
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "radio",
+            "id": "button_type",
+            "label": "Button Type",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "Primary Button"
+                },
+                {
+                    "value": "secondary",
+                    "label": "Secondary Button"
+                },
+                {
+                    "value": "tertiary",
+                    "label": "Tertiary Button"
+                }
+            ],
+            "default": "primary"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Card Settings"
+                },
+                {
+                    "type": "select",
+                    "id": "card_width",
+                    "label": "Card Width",
+                    "options": [
+                        {
+                            "value": "1/4",
+                            "label": "Quarter"
+                        },
+                        {
+                            "value": "1/3",
+                            "label": "Third"
+                        },
+                        {
+                            "value": "1/2",
+                            "label": "Half"
+                        },
+                        {
+                            "value": "2/3",
+                            "label": "Two Thirds"
+                        }
+                    ],
+                    "default": "1/2"
+                },
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "lazy_loading",
+                    "label": "Image Lazyloading",
+                    "info": "If this image is the first and at the top of the page. Change to eager",
+                    "options": [
+                        {
+                            "value": "lazy",
+                            "label": "Lazy"
+                        },
+                        {
+                            "value": "eager",
+                            "label": "Eager"
+                        }
+                    ],
+                    "default": "lazy"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+                },
+                {
+                    "type": "range",
+                    "id": "image_x_position",
+                    "label": "Image X-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "image_y_position",
+                    "label": "Image Y-axis Position",
+                    "min": 1,
+                    "max": 100,
+                    "default": 50,
+                    "unit": "%"
+                },
+                {
+                    "type": "color",
+                    "id": "overlay_colour",
+                    "label": "Overlay Colour",
+                    "default": "#000000",
+                    "info": "Change overly colour if content is overlayed"
+                },
+                {
+                    "type": "header",
+                    "content": "Content",
+                    "info": "Add your content here"
+                },
+                {
+                    "type": "select",
+                    "id": "heading_title_tag",
+                    "label": "Heading H Tag (for screen readers & SEO - NOT FONT-SIZE)",
+                    "options": [
+                        {
+                            "value": "h1",
+                            "label": "H1"
+                        },
+                        {
+                            "value": "h2",
+                            "label": "H2"
+                        },
+                        {
+                            "value": "h3",
+                            "label": "H3"
+                        },
+                        {
+                            "value": "h4",
+                            "label": "H4"
+                        },
+                        {
+                            "value": "h5",
+                            "label": "H5"
+                        }
+                    ],
+                    "default": "h2"
+                },
+                {
+                    "type": "select",
+                    "id": "header_font_size",
+                    "label": "Header Font Size",
+                    "options": [
+                        {
+                            "value": "h1",
+                            "label": "90px"
+                        },
+                        {
+                            "value": "h2",
+                            "label": "50px"
+                        },
+                        {
+                            "value": "h3",
+                            "label": "32px"
+                        },
+                        {
+                            "value": "h4",
+                            "label": "28px"
+                        },
+                        {
+                            "value": "h5",
+                            "label": "24px"
+                        },
+                        {
+                            "value": "h6",
+                            "label": "22px"
+                        },
+                        {
+                            "value": "h7",
+                            "label": "20px"
+                        },
+                        {
+                            "value": "h8",
+                            "label": "18px"
+                        },
+                        {
+                            "value": "h9",
+                            "label": "16px"
+                        },
+                        {
+                            "value": "h10",
+                            "label": "14px"
+                        },
+                        {
+                            "value": "h11",
+                            "label": "12px"
+                        },
+                        {
+                            "value": "h12",
+                            "label": "10px"
+                        }
+                    ],
+                    "default": "h6"
+                },
+                {
+                    "type": "color",
+                    "id": "heading_colour",
+                    "label": "Heading Colour",
+                    "default": "#111111",
+                    "info": "Pick the colour of the heading"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Heading Title",
+                    "default": "Title",
+                    "info": "Add [highlight]Highlighted word[/highlight] to add colour highlight to your word"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Content",
+                    "default": "<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget</p>",
+                    "info": "For simple bullets insert the character symbol to the start of the sentence: • (new line for each bullet)"
+                },
+                {
+                    "type": "header",
+                    "content": "Button Settings"
+                },
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "label": "Button Label"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_target",
+                    "label": "Open link in new tab?",
+                    "default": false
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button Link"
+                },
+                {
+                    "type": "radio",
+                    "id": "button_type",
+                    "label": "Button Type",
+                    "options": [
+                        {
+                            "value": "primary",
+                            "label": "Primary Button"
+                        },
+                        {
+                            "value": "secondary",
+                            "label": "Secondary Button"
+                        },
+                        {
+                            "value": "tertiary",
+                            "label": "Tertiary Button"
+                        }
+                    ],
+                    "default": "primary"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+        {% if section.settings.background_colour != 'rgba(0,0,0,0)' and section.settings.background_colour != blank %}
+            --padding: 64px;
+            --padding-mob: 48px;
+        {% endif %}
+    }
+{% endstyle %}
+
+{%- liquid
+    assign mobile_carousel = section.settings.mobile_carousel
+    assign content_position = section.settings.content_position 
+    assign item_content_position = ""
+    assign image_class = "  u-mb-24"
+    assign content_class = ""
+    assign title_class = section.settings.header_font_size | prepend: 't-size--' | append: '@desk  t-size--h4  u-mb-24 u-mb-0@desk'
+
+    if mobile_carousel
+        assign mobile_layout = "o-grid--carousel  o-grid--wrap@desk"
+    else
+        assign mobile_layout = "o-grid--wrap"
+    endif
+
+    if content_position == "overlay"
+        assign item_content_position = content_position | prepend: 'o-grid__item--'
+        assign image_class = ""
+        assign content_class = "c-content--overlay"
+    endif
+
+ 
+-%}
+
+<section class="o-container">
+    <header class="u-mb-48">
+        {%- render 'component_content',
+            class: 'c-content--heading',
+
+            title: section.settings.title,
+            title_tag: section.settings.heading_title_tag,
+            title_class: title_class,
+            title_color: section.settings.heading_colour,
+
+            button_label: section.settings.button_label,
+            button_link: section.settings.button_link,
+            button_type: section.settings.button_type,
+            button_class: 'o-button--full  o-button--small  u-mb-0'
+        -%}
+    </header>
+
+    <div class="o-grid  {{ mobile_layout }}">
+        {%- for block in section.blocks -%}
+            {%- liquid
+                assign card = block.settings
+                case card.card_width
+                    when "1/4"
+                        assign card_width = "  o-grid__item--quarter@desk"
+                        assign width = 333
+
+                    when "1/3"
+                        assign card_width = "  o-grid__item--third@desk"
+                        assign width = 456
+
+                    when "1/2"
+                        assign card_width = "  o-grid__item--half@desk"
+                        assign width = 700
+        
+                    when "2/3"
+                        assign card_width = "  o-grid__item--two-third@desk"
+                        assign width = 930
+                endcase
+
+                assign title_class = block.settings.header_font_size | prepend: 't-size--' | append: '@desk  t-size--h4  u-mb-8'
+
+                assign overlay_colour = block.settings.overlay_colour | color_to_rgb  | replace: 'rgb(', ''  | replace: ')', ''
+            -%}
+
+            <div 
+                class="o-grid__item{{ card_width }}  {{ item_content_position }}"
+                style="--overlay-colour: {{ overlay_colour }};"
+            >
+
+                {%- render 'object_image' with block.settings.image,
+                    class: image_class,
+                    loading: block.settings.lazy_loading,
+                    mobile_image: block.settings.mobile_image,
+                    x_position: block.settings.image_x_position,
+                    y_position: block.settings.image_y_position,
+                    width: width,
+                    height: 444,
+                    mobile_ratio: "301/301"
+                -%}
+
+                {%- render 'component_content',
+                    class: content_class,
+                    position: block.settings.content_position,
+                    title: block.settings.title,
+                    title_tag: block.settings.heading_title_tag,
+                    title_color: block.settings.title_color,
+                    title_class: title_class,
+                    copy: block.settings.text,
+                    copy_class: 'u-mb-32',
+                    button_label: block.settings.button_label,
+                    button_link: block.settings.button_link,
+                    button_type: block.settings.button_type,
+                    button_class: 'u-mb-0'
+                -%}
+            </div>
+
+        {%- endfor -%}
+    </div>
+</section>

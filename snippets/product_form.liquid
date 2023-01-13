@@ -1,0 +1,120 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- liquid
+    assign current_variant = product.selected_or_first_available_variant
+    assign is_customize = false
+    assign watch_product = false
+-%}
+
+{% for tag in product.tags %}
+    {% if tag == 'special_customise' %}
+        {% assign is_customize = true %}
+    {% endif %}
+
+    {% if tag contains 'watch bands' %}
+        {% assign watch_product = true %}
+    {% endif %}
+{% endfor %}
+
+{% form 'product', 
+    product, 
+    id: 'AddToCartForm', 
+    class: 'c-product__form  js-product-form', 
+    data-product-id: product.id, 
+    data-product-type: product_type 
+%}
+    <input name="id" class="c-product__variantId" value="{{ current_variant.id }}" hidden>
+    <div class="c-product__select-wrapper">
+    </div>
+    {{section.settings.max_count}}
+
+    {% capture btn_text %}
+        {% if current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+            {{ 'products.product.sold_out' | t }}
+        {% endif %}
+    {% endcapture %}
+
+    {%- capture attributes -%}
+        name="add"
+        {% unless current_variant.available %} disabled{% endunless %}
+        aria-live="assertive"
+    {%- endcapture -%}
+
+    {% unless product.has_only_default_variant %}
+        {% render 'product_options-swatch' with isWatch: watch_product %}
+        {% render 'product_options-select' with isWatch: watch_product %}
+    {% endunless %}
+
+    <div class="c-product__action">
+        {% render 'product_quantity' %}
+        {% if product.type != 'Gift Cards' and is_customize %}
+            {% render 'product_customize' %}
+        {% endif %}
+
+        {% comment %}
+        {% if settings.enable_gift_button %}
+            {% if product.metafields.custom.gift_original != blank %}
+                <div class="c-product__gift-buttons">
+                    <div class="c-product__gift-buttons-item" data-handle="{{ product.metafields.custom.gift_original.value.handle }}">{{ product.metafields.custom.gift_original.value.title }}</div>
+                    <div class="c-product__gift-buttons-item active" data-handle="{{ product.handle }}">Gift Bundle</div>
+                </div>
+            {% endif %}
+
+            {% if product.metafields.custom.gift_item != blank %}
+                <div class="c-product__gift-buttons">
+                    <div class="c-product__gift-buttons-item active" data-handle="{{ product.handle }}">{{ product.title }}</div>
+                    <div class="c-product__gift-buttons-item" data-handle="{{ product.metafields.custom.gift_item.value.handle }}">Gift Bundle</a>
+                </div>
+            {% endif %}
+        {% endif %}
+        {% endcomment %}
+    </div>
+
+    {% comment %} {% if product.type == 'Gift Cards' %}
+        {% render 'product_add-note' %}
+    {% endif %}  {% endcomment %}
+
+    {%- render 'object_button'
+        type: 'submit',
+        theme: 'secondary',
+        text: btn_text,
+        class: 'js-product-form-submit  c-button--full',
+        attributes: attributes,
+    -%}
+
+    {%- if section.settings.show_dynamic_checkout and product.type != 'Gift Cards' -%}
+        {{ form | payment_button }}
+    {%- endif -%}
+
+    {% if type == 'gift' %}
+        {% render 'product_gift-info' %}
+    {% else %}
+       
+        <div class="shop_pay">
+            {{ form | payment_terms }}
+        </div>
+    {% endif %}
+    
+    <script id="product-info">{{ product | json }}</script>
+{% endform %}
+
+<script>
+    let engraving_price = Number({{settings.engraving_price}}) * 100;
+</script>
+
+{% if product.tags contains 'Coogar' %}
+    <div style="margin: 0;" class="pxFormGenerator" id="q3p90jx9OKnw4YdvAEOKwA"></div>
+{% elsif product.tags contains 'enquire' %}
+    <div style="margin: 0;" class="pxFormGenerator" id="R9RaXt9t0i6wjybrz6C-Dg"></div>
+{% endif %}

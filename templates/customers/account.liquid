@@ -1,0 +1,93 @@
+{% render 'theme_assets', layout: 'account' %}
+
+<article class="o-row  c-account">
+    <header class="o-container  c-account__header">
+       
+        {%- assign text = 'customer.logout' | t -%}
+        {%- render 'object_button', 
+            theme: 'tertiary', 
+            href: routes.account_logout_url, 
+            class:'o-button--small  o-button--logout',
+            text: text
+        -%}
+    </header>
+
+   
+    <div class="o-container o-container--box  c-account__main">
+        {% render 'account_nav', account_page: "account" %}
+        <div class="c-account__content">
+            <div class="c-account__content-title">
+                <h3>
+                    {{'customer.order.header'| t  }}
+                </h3>
+            </div>
+            {% paginate customer.orders by 50 %}
+                {% if customer.orders.size != 0 %}
+                    {% for order in customer.orders %}
+
+                        <section class="c-account__orders-item">
+                            <header class="c-account__orders-header">
+                                <h2 class="t-size--h7">
+                                    {{'customer.orders.order_number'| t | append: ' ' | append: order.name }}
+                                </h2>
+                                <span class="c-account__orders-sticker">
+                                    {% if order.cancelled %}
+                                        <span><s>{{ order.fulfillment_status | capitalize }}</s> (cancelled) </span>
+                                    {% else %}
+                                        {{ order.fulfillment_status_label | capitalize }}
+                                    {% endif %}
+                                </span>
+                            </header>
+
+                            <div class="c-account__orders-details">
+
+                                <span>
+                                    <h3 class="t-size--h8  u-mb-8">
+                                        {{ 'customer.orders.order_date' | t }}
+                                    </h3>
+                                    {{ order.created_at | date: "%B %d, %Y"  }}
+                                </span>
+
+                                <span>
+                                    <h3 class="t-size--h8  u-mb-8">
+                                        {{ 'customer.orders.tracking_number' | t }}
+                                    </h3>
+                                    {%- if order.line_items[0].fulfillment.tracking_number -%}
+                                        <a class="tracking-url" href="{{ order.line_items[0].fulfillment.tracking_url }}">
+                                            {{ order.line_items[0].fulfillment.tracking_number}}
+                                        </a>
+                                    {%- else -%}
+                                        -
+                                    {%- endif -%}
+                                </span>
+                                
+                                <span>
+                                    <h3 class="t-size--h8  u-mb-8">
+                                        {{ 'customer.orders.items' | t }}
+                                    </h3>
+                                    {{ order.line_items.size }}
+                                </span>
+
+                                {%- assign text = 'customer.orders.button' | t -%}
+                                {%- render 'object_button', 
+                                    theme: 'tertiary', 
+                                    href:  order.customer_url, 
+                                    class:'o-button--small',
+                                    text: text
+                                -%}
+
+                            </div>
+                        </section>
+                    {% endfor %}
+
+                {% else %}
+                    <p class="no-order">
+                        {{ 'customer.orders.none' | t }}
+                    </p>
+                {% endif %}
+
+            {% endpaginate %}
+        </div>
+        
+    </section>
+</article>

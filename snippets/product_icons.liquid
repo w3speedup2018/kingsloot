@@ -1,0 +1,65 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="product-icons">
+    {% if product.metafields.custom.icon_block_image_1 != blank and product.metafields.custom.icon_block_title_1 != blank %}
+        <div class="product-icons-item">
+            {%- render 'object_image' with product.metafields.custom.icon_block_image_1,
+                mobile_image: product.metafields.custom.icon_block_image_1,
+                mobile_ratio: "30/30"
+                class: '  o-ar  o-ar--square',
+                img_class: "o-ar__item"
+                width: "30",
+                height: "30"
+            -%}
+            <h3 class="icon-title">{{ product.metafields.custom.icon_block_title_1 }}</h3>
+        </div>
+    {% endif %}
+    {% if product.metafields.custom.icon_block_image_2 != blank and product.metafields.custom.icon_block_title_2 != blank %}
+        <div class="product-icons-item">
+            {%- render 'object_image' with product.metafields.custom.icon_block_image_2,
+                mobile_image: product.metafields.custom.icon_block_image_2,
+                mobile_ratio: "30/30"
+                class: '  o-ar  o-ar--square',
+                img_class: "o-ar__item"
+                width: "30",
+                height: "30"
+            -%}
+            <h3 class="icon-title">{{ product.metafields.custom.icon_block_title_2 }}</h3>
+        </div>
+    {% endif %}
+    {% if product.metafields.custom.icon_block_image_3 != blank and product.metafields.custom.icon_block_title_3 != blank %}
+        <div class="product-icons-item">
+            {%- render 'object_image' with product.metafields.custom.icon_block_image_3,
+                mobile_image: product.metafields.custom.icon_block_image_3,
+                mobile_ratio: "30/30"
+                class: '  o-ar  o-ar--square',
+                img_class: "o-ar__item"
+                width: "30",
+                height: "30"
+            -%}
+            <h3 class="icon-title">{{ product.metafields.custom.icon_block_title_3 }}</h3>
+        </div>
+    {% endif %}
+    {% if product.metafields.custom.icon_block_image_4 != blank and product.metafields.custom.icon_block_title_4 != blank %}
+        <div class="product-icons-item ">
+            {%- render 'object_image' with product.metafields.custom.icon_block_image_4,
+                mobile_image: product.metafields.custom.icon_block_image_4,
+                mobile_ratio: "30/30"
+                class: '  o-ar  o-ar--square',
+                img_class: "o-ar__item"
+                width: "30",
+                height: "30"
+            -%}
+            <h3 class="icon-title see-in-action">{{ product.metafields.custom.icon_block_title_4 }}</h3>
+        </div>
+    {% endif %}
+</div>

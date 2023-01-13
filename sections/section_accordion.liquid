@@ -1,0 +1,119 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Accordion",
+  "class": "c-accordion",
+  "tag": "article",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "range",
+      "id": "spacing_desktop",
+      "label": "Desktop Spacing",
+      "info": "Adjust spacing below this section for desktop",
+      "min": 0,
+      "max": 100,
+      "default": 80,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "spacing_mobile",
+      "label": "Mobile Spacing",
+      "info": "Adjust spacing below this section for mobile",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Title",
+      "default": "On our [highlight]Blog[/highlight]"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Content",
+      "name": "Accordion",
+      "blocks": [
+
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "accordion_header",
+          "label": "Accordion Header"
+        },
+        {
+          "type": "textarea",
+          "id": "accordion_content",
+          "label": "Accordion Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<link rel="stylesheet" href="{{ 'accordion-section.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'accordion-section.css' | asset_url | stylesheet_tag }}</noscript>
+
+{% render 'theme_assets', layout: 'accordion-section' %}
+
+<div class="o-row" style="--row: {{ section.settings.spacing_mobile }}px; --row-desk: {{ section.settings.spacing_desktop }}px;">
+    <div class="o-container">
+        <div class="c-accordion-container">
+            {% if section.settings.title != blank %}
+                <h2 class="c-accordion-container__title  t-heading">
+                    {% comment %}theme-check-disable{% endcomment %}
+                    {{ section.settings.title
+                        | replace: '[/highlight]', '</span>'
+                        | replace: '[highlight]', '<span class="t-highlight">'
+                    }}
+                    {% comment %}theme-check-enable{% endcomment %}
+                </h2>
+            {% endif %}
+
+            <div class="c-accordion-container__items">
+                {% for block in section.blocks %}
+                    <div class="c-accordion-container__items-item  js-accordion">
+                        <div class="c-accordion-container__items-item--header  js-accordion-trigger">
+                            {{ block.settings.accordion_header }}
+                            <svg class="c-ico">
+                                <use xlink:href="#icon-chevron-down"></use>
+                            </svg>
+                        </div>
+                        <div class="c-accordion-container__items-item--content">
+                            {{ block.settings.accordion_content }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+

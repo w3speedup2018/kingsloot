@@ -1,0 +1,77 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Page Header",
+    "class": "page-header",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "background",
+            "label": "Background Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_background",
+            "label": "Mobile Background Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Our Loyal Team"
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Text",
+            "name": "Page Header"
+        }
+    ]
+}
+{% endschema %}
+
+<div class="w-full page-header">
+    {% if section.settings.background != blank %}
+    <div class="page-header__background">
+        {%- render 'object_image' with section.settings.background,
+            mobile_image: block.settings.mobile_image,
+            class: media_class,
+            loading: block.settings.lazy_loading
+        -%}
+    </div>
+    {% endif %}
+    <div class="page-header__content">
+        {% if section.settings.title != blank %}
+            <div class="page-header__title">
+                <h1 class="t-size-h1">
+                    {{ section.settings.title}}
+                </h1>
+            </div>
+        {% endif %}
+        {% if section.settings.description != blank %}
+            <div class="page-header__description u-mt-24">
+                <p class="t-size-h4">
+                    {{section.settings.description}}
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+

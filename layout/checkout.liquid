@@ -1,0 +1,284 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+
+<!-- Global site tag (oxpix.js) - OptimizeX -->
+<script type="text/javascript" async="" src="https://ox.kingsloot.com/bucket/oxpix-94b77b0a-1cff-4412-8fc2-1523653656f8.js"></script>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+
+
+    
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    
+      <!-- Route Code Edited 07/20/2021 
+      <script type="text/javascript" src="https://cdn.routeapp.io/route-widget-shopify/stable/route-widget-shopify-stable.min.js"></script>
+      <style>
+              .route-widget {
+                  justify-content: flex-end !important;
+              }
+              .route-div::after{
+                  content: "*Route is an added layer of premium protection that\A ensures quick and hassle-free package replacement\A for damaged, lost, or stolen orders.";
+                  white-space: pre-wrap;
+                  display: inline-block;
+              }
+              .route-div{
+                  text-align: right;
+                  font-size: 12px;
+                  line-height: 15px;
+              }
+      </style>
+      <!-- Route Code End -->    
+    
+  </head>
+  <body>
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+           
+
+
+            
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+  </body>
+  
+  <script type="text/javascript">
+    
+    (function($) {
+      $(document).on("page:load", function() {
+        if (Shopify.Checkout.step === "shipping_method") {
+          
+			$.ajax({
+              url: '/cart.js',
+              dataType:  'json',
+              success: function(result){
+                window.cart = result;
+                console.log(result);
+              },
+              complete: function(result){
+                var item = result.responseJSON.items.find(x => x.variant_id == "40387992715455");
+                if(item){
+                  	Checkout.$(".section--shipping-method").after('<div class="section shipping-protection"><div class="rj-left"><img src="https://cdn.shopify.com/s/files/1/0058/7776/0088/products/primeinsuredversion2_31x.png"></div><span class="rj-medium"> <b>Shipping Protection</b><br>from Damage, Loss & Theft</span><span class="rw-checkbox-span rw-checked"><span class="rw-slider rw-checked"></span><span class="rw-on-text rw-checked">On</span><span class="rw-off-text rw-checked">Off</span></span></div><div class="section desc"><p>Superior protection that provides quick and worry free package replacement for damaged, lost, or stolen orders, as well as getting your order shipped out next business day!</p></div>')
+                }else{
+                	Checkout.$(".section--shipping-method").after('<div class="section shipping-protection"><div class="rj-left"><img src="https://cdn.shopify.com/s/files/1/0058/7776/0088/products/primeinsuredversion2_31x.png"></div><span class="rj-medium"> <b>Shipping Protection</b><br>from Damage, Loss & Theft</span><span class="rw-checkbox-span rw-unchecked"><span class="rw-slider rw-unchecked"></span><span class="rw-on-text rw-unchecked">On</span><span class="rw-off-text rw-unchecked">Off</span></span></div><div class="section desc"><p>Superior protection that provides quick and worry free package replacement for damaged, lost, or stolen orders, as well as getting your order shipped out next business day!</p></div>')
+                }
+                window.cart = result;
+                console.log(result);
+              }
+            });
+        }
+      });
+      $(document).on('click', '.rw-checked', function(){
+      	$(".rw-checked").removeClass('rw-checked').addClass('rw-unchecked');
+        $.ajax({
+          url: '/cart/change.js',
+          type: 'post',
+          data: {id:'40387992715455',quantity:0},
+          success: function(result){
+//             window.location.reload()
+          },
+          complete: function(result){
+            //location.reload();
+            window.location.href = "https://kingsloot.com/checkout";
+//              document.documentElement.dispatchEvent(new CustomEvent('page:change', {
+//               bubbles: true
+//             }));
+          }
+        });
+      });
+      
+      $(document).on('click', '.rw-unchecked', function(){
+      	$(".rw-unchecked").removeClass('rw-unchecked').addClass('rw-checked');
+        $.ajax({
+          url: '/cart/add.js',
+          type: 'post',
+          data: {id:'40387992715455'},
+          success: function(result){
+//             window.location.reload()
+//             console.log(result);
+          },
+          complete: function(result){
+            //location.reload();
+			window.location.href = "https://kingsloot.com/checkout";
+          }
+        });
+      });
+    })(Checkout.$);
+
+
+  <style>
+    .section.shipping-protection {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    span.rj-medium {
+        margin-right: 20px;
+    }
+    
+    span.rw-checkbox-span {
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        position: relative;
+        height: 19px;
+        width: 40px;
+        border-radius: 100px;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    span.rw-checkbox-span.rw-unchecked {
+        background-color: #f3f3f3;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    .rw-checkbox-span .rw-slider {
+        position: fixed;
+        -ms-flex-item-align: center;
+        align-self: center;
+        height: 14px;
+        width: 14px;
+        border-radius: 100%;
+        margin-left: 2px;
+        -webkit-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+        background-color: white;
+        -webkit-box-shadow: 0px 0px 2px 0.3px #c2c2c2;
+        box-shadow: 0px 0px 2px 0.3px #c2c2c2;
+    }
+
+    .rw-checkbox-span .rw-on-text {
+        margin: 0;
+        justify-self: left;
+        -ms-flex-item-align: center;
+        align-self: center;
+        font-size: 11px;
+        padding: 0 0 0 5.5px;
+        color: white;
+        font-weight: 600;
+    }
+
+    .rw-checkbox-span .rw-on-text.rw-unchecked {
+        display: none;
+    }
+
+    .rw-checkbox-span .rw-off-text {
+        margin: 0;
+        justify-self: right;
+        -ms-flex-item-align: center;
+        align-self: center;
+        color: #6d6d6d;
+        font-size: 11px;
+        padding: 0 0 0 19px;
+    }
+    .rw-checkbox-span.rw-checked {
+        background-color: #5dc8db;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+    .rw-checkbox-span.rw-checked {
+        -webkit-animation: wave 0.4s ease;
+        animation: wave 0.4s ease;
+    }
+    .rw-checkbox-span .rw-slider.rw-checked {
+        -webkit-transform: translateX(22px);
+        -ms-transform: translateX(22px);
+        transform: translateX(22px);
+        -webkit-box-shadow: 0px 0px 2px 0.3px #499dac;
+        box-shadow: 0px 0px 2px 0.3px #499dac;
+    }
+    .rw-checkbox-span .rw-off-text.rw-checked {
+        display: none;
+    }
+    .rj-left {
+        padding-right: 10px;
+    }
+    .section.desc {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-top: 8px;
+    }
+    .section.desc p {
+        width: 50%;
+        font-size: 12px;
+      	text-align: right;
+    }
+    @media only screen and (max-width:768px){
+      .section.shipping-protection, .section.desc{justify-content: center;}
+      .section.desc p{width: 90%;}
+    }
+  </style>
+  
+</html>

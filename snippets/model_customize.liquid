@@ -1,0 +1,86 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<div class="c-modal-customize js-customize-modal">
+    <div class="c-modal-customize__close js-customize-close"></div>
+
+    <div class="c-modal-customize__body">
+        <div class="c-modal-customize__close-btn js-customize-close">
+            {% render 'object_icon', icon: 'close-icon' %}
+        </div>
+
+        <div class="c-modal-customize__step2 active">
+            <div class="c-modal-customize__step2-inner">
+                <h3 class="heading mobile_customize_title"></h3>
+                <h4 class="mobile_customize_price">$98.97</h4>
+                <div class="c-modal-customize__step2-image">
+                    <div class="js-step-img">
+                        {% assign custom_image = product.featured_image %}
+                        {% if product.metafields.custom.customization_image != blank %}
+                            {% assign custom_image = product.metafields.custom.customization_image %}
+                        {% endif %}
+                        {%- render 'object_image' with custom_image,
+                            class: 'o-ar  o-ar--square',
+                            img_class: "o-ar__item"
+                            width: "400",
+                            height: "400",
+                            mobile_ratio: "400/400"
+                        -%}
+                         <div class="customize-text">
+                            <div class="customize-content"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+
+                <div class="c-modal-customize__step2-content">
+                    <h3 class="heading customize_title"></h3>
+                    <h4 class="customize_price"></h4>
+                    <div class="inner">
+                        <span class="text">Enter Custom Text Here</small></span>
+                        <input type="text" id="customize-input" placeholder="Type here..." value="" maxlength="{{settings.max_count}}">
+                        <span  class="text">Chosse a Typeface</span>
+                        <div class="custom_font_type">
+                            <div class="custom_font_section">
+                                <div class="preview_font">
+                                    <span class="font-montserrat"> &nbsp;Montserrat</span>
+                                </div>
+                            </div>
+                            <div class="custom_dropdown">
+                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.86091 0.243164L9.60961 0.991865L4.99996 5.60151L0.39032 0.991865L1.13902 0.243164L4.99996 4.10411L8.86091 0.243164Z" fill="black"/>
+                                </svg>
+                            </div>
+                            <div class="fonts">
+                                <div class="fonts-content">
+                                    <div class="font-como item" data-font="Cormorant Garamond">Cormorant Garamond</div>
+                                    <div class="font-montserrat item active" data-font="Montserrat">Montserrat</div>
+                                    <div class="font-petit item" data-font="Petit Formal Script">Petit Formal Script</div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                    </div>
+                    <a href="#" class="checkout-btn  disabled" data-variant="" id="customize-btn">
+                        Add To Cart
+                    </a>
+                    <div class="custom_description">
+                        {{settings.custom_content}}
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>

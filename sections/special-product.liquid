@@ -1,0 +1,119 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% render 'theme_assets', layout: 'special-product' %}
+
+<div class="c-special-product">
+    <div class="c-special-product__container">
+        {% if section.settings.bg_image != blank %}
+            <div class="c-special-product__image">
+                {%- render 'object_image' with section.settings.bg_image,
+                    width: 1680,
+                    height: 670,
+                -%}
+            </div>
+        {% endif %}
+
+        <div class="c-special-product__content">
+            {% if section.settings.subtitle != blank %}
+                <h4 class="c-special-product__subtitle">{{ section.settings.subtitle }}</h4>
+            {% endif %}
+
+            {% assign product = all_products[section.settings.product] %}
+
+            {% if product != blank %}
+                <h3 class="c-special-product__title">
+                    {{ product.title }}
+                </h3>
+
+                <div class="c-special-product__price">
+                    {% render 'product_price',
+                        product: product
+                    %}
+                </div>
+
+                <div class="c-special-product__category">
+                    {% if section.blocks.size > 0 %}
+                        <p>INCLUDES</p>
+                        <ul>
+                            {% for block in section.blocks %}
+                                <li>{{ block.settings.category_name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <a class="o-button o-button--black c-special-product__button" href="{{ product.url }}">Shop Now</a>
+            {% endif %}
+        </div>
+
+        <div class="c-special-product__desc">
+            {% if section.settings.title != blank %}
+                <h2>{{ section.settings.title }}</h2>
+            {% endif %}
+
+            {% if section.settings.description != blank %}
+                <p>{{ section.settings.description }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% schema %}
+    {
+        "name": "Special Product",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "bg_image",
+                "label": "Background Image"
+            },
+            {
+                "type": "product",
+                "id": "product",
+                "label": "Product"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "text",
+                "id": "subtitle",
+                "label": "Subtitle"
+            },
+            {
+                "type": "textarea",
+                "id": "description",
+                "label": "Description"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "category",
+                "name": "Category",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "category_name",
+                        "label": "Name"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Special Product",
+                "category": "Product"
+            }
+        ]
+    }
+{% endschema %}

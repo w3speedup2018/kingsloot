@@ -1,0 +1,40 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<quantity-select class="c-qty js-product-quantity">
+    <div class="c-qty__text">Quantity: </div>
+    <div class="c-qty__inner">
+        <button 
+            class="c-qty__button c-qty__button-minus js-qty-minus" 
+            aria-label="Remove quantity" 
+            type="button"
+        >
+            {% render 'object_icon', icon: 'icon-minus' %}
+        </button>
+
+        <input 
+            class="c-qty__input  js-qty-value" 
+            type="number" 
+            name="quantity" 
+            value="1" 
+            min="1"
+            id="{{ id }}"
+        />
+
+        <button 
+            class="c-qty__button c-qty__button-plus js-qty-plus" 
+            aria-label="Add quantity"
+            type="button" 
+        >
+            {% render 'object_icon', icon: 'icon-plus' %}
+        </button>
+    </div>
+</quantity-select>

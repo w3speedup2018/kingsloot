@@ -1,0 +1,93 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{%- if paginate.parts.size > 0 -%}
+
+    <nav class="c-pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+        <ul class="c-pagination__list" role="list">
+
+            {%- if paginate.previous -%}
+                <li class="c-pagination__item">
+                    <a
+                        href="{{ paginate.previous.url }}{{ anchor }}"
+                        class="c-pagination__link js-page-link c-pagination__link--ends"
+                        data-button="prev"
+                        aria-label="{{ 'general.pagination.previous' | t }}"
+                    >
+                        {% render 'object_icon' icon: "chevron-left" %}
+                    </a>
+                </li>
+            {%- else -%}
+                <li class="c-pagination__item">
+                    <span
+                        class="c-pagination__link  c-pagination__link--ends"
+                        aria-label="{{ 'general.pagination.previous' | t }}"
+                    >
+                        {% render 'object_icon' icon: "chevron-left" %}
+                    </span>
+                </li>
+            {% endif %}
+
+            
+            {%- for part in paginate.parts -%}
+                <li class="c-pagination__item">
+                    {%- if part.is_link -%}
+                        <a
+                            href="{{ part.url }}{{ anchor }}"
+                            class="c-pagination__link js-page-link"
+                            data-button="{{ part.title }}"
+                            aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                        >
+                            {{ part.title }}
+                        </a>
+                    {%- else -%}
+                        {%- if part.title == paginate.current_page -%}
+                            <span
+                                class="c-pagination__link  c-pagination__link--no-hover  c-pagination__link--current"
+                                aria-current="page"
+                                aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                            >
+                                {{ part.title }}
+                            </span>
+                        {%- else -%}
+                            <span class="c-pagination__link  c-pagination__link--no-hover">
+                                {{ part.title }}
+                            </span>
+                        {%- endif -%}
+                    {%- endif -%}
+                </li>
+            {%- endfor -%}
+
+            {%- if paginate.next -%}
+                <li class="c-pagination__item">
+                    <a
+                        href="{{ paginate.next.url }}{{ anchor }}"
+                        class="c-pagination__link js-page-link c-pagination__link--ends"
+                        data-button="next"
+                        aria-label="{{ 'general.pagination.next' | t }}"
+                    >
+                        {% render 'object_icon' icon: "chevron-right" %}
+                    </a>
+                </li>
+            {%- else -%}
+                <li class="c-pagination__item">
+                    <span
+                        class="c-pagination__link  c-pagination__link--ends"
+                        aria-label="{{ 'general.pagination.next' | t }}"
+                    >
+                        {% render 'object_icon' icon: "chevron-right" %}
+                    </span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{%- endif -%}

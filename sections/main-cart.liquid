@@ -1,0 +1,315 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Cart",
+    "class": "c-cart",
+    "tag": "div",
+    "settings": [
+        {
+            "type": "url",
+            "id": "footer_link_1",
+            "label": "Shoping Link"
+        },
+        {
+            "type": "url",
+            "id": "footer_link_2",
+            "label": "Contact Us Link"
+        },
+        {
+            "label": "Contact us Title",
+            "type": "text",
+            "id": "title",
+            "default": "Having issues with your order? "
+        },
+        {
+            "label": "Related Product Section",
+            "type": "text",
+            "id": "title_relatedproduct",
+            "default": "You may also like"
+        }
+    ]
+}
+{% endschema %}
+
+{% render 'theme_assets', layout: 'cart' %}
+
+{% assign first_product = nil %}
+{% for item in cart.items %}
+
+    {% if forloop.first %}
+        {% assign first_product = item.product %}
+    {% endif %}
+{% endfor %}
+
+<div class="o-row  o-row--center">
+    <div class="cart-header">
+        <h3>shopping cart</h3>
+    </div>
+    {% if cart.item_count > 0%}
+    <form action="{{ routes.cart_url }}" class="c-cart__contents  c-cart-form  js-cart-form" method="post" id="cart">
+        <div class="c-main-cart  js-cart  o-container  o-container--cart">
+
+            {% if cart.item_count >= 1 %}
+                <cart-items  class="c-cart__items">
+                    <div class="c-cart__items-list  c-cart__items-list--row">
+
+                        <div class="c-cart__items-title">
+                            <p>{{ cart.item_count }} {% if cart.item_count > 1 %}items{% else %}item{% endif %} in your cart</p>
+                            <a href="/cart/clear" class="underline">DELETE ALL</a>
+                        </div>
+
+                        {%- for line_item in cart.items -%}
+                            {% assign gift_product = false %}
+                            {%- liquid
+                            assign custom_product = false
+                            assign has_custom = false
+                                for property in line_item.properties
+                                    case property.first
+                                        when "font"
+                                            assign custom_product = true
+                                        when "customize_font"
+                                            assign has_custom = true
+                                        else
+                                            
+                                    endcase
+                                endfor
+
+                            -%}
+
+                            <div class="c-cart__item  js-cart-item {% if custom_product %} custom-product {% endif %}">
+                                <div class="c-cart__item-content">
+                                    <div class="c-cart__item-image">
+                                        <img src="{{line_item.image.src | img_url : 'medium'  }}" />
+                                    </div>
+    
+                                    <!-- Product details -->
+                                    <div class="c-cart__item-description">
+                                        <span class="c-cart__item-description__title">{{ line_item.product.title }}</span>
+                                        
+                                        {%- if line_item.product.has_only_default_variant == false or line_item.properties.size != 0 or line_item.selling_plan_allocation != nil -%}
+                                            <dl>
+                                            {%- if line_item.product.has_only_default_variant == false -%}
+                                                {%- for option in line_item.options_with_values -%}
+                                                <div class="product-option">
+                                                    <dt class="option-label">{{ option.name }}: </dt>
+                                                    <dd>{{ option.value }}</dd>
+                                                </div>
+                                                {%- endfor -%}
+                                            {%- endif -%}
+                                            {% if has_custom %}
+                                                <div class="contain_custom">
+                                                    <span>Personalized <strong>+${{ settings.engraving_price }}</strong></span>
+                                                </div>
+                                            {% endif %}
+                                            {%- for property in line_item.properties -%}
+                                                {%- assign property_first_char = property.first | slice: 0 -%}
+                                                {%- if property.last != blank and property_first_char != '_' -%}
+                                                {% if  property.first == "product_variant" %}
+                                                    {% assign gift_product = true %}
+                                                {% endif %}
+                                                <div class="product-option 
+                                                {% if property.first == 'customize_font' %} custom-product{% endif %} 
+                                                {% if property.first == 'customize_font' or property.first == 'customize_letter'%} hide-option{% endif %} " 
+                                                    {% if property.first == "product_variant" %} hidden{% endif %}
+                                                    >
+                                                    <dt>
+                                                        {% case property.first %}
+                                                            {% when "customize_font", "font" %}
+                                                                Font: 
+                                                            {% when "customize_letter", "letter" %}
+                                                                Letter: 
+                                                            {% when "product_title" %}
+                                                                Product: 
+                                                            {% else %}
+                                                                {{property.first}}:
+                                                        {% endcase %}
+                                                    </dt>
+                                                    <dd {% if property.first == "product_variant" %} class="p_variant_id"{% endif %} 
+                                                        {% case property.first %}
+                                                            {% when "customize_font", "font" %}
+                                                                class="font_value"
+                                                            {% when "customize_letter", "letter" %}
+                                                                class="letter_value"
+                                                            {% when "product_title" %}
+                                                                class="product_title": 
+                                                            {% else %}
+                                                                
+                                                        {% endcase %}
+                                                    >
+                                                    {%- if property.last contains '/uploads/' -%}
+                                                        <a href="{{ property.last }}" class="link" target="_blank">
+                                                        {{ property.last | split: '/' | last }}
+                                                        </a>
+                                                    {%- else -%}
+                                                        {{ property.last }}
+                                                    {%- endif -%}
+                                                    </dd>
+                                                </div>
+                                                {%- endif -%}
+                                            {%- endfor -%}
+                                            </dl>
+                        
+                                            <p class="product-option">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+                                        {%- endif -%}   
+    
+                                        <div class="c-cart__item-description__group {% if gift_product == true %} gift_card {% endif %} {% if template == 'cart' %}  column {% endif %}">
+                                            <div class="c-cart__item-description__group--price  {% if template == 'cart' %}  cart {% endif %}">
+                                                <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" style="display:none !important;"></span>
+                                                    {% assign compare_at_price = line_item.variant.compare_at_price %}
+                                                    {% assign price = line_item.price %}
+                                                    {% assign assign compare_at_price_money = compare_at_price | money  %}
+                                                    {% assign assign money_price = price | money %}
+                                                    <p class="c-price">
+                                                        {% if compare_at_price > price %}
+                                                            <s class="c-price__compare">
+                                                                {{ compare_at_price_money }}
+                                                            </s>
+
+                                                            {{ money_price }}
+
+                                                        {% else %}
+                                                            {{ money_price }}
+                                                        {% endif %}
+                                                    </p>
+                                            </div>
+                                            <!-- Quantity picker -->
+                                            <div class="c-cart__item-description__group--qty">
+                                                {%- render 'cart_quantity', qty: line_item.quantity, id: line_item.variant_id -%}
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                                <div {% if gift_product == true %} style="display: none;" {% endif %}
+                                    class="c-cart__item-remove  js-remove-item"
+                                    data-id="{{ line_item.id }}"
+                                >
+                                    {% render 'object_icon',
+                                        icon: "cross",
+                                        class: "o-icon--cross"
+                                    %}
+                                </div>
+                                
+                            </div>
+                        {%- endfor -%}
+
+                    </div>
+                </cart-items>
+
+
+                <cart-summary class="c-cart__summary">               
+
+                    <!-- Summary costs breakdown -->
+                    <div class="c-cart__summary-breakdown">
+                       
+                        <div class="c-cart__summary-breakdown-row {% if template == 'cart' %}  cart  {% endif %} bold o-row">
+                            <span>Subtotal</span>
+                            <strong>
+                                {{ cart.total_price | money }}
+                            </strong>
+                            <!-- <span class="c-cart__summary-breakdown-row-price">
+                                <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>
+                                {{ cart.total_price | money }}
+                                <span class="u-ml-5">Excl VAT</span>
+                            </span> -->
+                        </div>
+
+                    </div>
+                    
+                    {% assign savings = 0 %}
+                    {% for item in cart.items %}
+                    {% if item.variant.compare_at_price > item.variant.price %}
+                        {% assign difference = item.variant.compare_at_price | minus: item.variant.price %}
+                        {% assign diffSaving = difference | times: item.quantity %}
+                        {% assign savings = savings | plus: diffSaving %}
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if savings > 0 %}
+                        <div class="c-cart__summary-breakdown-row savings">
+                            <span>
+                                total savings
+                            </span>
+                            <strong>
+                                {{ savings | money }}
+                            </strong>
+                        </div>
+                    {% endif %}  
+                    <div class="order-note">
+                        <p>Order Note:</p>
+                        <textarea name="cart_note" class="cart_note" rows="6" placeholder="Write your note here"></textarea>
+                    </div>
+                    <!-- Summary action buttons -->
+                    <div class="c-cart__summary-actions">
+                        {% render 'object_button',
+                            text: 'Checkout',
+                            type: 'submit',
+                            class: 'c-cart__summary-actions--submit checkout',
+                            attributes: 'form="cart" name="checkout"'
+                        %}
+                        {%- if template == 'cart' -%}
+                            {% render 'object_button',
+                                text: 'Continue Shopping',
+                                theme: 'secondary',
+                                type: 'button',
+                                color: 'white',
+                                class: 'c-cart__summary-actions--continue c-button--no-border con-shop',
+                                href: section.settings.footer_link_1,
+                            %}
+                        {%- endif -%}
+                    </div>
+
+                    {% comment %} <div class="contact-us-section">
+                        <p>{{section.settings.title}}</p>
+                        {%- if template == 'cart' -%}
+                            {% render 'object_button',
+                                text: 'Contact Us',
+                                theme: 'secondary',
+                                type: 'button',
+                                color: 'white',
+                                class: 'c-cart__summary-actions--continue c-button--no-border con-shop',
+                                href: section.settings.footer_link_2,
+                            %}
+                        {%- endif -%}
+                    </div> {% endcomment %}
+                    <!-- {%- if additional_checkout_buttons -%}
+                        <div class="c-cart__dynamic-checkout-buttons additional-checkout-buttons">
+                            {{ content_for_additional_checkout_buttons }}
+                        </div>
+                    {%- endif -%} -->
+                    
+                </cart-summary>
+            {% endif %}
+
+        </div>
+    </form>
+    {% comment %} <div class="related-product">
+        {% render 'cart_related-products', product: first_product %}
+    </div> {% endcomment %}
+    {% else %}
+        <div class="empty-cart">
+            <h1>  Your cart is empty</h1>
+
+            {% render 'object_button',
+                text: 'Continue Shopping',
+                theme: 'secondary',
+                type: 'button',
+                color: 'white',
+                class: 'c-cart__summary-actions--continue c-button--no-border con-shop',
+                href: section.settings.footer_link_1,
+            %}
+        </div>
+        
+    {% endif %}
+
+</div>

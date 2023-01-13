@@ -1,0 +1,349 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Content",
+    "class": "o-row",
+    "tag": "article",
+    "presets": [
+        {
+            "category": "content",
+            "name": "Content"
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Section Settings"
+        },
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "select",
+            "id": "content_position",
+            "label": "Content Layout",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left "
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Content",
+            "info": "Add your content here"
+        },
+        {
+            "type": "select",
+            "id": "heading_title_tag",
+            "label": "Heading H Tag (for screen readers & SEO - NOT FONT-SIZE)",
+            "options": [
+                {
+                    "value": "h1",
+                    "label": "H1"
+                },
+                {
+                    "value": "h2",
+                    "label": "H2"
+                },
+                {
+                    "value": "h3",
+                    "label": "H3"
+                },
+                {
+                    "value": "h4",
+                    "label": "H4"
+                },
+                {
+                    "value": "h5",
+                    "label": "H5"
+                }
+            ],
+            "default": "h2"
+        },
+        {
+            "type": "select",
+            "id": "header_font_size",
+            "label": "Header Font Size",
+            "options": [
+                {
+                    "value": "h1",
+                    "label": "90px"
+                },
+                {
+                    "value": "h2",
+                    "label": "50px"
+                },
+                {
+                    "value": "h3",
+                    "label": "32px"
+                },
+                {
+                    "value": "h4",
+                    "label": "28px"
+                },
+                {
+                    "value": "h5",
+                    "label": "24px"
+                },
+                {
+                    "value": "h6",
+                    "label": "22px"
+                },
+                {
+                    "value": "h7",
+                    "label": "20px"
+                },
+                {
+                    "value": "h8",
+                    "label": "18px"
+                },
+                {
+                    "value": "h9",
+                    "label": "16px"
+                },
+                {
+                    "value": "h10",
+                    "label": "14px"
+                },
+                {
+                    "value": "h11",
+                    "label": "12px"
+                },
+                {
+                    "value": "h12",
+                    "label": "10px"
+                }
+            ],
+            "default": "h2"
+        },
+        {
+            "type": "color",
+            "id": "heading_colour",
+            "label": "Heading Colour",
+            "default": "#111111",
+            "info": "Pick the colour of the heading"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading Title",
+            "default": "Title",
+            "info": "Add [highlight]Highlighted word[/highlight] to add colour highlight to your word"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subheading Title",
+            "default": "Sub Title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Content",
+            "default": "<p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget</p>",
+            "info": "For simple bullets insert the character symbol to the start of the sentence: • (new line for each bullet)"
+        },
+        {
+            "type": "checkbox",
+            "id": "border_content",
+            "label": "Border Content",
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "Button Settings"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open link in new tab?",
+            "default": false
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "radio",
+            "id": "button_type",
+            "label": "Button Type",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "Primary Button"
+                },
+                {
+                    "value": "secondary",
+                    "label": "Secondary Button"
+                },
+                {
+                    "value": "tertiary",
+                    "label": "Tertiary Button"
+                }
+            ],
+            "default": "primary"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+<div class="o-container">
+    {%- render 'object_content',
+        class: '',
+        position: section.settings.content_layout,
+
+        subcolor: section.settings.tag_color,
+        subtitle: section.settings.tag_title,
+        subtitle_class: 't-font-size--milli  u-mb-20',
+
+        title: section.settings.title,
+        title_tag: section.settings.heading_title_tag,
+        title_class: "",
+        title_color: section.settings.title_color,
+
+        copy: section.settings.text,
+        copy_color: section.settings.text_color,
+
+        button_label: section.settings.button_label,
+        button_link: section.settings.button_link,
+        button_type: section.settings.button_type,
+    -%}
+</div>
+

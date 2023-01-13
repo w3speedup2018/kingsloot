@@ -1,0 +1,48 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<header class="c-product__header">
+  <div class="c-product__reviews">
+    <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-sku="{{ product.handle }}" data-product-title="{{ product.title }}" data-product-type="{{ product.type }}" style="display: block;">
+      {{ product.metafields.stamped.badge }}
+    </span>
+  </div>
+
+  <div class="c-product__review-price">
+    <h3 class="c-product__title  t-heading  t-font-size--epsilon">
+      {{ product.title }}
+    </h3>
+    <span class="c-product__price">
+      {% render 'product_price',
+           product: product, 
+           font_size: 'product',
+           use_variant: true
+       %}
+    </span>
+  </div>
+
+  {% if section.settings.show_shipping %}
+   {% render 'product_shipping' %}
+  {% endif %}
+
+  {% if product.metafields.custom.gift_url != blank and product.metafields.custom.gift_text %}
+    <div class="c-product__gift-content">
+      {% if product.metafields.custom.gift_icon != blank %}
+        <img width="20" height="20" src="{{ product.metafields.custom.gift_icon | file_url }}" />
+      {% endif %}
+      <a href="{{ product.metafields.custom.gift_url }}">
+        {{ product.metafields.custom.gift_text }}
+      </a>
+    </div>
+  {% endif %}
+</header>
+
+

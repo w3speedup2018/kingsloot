@@ -1,0 +1,187 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% assign is_gift_card = false %}
+
+{% if product.title contains 'E-Gift Card' %}
+  {% assign is_gift_card = true %}
+{% endif %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% if product.variants.size > 1 %}
+    {%- assign options_count = product.options | size -%}
+
+    {% for option in product.options %}
+        {% if option != 'Color' %}
+            {% assign pos = forloop.index0 | plus: 1 %}
+            {%- assign option_value = 'option' | append: forloop.index -%}
+            {%- assign variant_array = "" -%}
+            {% assign used = '' %}
+            {% if options_count == 1 %}
+                {% assign stock_manage = true %}
+            {% elsif options_count >= 2 and forloop.index >= 2  %}
+                {% assign stock_manage = true %}
+            {% else %}
+                {% assign stock_manage = false %}
+            {% endif %}
+
+            {%- for variant in product.variants -%}
+                {%- if variant.inventory_quantity <= 0 -%}
+                    {% assign instock = false %}
+                {%- else -%}
+                    {% assign instock = true %}
+                {%- endif -%}
+
+                {%- capture variant_array -%}
+                    {{ variant_array }}
+
+                    {%- capture temp_cat -%}
+                        {{ variant[option_value] }}
+                    {%- endcapture -%}
+
+
+                    {%- unless variant_array contains temp_cat -%}
+                        {{ variant[option_value] | append: ':' | append: variant.id | append: ':' | append: variant.price | append: ':' | append: instock }}
+                        {%- unless forloop.last %},{%- endunless -%}
+                    {%- endunless -%}
+
+                {%- endcapture -%}
+            {%- endfor -%}
+
+            
+
+            {% assign variant_array = variant_array | strip_newlines | split: ',' | uniq %}
+
+            {%- capture options -%}
+                {% for value in variant_array %}                    
+                    {% assign variant_name = value | split: ':' | first | prepend: '#' %}
+                    {% assign stock = value | split: ':' | last %}
+
+                    {% assign str = value | split: ':' %}
+                    {% assign vId = str[1] %}
+                    {% assign vPrice = str[2] %}
+                    
+                    {% if stock_manage == false %}
+                        {%- assign disabled = "" -%}
+                    {% elsif stock == "false" and stock_manage %}
+                        {%- assign disabled = "disabled" -%}
+                    {% else %}
+                        {%- assign disabled = "" -%}
+                    {% endif %}
+
+                    {% unless used contains variant_name %}
+                        {% assign option_name = variant_name | remove: '#' | strip %}
+                        {% assign option_pos = 'option' | append: pos %}
+                        <li
+                            value="{{ variant_name | remove: '#' }}"
+                            data-product-id="{{ vId }}"
+                            data-variant-price="{{ vPrice }}"
+                            class="js-product-variant {% if option_name == current_variant[option_pos] %} active {% endif %}"
+                            data-position="{{ pos }}"
+                            data-text="{{ variant_name | remove: '#' }}"
+                        >
+                            {{ variant_name | remove: '#' }}
+                        </li>
+                        {% capture used %}{{ used }} {{ variant_name }}{% endcapture %}
+                    {% endunless %}
+                {% endfor %}
+            {%- endcapture -%}
+
+            {%- capture selectOptions -%}
+                {% for value in variant_array %}                    
+                    {% assign variant_name = value | split: ':' | first | prepend: '#' %}
+                    {% assign stock = value | split: ':' | last %}
+
+                    {% assign str = value | split: ':' %}
+                    {% assign vId = str[1] %}
+                    {% assign vPrice = str[2] %}
+                    
+                    {% if stock_manage == false %}
+                        {%- assign disabled = "" -%}
+                    {% elsif stock == "false" and stock_manage %}
+                        {%- assign disabled = "disabled" -%}
+                    {% else %}
+                        {%- assign disabled = "" -%}
+                    {% endif %}
+
+                    {% unless select contains vId %}
+                        <option value="{{ variant_name | remove: '#' }}"
+                            data-product-id="{{ vId }}"
+                            data-variant-price="{{ vPrice }}"
+                        >
+                            {{ variant_name | remove: '#' }}
+                        </option>
+                        {% capture select %}{{ select }} {{ variant_name }}{% endcapture %}
+                    {% endunless %}
+                {% endfor %}
+            {%- endcapture -%}
+            
+            <div class="c-product__options">
+
+                <label
+                    class="c-product__select-label"
+                    for="select-one"
+                >
+                    {{ option }}: 
+                </label>
+
+                <select class="js-product-options" style="display: none;">
+                    {{ selectOptions }}
+                </select>
+                <div class="c-product-dropdown" {% if product.title == 'Hybrid' %} style="display: none;" {% endif %}>
+                    <div class="c-product__selected">
+                       
+                    </div>
+                    <div class="drop-button">
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.86091 0.243164L9.60961 0.991865L4.99996 5.60151L0.39032 0.991865L1.13902 0.243164L4.99996 4.10411L8.86091 0.243164Z" fill="black"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="c-product__select" {% unless product.title == 'Hybrid' %}style="display:none;"{% endunless %}>
+                    <ul class="c-product__select-field{% if product.title == 'Hybrid' %}-hybrid{% endif %} {% if isWatch %}is-watch{% endif %}">
+                        {{ options }}
+                    </ul>
+                </div>
+
+                {% if option == "Size" and product.metafields.my_fields.size_guide != null %}
+                    <a class="size-guide-button  js-scroll-to" href="size-guide">Size guide</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <script>
+        var PRODUCT_VARIANTS = {{ product.variants | json }};
+    </script>
+{% endif %}
+
+<select name="id" id="product-select" class="no-js  js-product-select" hidden>
+    {% for variant in product.variants %}
+        <option
+            value="{{ variant.id }}"
+            data-value = "{{variant.title}}"
+            {% if is_gift_card %}
+                {% if variant.option1 == '$100.00' %}
+                    selected="selected"
+                {% endif %}
+            {% else %}
+                {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+            {% endif %}
+            {% if variant.inventory_quantity <= 0 %}disabled="disabled"{% endif %}
+        >
+            {{ variant.title }}
+        </option>
+    {% endfor %}
+</select>
+
+
+<div id="app"></div>

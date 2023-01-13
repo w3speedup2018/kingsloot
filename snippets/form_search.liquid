@@ -1,0 +1,66 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<search-form class="c-search  js-search">
+    <form
+        action="/search"
+        method="get"
+        class="c-search__form  js-search-form"
+        role="search"
+        temprop="potentialAction"
+        itemscope
+        itemtype="https://schema.org/SearchAction
+    ">
+        <input
+            type="hidden"
+            name="type"
+            value="product"
+        />
+
+        <input
+            name="q"
+            itemprop="query-input"
+            type="search"
+            class="c-search__input  js-search-input"
+            placeholder="TYPE TO SEARCH..."
+            value="{{ search.terms | escape | remove_first: '*' }}"
+            aria-label="Site Search Input Field"
+        />
+
+        <button
+            type="submit"
+            class="c-search__button"
+            aria-label="Search"
+        >
+            {% render 'object_icon',
+                icon: "search",
+                class: "c-header__search-icon"
+            %}
+        </button>
+
+        {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "WebSite",
+                "name": {{ shop.name | json }},
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {{ potential_action_target | json }},
+                    "query-input": "required name=search_term_string"
+                },
+                "url": {{ shop.url | append: page.url | json }}
+            }
+        </script>
+
+    </form>
+</search-form>
+

@@ -1,0 +1,69 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% assign child_list_handle = link_title | handle %}
+
+{% if linklists[child_list_handle].links.size > 0 %}
+
+    <div class="c-nav__subnav  js-subnav-target" data-id="{{ link_title | handleize }}">
+
+        <ul class="o-container  o-container--full@mob  c-nav__subnav-inner  js-subnav-inner">
+            <lh 
+                class="c-nav__subnav-header"
+                data-mq-hide="desk"
+            >
+                <button
+                    class="c-nav__subnav-return  js-subnav-return"
+                    data-id="{{ link_title | handleize }}"
+                    aria-label="{{ link_title }}"
+                >
+                    {% render 'object_icon',
+                        icon: "chevron-left",
+                        class: 'o-icon--back'
+                    %}
+                </button>
+                <span class="t-font-size--zeta  t-font-weight--500">
+                    {{ link_title }}
+                </span>
+            </lh>
+
+            {%- for child_link in linklists[child_list_handle].links -%}
+                {%- liquid
+                    assign grand_child_list_handle = child_link.title | handle
+                    assign has_grandchild = linklists[grand_child_list_handle].links.size
+                -%}
+                <li class="c-nav__subnav-column">
+                    <a href="{{ child_link.url }}" class="c-nav__subnav-link  t-font-weight--700">
+                        <span class="c-nav__subnav-link-wrapper">
+                            {{ child_link.title }}
+                        </span>
+                    </a>
+
+                    {%- if has_grandchild > 0 -%}
+                        {% for grand_child_link in linklists[grand_child_list_handle].links %}
+
+                            <a href="{{ grand_child_link.url }}" class="c-nav__subnav-link">
+                                <span class="c-nav__subnav-link-wrapper">
+                                    {{ grand_child_link.title }}
+                                </span>
+                            </a>
+
+                        {% endfor %} 
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+            {% render 'navigation_image', nav_banner: nav_banner, link_title: grand_child_list_handle %}
+
+        </ul>
+    </div>
+
+{% endif %}

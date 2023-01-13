@@ -1,0 +1,309 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Section Best Sellers",
+    "class": "o-row",
+    "tag": "article",
+    "presets": [
+        {
+            "name": "Section Best Sellers"
+        }
+    ],
+    "settings": [
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "radio",
+            "id": "width",
+            "label": "Banner Width",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "contained",
+                    "label": "Contained"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "range",
+            "id": "max_count",
+            "label": "Product Max Count",
+            "min": 1,
+            "max": 12,
+            "default": 4,
+            "step": 1
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "product",
+            "name": "Product",
+            "settings": [
+                {
+                    "type": "product",
+                    "id": "product",
+                    "label": "Product"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+    .c-best-seller__inner {
+        max-width: 95%;
+    }
+    .c-best-seller__inner .c-product-card__container {
+        padding: 0px;
+    }
+    .c-best-seller__inner .c-product-card__info.js-product-card {
+        padding: 15px;
+        background: white;
+    }
+    .c-best-seller__inner .c-product-card__variants {
+        display: none;
+    }
+    .c-best-seller__inner .stamped-badge-caption {
+        display: none;
+    }
+{% endstyle %}
+
+{% if section.settings.width == 'full' %}
+    {% assign is_contained = 'o-container--full' %}
+{% else %}
+    {% assign is_contained = 'o-container--box' %}
+{% endif %}
+
+{% render 'theme_assets', layout: 'best-seller' %}
+
+<div class="c-best-seller">
+    <div class="o-container {{ is_contained }} c-best-seller__inner">
+        {% if section.settings.title != blank %}
+            <h3 class="c-best-seller__title">{{ section.settings.title }}</h3>
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+            <div class="swiper js-best-seller-swiper">
+                <div class="c-best-seller__list swiper-wrapper">
+                 {% for block in section.blocks %}
+                    {%- assign product = all_products[block.settings.product] -%}
+                    {%- for variant in product.variants -%}
+                        <div class="c-best-seller__item swiper-slide">
+                            {%- render 'product_seller',
+                                product: product,
+                                link: variant.url,
+                                pro_image: variant.image,
+                                pro_title: variant.metafields.custom.title
+                                view: "full"
+                            -%}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                </div>
+
+                <div class="swiper-button-next">
+                        <svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>       
+                    </div>
+                    <div class="swiper-button-prev">
+                        <svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow"></path></svg>
+                    </div>
+                <div class="swiper-pagination"></div>
+            </div>
+           
+        {% else %}
+            {% assign products = collections[section.settings.collection].products %}
+            {% if products.size > 0 %}
+                <div class="swiper js-best-seller-swiper">
+                    <div class="c-best-seller__list swiper-wrapper">
+                        {% for product in products limit: section.settings.max_count %}
+                            <div class="c-best-seller__item swiper-slide">
+                                {%- render 'product_seller',
+                                    product: product,
+                                    showAddToBasket: true,
+                                    view: "full"
+                                -%}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-next">
+                        <svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>       
+                    </div>
+                    <div class="swiper-button-prev">
+                        <svg class="flickity-button-icon" viewBox="0 0 100 100"><path d="M 10,50 L 60,100 L 65,95 L 20,50  L 65,5 L 60,0 Z" class="arrow"></path></svg>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            {% endif %}
+        {% endif %}
+        
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const swiperContainer = document.querySelector('.c-best-seller__inner');
+        new Swiper(".js-best-seller-swiper", {
+            spaceBetween: 20,
+            loop: true,
+            slidesPerView: 1,
+            centeredSlides: false,
+            roundLengths: true,
+            speed: 1000,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                768: {       
+                    slidesPerView: 1,       
+                    spaceBetween: 10,
+                },
+                1024: {       
+                    slidesPerView: 4.1,       
+                    spaceBetween: 10
+                } 
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    });
+</script>

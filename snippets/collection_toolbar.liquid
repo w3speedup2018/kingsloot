@@ -1,0 +1,44 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% capture product_count %}
+    {%- if  collection.all_products_count >= 2 -%}
+        {{ 'sections.collection_template.product_count.other' | t: product_count: collection.products_count }} 
+    {%- else -%}
+        {{ 'sections.collection_template.product_count.one' | t: product_count: collection.products_count }} 
+    {%- endif -%}
+{% endcapture %}
+
+<section class="c-toolbar">
+    <form id="CollectionFiltersForm" class="c-toolbar__inner">
+        <button 
+        class="c-toolbar__button  js-filter-toggle" 
+        type="button"
+        data-mq-hide="desk"
+        >
+            {% render 'object_icon', icon: 'plus' %}
+            <span class="u-ml-10">
+                Refine By
+            </span>
+        </button>
+
+        <p class="c-toolbar__count" data-mq-hide="mob-lrg">
+           {{ product_count }}
+        </p>
+
+        {% render 'collection_sortby' %}
+        {% render 'collection_view' %}
+    </form>
+
+    <p class="c-toolbar__count  c-toolbar__count--mobile" data-mq-hide="desk">
+        {{ product_count }}
+    </p>
+</section>

@@ -1,0 +1,70 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% comment %}
+    Renders an video element
+    Accepts:
+    - object_video: {Object} Video Liquid object (required)
+
+    Usage:
+    {% render 'object_video' with object_video %}
+{% endcomment %}
+{%- liquid
+    assign frame_class = frame_class
+    assign mobile_ratio = mobile_ratio | default: "366/488"
+    assign desktop_ratio = width | append: '/' | append: height
+    if use_desktop_ratio == true 
+        assign mobile_ratio = desktop_ratio
+    endif
+
+    capture settings
+        case true
+            when muted
+            echo "muted "
+            when autoplay
+            echo "autoplay loop " 
+        endcase
+    endcapture
+-%}
+
+<div 
+    class="c-video {{ frame_class | prepend: '  ' }}  o-ar  js-video" 
+    {{ css_var }}
+    style="--aspect-ratio:{{ desktop_ratio }}; --mob-aspect-ratio:{{ mobile_ratio }};"
+    data-id="{{ object_video.id | strip }}" 
+    data-type="{{ object_video.type | default: "HTML5" }}" 
+    data-status="paused"
+    data-settings="{{ settings | strip }}"
+>
+    <div
+        class="c-video__container{{ video_class | prepend: '  ' }}  js-video-container" 
+        data-url="{{ object_video }}"
+    >
+    </div>
+
+    {%- if image -%}
+        {%- render 'object_image' with image,
+            fit: 'cover',
+            class: "c-video__image  js-video-image",
+            x_position: image_x_position,
+            y_position: image_y_position
+        -%}
+    {%- else -%}
+        <div class="c-video__preloader"></div>
+    {%- endif -%}
+
+    {%- if autoplay != true -%}
+        <button class="c-video__play-btn  js-video-trigger" data-state="paused">
+            <span class="sr-only">Play Video.</span>
+        </button>
+    {%- endif -%}
+</div>
+

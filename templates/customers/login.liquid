@@ -1,0 +1,26 @@
+
+{% render 'theme_assets', layout: 'login' %}
+
+<section class=" c-login o-container  o-container--short  o-grid  o-grid--wrap  u-pt-32  u-pb-32">
+    <header  class="o-grid__item">
+        <h1 class="t-size--h4  t-align--center">
+            {{ 'customer.login' | t }}
+        </h1>
+    </header>
+    <div class="o-grid__item  c-login__content">
+        {% render 'form_login' %}
+        <!-- {% render 'form_recover-password' %} -->
+        {%- assign text = 'customer.login_page.new_customer' | t -%}
+        <div class="text-center">
+            {%- render 'object_button', 
+                theme: 'secondary', 
+                text: text, 
+                class: 'o-button--full',
+                href: routes.account_register_url
+            -%}
+        </div>
+        
+    </div>
+    
+</section>
+

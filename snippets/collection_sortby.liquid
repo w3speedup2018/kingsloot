@@ -1,0 +1,51 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% if template == 'search' %}
+    {% assign sortby_collection = search %}
+{% else %}
+    {% assign sortby_collection = collection %}
+{% endif %}
+
+{%- assign sort_by = sortby_collection.sort_by | default: sortby_collection.default_sort_by -%}
+
+
+<div class="c-facets__sort">
+    <label for="sort_by" class="c-facets__sort-label">
+        Sort by
+    </label>
+    <select
+        class="c-facets__sort-field  js-collection-select"
+        name="sort_by"
+        id="SortBy"
+        aria-describedby="a11y-refresh-page-message"
+    >
+        {%- for option in sortby_collection.sort_options -%}
+            <option
+                value="{{ option.value | escape }}"
+                {% if option.value == sort_by %} selected{% endif %}
+            >
+                {{ option.name | escape }}
+            </option>
+        {%- endfor -%}
+    </select>
+
+    <noscript>
+        {%- render 'object_button',
+            type: 'submit'
+            theme: 'secondary',
+            text: 'Sort',
+            class: 'no-js',
+            attributes: ''
+        -%}
+    </noscript>
+</div>
+

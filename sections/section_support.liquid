@@ -1,0 +1,285 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+    "name": "Support Section",
+    "tag": "section",
+    "class": "o-full",
+    "settings": [
+        {
+            "type": "select",
+            "id": "spacing_desktop",
+            "label": "Desktop Spacing",
+            "info": "Adjust spacing below for desktop",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "56"
+        },
+        {
+            "type": "select",
+            "id": "spacing_mobile",
+            "label": "Mobile Spacing",
+            "info": "Adjust spacing below for mobile",
+            "options": [
+                {
+                    "value": "0",
+                    "label": "0px"
+                },
+                {
+                    "value": "8",
+                    "label": "8px"
+                },
+                {
+                    "value": "16",
+                    "label": "16px"
+                },
+                {
+                    "value": "24",
+                    "label": "24px"
+                },
+                {
+                    "value": "32",
+                    "label": "32px"
+                },
+                {
+                    "value": "48",
+                    "label": "48px"
+                },
+                {
+                    "value": "56",
+                    "label": "56px"
+                },
+                {
+                    "value": "64",
+                    "label": "64px"
+                },
+                {
+                    "value": "72",
+                    "label": "72px"
+                },
+                {
+                    "value": "80",
+                    "label": "80px"
+                },
+                {
+                    "value": "96",
+                    "label": "96px"
+                }
+            ],
+            "default": "32"
+        },
+        {
+            "type": "text",
+            "id": "menu_title",
+            "label": "Menu Title",
+            "default": "Support Menu"
+        },
+        {
+            "type": "link_list",
+            "id": "support_menu",
+            "label": "Support Menu",
+            "default": "main-menu"
+        },
+        {
+            "type": "text",
+            "id": "top_header",
+            "label": "Form Paragraph",
+            "default": "Have a question?"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "heading",
+            "name": "Heading",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Heading",
+                    "label": "Heading"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "name": "Sub Title",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "subtitle",
+                    "label": "Sub Title"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "name": "Paragraph",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "paragraph",
+                    "default": "<p>Be the first to know about new collections and exclusive offers.</p>",
+                    "label": "Description"
+                }
+            ]
+        },
+        {
+            "type": "html",
+            "name": "HTML",
+            "settings": [
+                {
+                    "type": "html",
+                    "id": "html",
+                    "label": "Html"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Support Section"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'section_support' %}
+
+<div class="o-row  o-row--center">
+    <div class="c-support  js-contact  o-container o-container--box">
+        <div class="c-support__menu">
+          {% if section.settings.menu_title != blank %}
+            <h3 class="c-support__menu-title">
+              {{section.settings.menu_title}}
+            </h3>
+          {% endif %}
+          
+          {% if section.settings.support_menu != blank%}
+            {%- assign nav_menu = linklists[section.settings.support_menu].links -%}
+            {% for link in nav_menu %}
+                {% assign child_list_handle = link.title | handle %}
+                {% assign has_child = linklists[child_list_handle].links.size %}
+                {% if has_child > 0 %}
+                  <div class="c-support__menu-item">
+                    <a
+                        class="c-support__menu-link" 
+                        href="{{ link.url }}"
+                        data-id="{{ link.title | handleize }}"
+                    >
+                        <span class="c-nav__item-link-wrapper">
+                            {{ link.title }}
+                        </span>
+                    </a>
+                    {% render 'object_icon',
+                        icon: "chevron-right",
+                        class: 'o-icon--next'
+                    %}
+                  </div>
+                {% else %}
+                  <div class="c-support__menu-item">
+                    <a
+                        class="c-support__menu-link" 
+                        href="{{ link.url }}"
+                        data-id="{{ link.title | handleize }}"
+                    >
+                        <span class="c-nav__item-link-wrapper">
+                            {{ link.title }}
+                        </span>
+                    </a>
+                    {% render 'object_icon',
+                        icon: "chevron-right",
+                        class: 'o-icon--next'
+                    %}
+                  </div>
+                {% endif %}
+
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="c-support__content">
+          {% for block in section.blocks %}
+            {%- case block.type -%}
+               
+                {%- when 'heading' -%}
+                    <h2 class="c-support__content-title t-heading  t-font-size--beta  t-font-align--center">
+                        {{ block.settings.heading | escape }}
+                    </h2>
+                {%- when 'paragraph' -%}
+                    <div class="t-font-align--center c-support__content-description">
+                        {{ block.settings.paragraph }}
+                    </div>
+                {%- when 'text' -%}
+                    <h3 class="t-font-align--center c-support__content-subtitle">
+                        {{ block.settings.subtitle }}
+                    </h3>
+                {%- when 'html' -%}
+                    <div class="c-support__content-html">
+                        {{block.settings.html}}
+                    </div>
+            {%- endcase -%}
+            
+          {% endfor %}
+        </div>
+    </div>
+</div>

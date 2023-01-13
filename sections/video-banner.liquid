@@ -1,0 +1,111 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% render 'theme_assets', layout: 'video-banner' %}
+
+<div class="c-video-banner">
+    {% if section.settings.video_url != blank or section.settings.video_src != blank %}
+        {%- liquid
+            assign img_class = ""
+            assign video_src = section.settings.video_src | default: section.settings.video_url
+        -%}
+
+        {%- render 'object_video' with video_src,
+            class: media_class,
+            autoplay: section.settings.video_autoplay,
+            muted: section.settings.video_muted,
+            image: section.settings.video_image,
+            frame_class: img_class,
+            width: 1300,
+            height: 730,
+            mobile_ratio: "400/600"
+        -%}
+    {% endif %}
+
+    <div class="c-video-banner__content">
+        {% if section.settings.image != blank %}
+            {%- render 'object_image' with section.settings.image,
+                width: 430,
+                height: 150,
+                use_desktop_ratio: true
+            -%}
+        {% endif %}
+
+        {% if section.settings.title != blank %}
+            <h1 class="c-video-banner__content-title">{{ section.settings.title }}</h1>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+            <div class="c-video-banner__content-desc">
+                {{ section.settings.description }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Video Banner",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description"
+            },
+            {
+                "type": "text",
+                "id": "video_src",
+                "label": "Hosted Video",
+                "info": "Upload a .mp4, .webm, .ogv into the Files folder (Settings > Files) all with this name. So if one of your assets is 'my-video.mp4', then just enter 'my-video' here."
+            },
+            {
+                "type": "video_url",
+                "id": "video_url",
+                "accept": ["youtube", "vimeo"],
+                "label": "Video Link"
+            },
+            {
+                "type": "checkbox",
+                "id": "video_autoplay",
+                "label": "Autoplay",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "video_muted",
+                "label": "Muted",
+                "default": true
+            },
+            {
+                "type": "image_picker",
+                "id": "video_image",
+                "label": "Placeholder image",
+                "info": "Landscape orientation (21:10 w:h). 1920 x 940px minimum recommended"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Video Banner",
+                "category": "Image"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,295 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Contact",
+  "class": "c-contact  c-contact--no-padding",
+  "tag": "article",
+  "presets": [
+    {
+      "category": "contact",
+      "name": "Contact"
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "spacing_desktop",
+      "label": "Desktop Spacing",
+      "info": "Adjust spacing below this section for desktop",
+      "min": 0,
+      "max": 100,
+      "default": 80,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "spacing_mobile",
+      "label": "Mobile Spacing",
+      "info": "Adjust spacing below this section for mobile",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "menu_title",
+      "label": "Menu Title",
+      "default": "Support Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "support_menu",
+      "label": "Support Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "top_header",
+      "label": "Form Paragraph",
+      "default": "Have a question?"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Use the Contact Form below or e-mail us at support@ridge.com."
+    },
+    {
+      "type": "text",
+      "id": "track_text",
+      "label": "Track Order Title",
+      "default": "Have your Order Number or Tracking Number?"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "TRACK YOUR ORDER"
+    },
+    {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+    },
+    {
+      "type": "radio",
+      "id": "button_type",
+      "label": "Button Type",
+      "options": [
+          {
+              "value": "primary",
+              "label": "Primary Button"
+          },
+          {
+              "value": "secondary",
+              "label": "Secondary Button"
+          },
+          {
+              "value": "tertiary",
+              "label": "Tertiary Button"
+          }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "text",
+      "id": "form_header",
+      "label": "Form Header",
+      "default": "how can we help you?"
+    },
+    {
+      "type": "text",
+      "id": "form_paragraph",
+      "label": "Form Paragraph"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "background",
+      "name": "Banner",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "help_option",
+      "name": "Help Option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "help_option_label",
+          "label": "Help Option Label"
+        },
+        {
+          "type": "text",
+          "id": "help_option_value",
+          "label": "Help Option Value"
+        }
+      ]
+    },
+    {
+      "type": "contact_detail",
+      "name": "Contact Detail",
+      "settings": [
+        {
+          "type": "text",
+          "id": "contact_detail_label",
+          "label": "Contact Detail Label",
+          "default": "Email"
+        },
+        {
+          "type": "text",
+          "id": "contact_detail_value",
+          "label": "Contact Detail Value",
+          "default": "support@mail.com"
+        },
+        {
+          "type": "select",
+          "id": "contact_detail_type",
+          "label": "Contact Detail Type",
+          "options": [
+            {
+              "value": "mailto:",
+              "label": "Email"
+            },
+            {
+              "value": "tel:",
+              "label": "Phone"
+            },
+            {
+              "value": "",
+              "label": "website"
+            },
+            {
+              "value": "other",
+              "label": "Other"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --row: {{ section.settings.spacing_mobile }}px;
+        --row-desk: {{ section.settings.spacing_desktop }}px;
+        --bg-colour: {{ section.settings.background_colour }};
+    }
+{% endstyle %}
+
+{% render 'theme_assets', layout: 'section_contact' %}
+
+{% capture track_section %}
+<div class="c-contact__track">
+  {% if section.settings.top_header != blank %}
+    <h3 class="c-contact__track-title">{{section.settings.top_header}}</h3>
+  {% endif %}
+  {% if section.settings.description != blank %}
+  <div class="c-contact__track-description">
+    {{section.settings.description}}
+  </div>
+  {% endif %}
+  {% if section.settings.track_text != blank %}
+    <div class="c-contact__track-subtitle">
+      {{section.settings.track_text}}
+    </div>
+  {% endif %}
+  {% if section.settings.button_label != blank %}
+    <div class="c-contact__track-btn">
+      <a href="{{section.settings.button_link}}">
+        {{section.settings.button_label}}
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endcapture%}
+<div class="o-row  o-row--center">
+    <div class="c-contact  js-contact  o-container o-container--box">
+        <div class="mb-section">
+         {{ track_section }}
+        </div>
+        <div class="c-contact__menu">
+          {% if section.settings.menu_title != blank %}
+            <h3 class="c-contact__menu-title">
+              {{section.settings.menu_title}}
+            </h3>
+          {% endif %}
+          {% if section.settings.support_menu != blank%}
+            {%- assign nav_menu = linklists[section.settings.support_menu].links -%}
+            {% for link in nav_menu %}
+                {% assign child_list_handle = link.title | handle %}
+                {% assign has_child = linklists[child_list_handle].links.size %}
+                {% if has_child > 0 %}
+                  <a href="{{ link.url }}" class="c-contact__menu-item">
+                      <div
+                          class="c-contact__menu-link" 
+                        
+                          data-id="{{ link.title | handleize }}"
+                      >
+                        <span class="c-nav__item-link-wrapper">
+                            {{ link.title }}
+                        </span>
+                      </div>
+                    {% render 'object_icon',
+                        icon: "chevron-right",
+                        class: 'o-icon--next'
+                    %}
+                  </a>
+                {% else %}
+                  <a href="{{ link.url }}" class="c-contact__menu-item">
+                    <div
+                        class="c-contact__menu-link" 
+                        data-id="{{ link.title | handleize }}"
+                    >
+                        <span class="c-nav__item-link-wrapper">
+                            {{ link.title }}
+                        </span>
+                    </div>
+                    {% render 'object_icon',
+                        icon: "chevron-right",
+                        class: 'o-icon--next'
+                    %}
+                  </a>
+                {% endif %}
+                
+
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="c-contact__content">
+          {{ track_section }}
+          <div class="c-contact__form">
+            {% if section.settings.form_header != blank %}
+              <h3 class="c-contact__form-title">
+                {{section.settings.form_header}}
+              </h3>
+            {% endif %}          
+            {% render 'contact_form' %}
+          </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+<style type="text/css">
+  .c-template-404 {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-family: sans-serif;
+  }
+  .c-template-404 .title {
+    margin-bottom: 1rem;
+  }
+  .c-template-404__continue {
+    text-decoration: underline;
+
+  }
+  .c-template-404 .title+* {
+    margin-top: 1rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .c-template-404 .title+* {
+      margin-top: 2rem;
+    }
+  }
+</style>
+
+{{ 'main-404.css' | asset_url | stylesheet_tag }}
+
+<div class="o-row"
+  style="--row: {{ section.settings.spacing_mobile }}px; --row-desk: {{ section.settings.spacing_desktop }}px;">
+  <div class="o-container">
+    <div class="c-template-404">
+      <p>
+        {{ 'templates.404.subtext' | t }}
+      </p>
+      <h1 class="title">
+        {{ 'templates.404.title' | t }}
+      </h1>
+      {% render 'object_button', 
+        text: 'Continue Shopping',
+        theme: 'primary',
+        type: 'button',
+        href: routes.all_products_collection_url,
+        class: 'c-template-404__continue'
+      %}
+    </div>
+  </div>
+</div>

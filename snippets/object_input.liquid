@@ -1,0 +1,79 @@
+{%- comment -%}
+//    !!!! - DO NOT MODIFY - !!!!
+//    THIS FILE IS DEPLOYED AUTOMATICALLY BY GITHUB.
+//    CHANGES YOU MAKE MAY BE AUTOMATICALLY OVERWRITTEN AT ANY TIME.
+//
+//    Github is used to create an automated theme deployment pipeline for Shopify,
+//    it is used to provide version control, theme testing and reliable deployment environments.
+//
+//    If you need to modify this file, please contact Juno eCommerce.
+{%- endcomment -%}
+
+{% comment %}
+    Renders form input/textarea component
+    Accepts:
+    - field: {'input' | 'textarea'} Field type. Defaults to 'input' (optional)
+    - type: {String} Input type. Defaults to 'text' (optional)
+    - name: {String} Select name (optional)
+    - label: {String} Label text (optional)
+    - attributes: {String} Additional attributes (optional)
+    - error: {String} Error message (optional)
+
+    Usage:
+    {%- render 'object_input'
+    ,   name: 'name'
+    ,   label: 'First Name'
+    ,   attributes: 'required'
+    ,   class: 'c-input__field--alt'
+    -%}
+ {% endcomment %}
+
+{%- if field == 'textarea' -%}
+    <label class="c-form__input  {{ class }}  {%- if error -%}has-error{%- endif -%}">
+        {%- if label -%}
+            <span class="c-form__input-label">
+                {{ label }}
+            </span>
+        {%- endif -%}
+        
+        <textarea
+            class="c-form__input-field{{ input_class }}"
+            name="{{ name }}"
+            value="{{ value }}"
+            placeholder="{{ placeholder }}"
+            {{ attributes }}></textarea>
+        
+        {%- if error -%}
+            <span class="c-form__message  c-form__message--error">
+                {% render 'object_icon', icon: "error-circle", class: "o-icon--error  u-mr-8" %}
+                {{ error | capitalize }}
+            </span>
+        {%- endif -%}
+    </label>
+
+{%- else -%}
+
+    <label class="c-form__input  {{ class }}  {%- if error -%}has-error{%- endif -%}">
+        {%- if label -%}
+            <span class="c-form__input-label">
+                {{ label }}
+            </span>
+        {%- endif -%}
+
+        <input class="c-form__input-field {{ input_class }}"
+            type="{{ type | default: 'text' }}"
+            name="{{ name }}"
+            value="{{ value }}"
+            placeholder="{{ placeholder }}"
+            {{ attributes }}
+        >
+
+        {%- if error -%}
+            <span class="c-form__message  c-form__message--error">
+                {% render 'object_icon', icon: "error-circle", class: "o-icon--error  u-mr-8" %}
+                {{ error | capitalize }}
+            </span>
+        {%- endif -%}
+    </label>
+
+{%- endif -%}
