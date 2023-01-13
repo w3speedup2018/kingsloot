@@ -36,7 +36,7 @@
   {% if product.metafields.custom.gift_url != blank and product.metafields.custom.gift_text %}
     <div class="c-product__gift-content">
       {% if product.metafields.custom.gift_icon != blank %}
-        <img width="20" height="20" src="{{ product.metafields.custom.gift_icon | file_url }}" />
+        <img class="lazy2" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ product.metafields.custom.gift_icon | file_url }}" />
       {% endif %}
       <a href="{{ product.metafields.custom.gift_url }}">
         {{ product.metafields.custom.gift_text }}

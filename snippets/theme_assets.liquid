@@ -1,261 +1,181 @@
-{%- if layout == 'theme' -%}<script src="{{- 'theme.b2963f.js' | asset_url -}}" type="module" defer></script>{%- endif -%}
-{%- if layout == 'checkout' -%}<script src="{{- 'checkout.da307a.js' | asset_url -}}" type="module" defer></script>{%- endif -%}
-{%- if layout == 'theme'  or layout == 'giftcard' or layout == 'checkout' -%}<script src="{{- 'runtime.37b3e6.js' | asset_url -}}"  defer></script>{%- endif -%}
-
-            {%- if layout == 'theme' -%}
-                <link rel="stylesheet" href="{{- 'theme.abaa9a.css' | asset_url -}}" type="text/css"  media="all"  />
-                <noscript>{{- 'theme.abaa9a.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'checkout' -%}
-                <link rel="stylesheet" href="{{- 'checkout.99d998.css' | asset_url -}}" type="text/css"  media="all"  />
-                <noscript>{{- 'checkout.99d998.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'account' -%}
-                <link rel="stylesheet" href="{{- 'account.b06548.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'account.b06548.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'best-seller' -%}
-                <link rel="stylesheet" href="{{- 'best-seller.341d8a.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'best-seller.341d8a.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'blog' -%}
-                <link rel="stylesheet" href="{{- 'blog.83fedf.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'blog.83fedf.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'collection' -%}
-                <link rel="stylesheet" href="{{- 'collection.b52f3c.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'collection.b52f3c.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'login' -%}
-                <link rel="stylesheet" href="{{- 'login.c06c59.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'login.c06c59.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'main-list-collection' -%}
-                <link rel="stylesheet" href="{{- 'main-list-collection.91245d.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'main-list-collection.91245d.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'order' -%}
-                <link rel="stylesheet" href="{{- 'order.a964d6.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'order.a964d6.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'post' -%}
-                <link rel="stylesheet" href="{{- 'post.23828b.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'post.23828b.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'product' -%}
-                <link rel="stylesheet" href="{{- 'product.07d698.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'product.07d698.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'register' -%}
-                <link rel="stylesheet" href="{{- 'register.ef2115.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'register.ef2115.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'related-product' -%}
-                <link rel="stylesheet" href="{{- 'related-product.a0c0c9.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'related-product.a0c0c9.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_banner-slider' -%}
-                <link rel="stylesheet" href="{{- 'section_banner-slider.74d63d.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_banner-slider.74d63d.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_contact' -%}
-                <link rel="stylesheet" href="{{- 'section_contact.6945f2.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_contact.6945f2.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_custom-text' -%}
-                <link rel="stylesheet" href="{{- 'section_custom-text.04a528.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_custom-text.04a528.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_essentials' -%}
-                <link rel="stylesheet" href="{{- 'section_essentials.bc5ed5.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_essentials.bc5ed5.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_featured-collections' -%}
-                <link rel="stylesheet" href="{{- 'section_featured-collections.e3a918.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_featured-collections.e3a918.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_featured-products' -%}
-                <link rel="stylesheet" href="{{- 'section_featured-products.19fda1.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_featured-products.19fda1.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_home-banner' -%}
-                <link rel="stylesheet" href="{{- 'section_home-banner.e60507.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_home-banner.e60507.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_how-work' -%}
-                <link rel="stylesheet" href="{{- 'section_how-work.858565.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_how-work.858565.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_icon-block' -%}
-                <link rel="stylesheet" href="{{- 'section_icon-block.060a09.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_icon-block.060a09.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_image-slider' -%}
-                <link rel="stylesheet" href="{{- 'section_image-slider.0a764a.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_image-slider.0a764a.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_image-text' -%}
-                <link rel="stylesheet" href="{{- 'section_image-text.abb6f9.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_image-text.abb6f9.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_image-text1' -%}
-                <link rel="stylesheet" href="{{- 'section_image-text1.780cce.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_image-text1.780cce.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_lifetime' -%}
-                <link rel="stylesheet" href="{{- 'section_lifetime.db61fc.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_lifetime.db61fc.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_newsletter' -%}
-                <link rel="stylesheet" href="{{- 'section_newsletter.7c6fd7.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_newsletter.7c6fd7.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_our-team' -%}
-                <link rel="stylesheet" href="{{- 'section_our-team.471422.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_our-team.471422.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_page-banner' -%}
-                <link rel="stylesheet" href="{{- 'section_page-banner.67461a.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_page-banner.67461a.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_page-header' -%}
-                <link rel="stylesheet" href="{{- 'section_page-header.e09006.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_page-header.e09006.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_post-content' -%}
-                <link rel="stylesheet" href="{{- 'section_post-content.b3d855.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_post-content.b3d855.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_product-additional' -%}
-                <link rel="stylesheet" href="{{- 'section_product-additional.8fc5ae.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_product-additional.8fc5ae.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_support' -%}
-                <link rel="stylesheet" href="{{- 'section_support.11742e.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_support.11742e.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_testimonials' -%}
-                <link rel="stylesheet" href="{{- 'section_testimonials.1e668a.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_testimonials.1e668a.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_wallet-content' -%}
-                <link rel="stylesheet" href="{{- 'section_wallet-content.9d60e3.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_wallet-content.9d60e3.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'cart' -%}
-                <link rel="stylesheet" href="{{- 'cart.4e3e6f.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'cart.4e3e6f.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'section_image-gallery' -%}
-                <link rel="stylesheet" href="{{- 'section_image-gallery.18d11c.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'section_image-gallery.18d11c.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'page-banner' -%}
-                <link rel="stylesheet" href="{{- 'page-banner.6de4e7.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'page-banner.6de4e7.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'icon-list' -%}
-                <link rel="stylesheet" href="{{- 'icon-list.eb2161.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'icon-list.eb2161.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'special-product' -%}
-                <link rel="stylesheet" href="{{- 'special-product.447658.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'special-product.447658.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'product-list' -%}
-                <link rel="stylesheet" href="{{- 'product-list.976b35.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'product-list.976b35.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'product-column' -%}
-                <link rel="stylesheet" href="{{- 'product-column.e12673.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'product-column.e12673.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
-
-            {%- if layout == 'video-banner' -%}
-                <link rel="stylesheet" href="{{- 'video-banner.e92ec5.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
-                <noscript>{{- 'video-banner.e92ec5.css'| asset_url | stylesheet_tag -}}</noscript>
-            {%- endif -%}
-        
+{%- if layout == 'theme' -%}
+    <script type="lazyload2" data-src="{{- 'theme.b2963f.js' | asset_url -}}" data-type="module"></script>
+{%- endif -%}
+{%- if layout == 'checkout' -%}
+    <script src="{{- 'checkout.da307a.js' | asset_url -}}" type="module" defer></script>
+{%- endif -%}
+{%- if layout == 'theme'  or layout == 'giftcard' or layout == 'checkout' -%}
+    <script type="lazyload2" data-src="{{- 'runtime.37b3e6.js' | asset_url -}}"></script>
+{%- endif -%}
+{%- if layout == 'theme' -%}
+    <link rel="stylesheet" data-href="{{- 'theme.abaa9a.css' | asset_url -}}" type="text/css"  media="all"  />
+    <noscript>{{- 'theme.abaa9a.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'checkout' -%}
+    <link rel="stylesheet" href="{{- 'checkout.99d998.css' | asset_url -}}" type="text/css"  media="all"  />
+    <noscript>{{- 'checkout.99d998.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'account' -%}
+    <link rel="stylesheet" href="{{- 'account.b06548.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'account.b06548.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'best-seller' -%}
+    <link rel="stylesheet" data-href="{{- 'best-seller.341d8a.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'best-seller.341d8a.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'blog' -%}
+    <link rel="stylesheet" data-href="{{- 'blog.83fedf.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'blog.83fedf.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'collection' -%}
+    <link rel="stylesheet" data-href="{{- 'collection.b52f3c.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'collection.b52f3c.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'login' -%}
+    <link rel="stylesheet" href="{{- 'login.c06c59.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'login.c06c59.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'main-list-collection' -%}
+    <link rel="stylesheet" data-href="{{- 'main-list-collection.91245d.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'main-list-collection.91245d.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'order' -%}
+    <link rel="stylesheet" data-href="{{- 'order.a964d6.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'order.a964d6.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'post' -%}
+    <link rel="stylesheet" data-href="{{- 'post.23828b.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'post.23828b.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'product' -%}
+    <link rel="stylesheet" data-href="{{- 'product.07d698.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'product.07d698.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'register' -%}
+    <link rel="stylesheet" data-href="{{- 'register.ef2115.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'register.ef2115.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'related-product' -%}
+    <link rel="stylesheet" data-href="{{- 'related-product.a0c0c9.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'related-product.a0c0c9.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_banner-slider' -%}
+    <link rel="stylesheet" data-href="{{- 'section_banner-slider.74d63d.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'section_banner-slider.74d63d.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_contact' -%}
+    <link rel="stylesheet" data-href="{{- 'section_contact.6945f2.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'section_contact.6945f2.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_custom-text' -%}
+    <link rel="stylesheet" data-href="{{- 'section_custom-text.04a528.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'section_custom-text.04a528.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_essentials' -%}
+    <link rel="stylesheet" data-href="{{- 'section_essentials.bc5ed5.css' | asset_url -}}" type="text/css"   media="print" onload="this.media='all';this.onload=null;"  />
+    <noscript>{{- 'section_essentials.bc5ed5.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_featured-collections' -%}
+    <link rel="stylesheet" data-href="{{- 'section_featured-collections.e3a918.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_featured-collections.e3a918.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_featured-products' -%}
+    <link rel="stylesheet" data-href="{{- 'section_featured-products.19fda1.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_featured-products.19fda1.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_home-banner' -%}
+    <link rel="stylesheet" data-href="{{- 'section_home-banner.e60507.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_home-banner.e60507.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_how-work' -%}
+    <link rel="stylesheet" data-href="{{- 'section_how-work.858565.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_how-work.858565.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_icon-block' -%}
+    <link rel="stylesheet" data-href="{{- 'section_icon-block.060a09.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_icon-block.060a09.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_image-slider' -%}
+    <link rel="stylesheet" data-href="{{- 'section_image-slider.0a764a.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_image-slider.0a764a.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_image-text' -%}
+    <link rel="stylesheet" data-href="{{- 'section_image-text.abb6f9.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_image-text.abb6f9.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_image-text1' -%}
+    <link rel="stylesheet" data-href="{{- 'section_image-text1.780cce.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_image-text1.780cce.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_lifetime' -%}
+    <link rel="stylesheet" data-href="{{- 'section_lifetime.db61fc.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_lifetime.db61fc.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_newsletter' -%}
+    <link rel="stylesheet" data-href="{{- 'section_newsletter.7c6fd7.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_newsletter.7c6fd7.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_our-team' -%}
+    <link rel="stylesheet" data-href="{{- 'section_our-team.471422.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_our-team.471422.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_page-banner' -%}
+    <link rel="stylesheet" data-href="{{- 'section_page-banner.67461a.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_page-banner.67461a.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_page-header' -%}
+    <link rel="stylesheet" data-href="{{- 'section_page-header.e09006.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_page-header.e09006.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_post-content' -%}
+    <link rel="stylesheet" data-href="{{- 'section_post-content.b3d855.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_post-content.b3d855.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_product-additional' -%}
+    <link rel="stylesheet" data-href="{{- 'section_product-additional.8fc5ae.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_product-additional.8fc5ae.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_support' -%}
+    <link rel="stylesheet" data-href="{{- 'section_support.11742e.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_support.11742e.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_testimonials' -%}
+    <link rel="stylesheet" data-href="{{- 'section_testimonials.1e668a.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_testimonials.1e668a.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_wallet-content' -%}
+    <link rel="stylesheet" data-href="{{- 'section_wallet-content.9d60e3.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_wallet-content.9d60e3.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'cart' -%}
+    <link rel="stylesheet" href="{{- 'cart.4e3e6f.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'cart.4e3e6f.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'section_image-gallery' -%}
+    <link rel="stylesheet" data-href="{{- 'section_image-gallery.18d11c.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'section_image-gallery.18d11c.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'page-banner' -%}
+    <link rel="stylesheet" data-href="{{- 'page-banner.6de4e7.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'page-banner.6de4e7.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'icon-list' -%}
+    <link rel="stylesheet" data-href="{{- 'icon-list.eb2161.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'icon-list.eb2161.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'special-product' -%}
+    <link rel="stylesheet" data-href="{{- 'special-product.447658.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'special-product.447658.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'product-list' -%}
+    <link rel="stylesheet" data-href="{{- 'product-list.976b35.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'product-list.976b35.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'product-column' -%}
+    <link rel="stylesheet" data-href="{{- 'product-column.e12673.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'product-column.e12673.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}
+{%- if layout == 'video-banner' -%}
+    <link rel="stylesheet" data-href="{{- 'video-banner.e92ec5.css' | asset_url -}}" type="text/css"   />
+    <noscript>{{- 'video-banner.e92ec5.css'| asset_url | stylesheet_tag -}}</noscript>
+{%- endif -%}

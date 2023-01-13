@@ -104,13 +104,13 @@
     style="--aspect-ratio:{{ desktop_ratio }}; --mob-aspect-ratio:{{ mobile_ratio }};"
 >
 
-    <source data-desk media="(min-width: 680px)" data-srcset="{{ image_srcset | strip_newlines | strip }}">
+    <source data-desk media="(min-width: 680px)" srcset="{{ image_srcset | strip_newlines | strip }}">
 
-    <source data-mob data-srcset="{{ mobile_srcset | strip_newlines | strip }}">
+    <source data-mob srcset="{{ mobile_srcset | strip_newlines | strip }}">
     {% assign image_link = object_image | image_url: width: 1, height: 1, crop: 'center' %}
 
     <img
-        class="o-img   {{ fit }}  {{ img_class }} lazy2 lazy3"
+        class="o-img   {{ fit }}  {{ img_class }} lazy2"
         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         style="object-position: {{ x_position | default: '50' | append: '%' }} {{ y_position | default: '50' | append: '%' }};"
         data-src2="{% render 'imagekit' src: image_link %}"
